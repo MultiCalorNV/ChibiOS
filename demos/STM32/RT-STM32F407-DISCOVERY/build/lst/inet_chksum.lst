@@ -1,0 +1,4925 @@
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 2
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"inet_chksum.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.lwip_standard_chksum,"ax",%progbits
+  21              		.align	2
+  22              		.p2align 4,,15
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	lwip_standard_chksum, %function
+  26              	lwip_standard_chksum:
+  27              	.LFB256:
+  28              		.file 1 "../../../os/ext/lwip-1.4.1/src/core/ipv4/inet_chksum.c"
+  29              		.loc 1 136 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35 0000 70B4     		push	{r4, r5, r6}
+  36              		.cfi_def_cfa_offset 12
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 6, -4
+  40 0002 83B0     		sub	sp, sp, #12
+  41              		.cfi_def_cfa_offset 24
+  42              		.loc 1 138 0
+  43 0004 0022     		movs	r2, #0
+  44              		.loc 1 143 0
+  45 0006 10F00106 		ands	r6, r0, #1
+  46              		.loc 1 138 0
+  47 000a ADF80620 		strh	r2, [sp, #6]	@ movhi
+  48              	.LVL1:
+  49              		.loc 1 143 0
+  50 000e 06D0     		beq	.L2
+  51              		.loc 1 143 0 is_stmt 0 discriminator 1
+  52 0010 9142     		cmp	r1, r2
+  53 0012 16DD     		ble	.L4
+  54              	.LVL2:
+  55              		.loc 1 144 0 is_stmt 1
+  56 0014 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  57 0016 8DF80730 		strb	r3, [sp, #7]
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 2
+
+
+  58              		.loc 1 145 0
+  59 001a 0139     		subs	r1, r1, #1
+  60              	.LVL3:
+  61              		.loc 1 144 0
+  62 001c 0130     		adds	r0, r0, #1
+  63              	.LVL4:
+  64              	.L2:
+  65              		.loc 1 150 0
+  66 001e 0129     		cmp	r1, #1
+  67 0020 27DD     		ble	.L8
+  68 0022 0446     		mov	r4, r0
+  69 0024 0B46     		mov	r3, r1
+  70 0026 0022     		movs	r2, #0
+  71              	.LVL5:
+  72              	.L5:
+  73              		.loc 1 151 0
+  74 0028 34F8025B 		ldrh	r5, [r4], #2
+  75              	.LVL6:
+  76              		.loc 1 152 0
+  77 002c 023B     		subs	r3, r3, #2
+  78              	.LVL7:
+  79              		.loc 1 150 0
+  80 002e 012B     		cmp	r3, #1
+  81              		.loc 1 151 0
+  82 0030 2A44     		add	r2, r2, r5
+  83              	.LVL8:
+  84              		.loc 1 150 0
+  85 0032 F9DC     		bgt	.L5
+  86 0034 0239     		subs	r1, r1, #2
+  87 0036 4B08     		lsrs	r3, r1, #1
+  88              	.LVL9:
+  89 0038 5C1C     		adds	r4, r3, #1
+  90              	.LVL10:
+  91 003a A1EB4301 		sub	r1, r1, r3, lsl #1
+  92 003e 00EB4400 		add	r0, r0, r4, lsl #1
+  93              	.LVL11:
+  94              	.L4:
+  95              		.loc 1 156 0
+  96 0042 0129     		cmp	r1, #1
+  97              		.loc 1 157 0
+  98 0044 04BF     		itt	eq
+  99 0046 0378     		ldrbeq	r3, [r0]	@ zero_extendqisi2
+ 100 0048 8DF80630 		strbeq	r3, [sp, #6]
+ 101              		.loc 1 161 0
+ 102 004c BDF80600 		ldrh	r0, [sp, #6]
+ 103 0050 1044     		add	r0, r0, r2
+ 104              	.LVL12:
+ 105              		.loc 1 165 0
+ 106 0052 83B2     		uxth	r3, r0
+ 107 0054 03EB1040 		add	r0, r3, r0, lsr #16
+ 108              	.LVL13:
+ 109              		.loc 1 166 0
+ 110 0058 83B2     		uxth	r3, r0
+ 111 005a 03EB1040 		add	r0, r3, r0, lsr #16
+ 112              	.LVL14:
+ 113              		.loc 1 169 0
+ 114 005e 26B1     		cbz	r6, .L7
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 3
+
+
+ 115              		.loc 1 170 0
+ 116 0060 0302     		lsls	r3, r0, #8
+ 117 0062 9BB2     		uxth	r3, r3
+ 118 0064 C0F30720 		ubfx	r0, r0, #8, #8
+ 119              	.LVL15:
+ 120 0068 1843     		orrs	r0, r0, r3
+ 121              	.LVL16:
+ 122              	.L7:
+ 123              		.loc 1 173 0
+ 124 006a 80B2     		uxth	r0, r0
+ 125              	.LVL17:
+ 126              		.loc 1 174 0
+ 127 006c 03B0     		add	sp, sp, #12
+ 128              		.cfi_remember_state
+ 129              		.cfi_def_cfa_offset 12
+ 130              		@ sp needed
+ 131 006e 70BC     		pop	{r4, r5, r6}
+ 132              		.cfi_restore 6
+ 133              		.cfi_restore 5
+ 134              		.cfi_restore 4
+ 135              		.cfi_def_cfa_offset 0
+ 136              	.LVL18:
+ 137 0070 7047     		bx	lr
+ 138              	.LVL19:
+ 139              	.L8:
+ 140              		.cfi_restore_state
+ 141              		.loc 1 139 0
+ 142 0072 0022     		movs	r2, #0
+ 143 0074 E5E7     		b	.L4
+ 144              		.cfi_endproc
+ 145              	.LFE256:
+ 146              		.size	lwip_standard_chksum, .-lwip_standard_chksum
+ 147 0076 00BFAFF3 		.section	.text.chprintf.constprop.0,"ax",%progbits
+ 147      0080AFF3 
+ 147      0080
+ 148              		.align	2
+ 149              		.p2align 4,,15
+ 150              		.thumb
+ 151              		.thumb_func
+ 152              		.type	chprintf.constprop.0, %function
+ 153              	chprintf.constprop.0:
+ 154              	.LFB261:
+ 155              		.file 2 "../../../os/hal/lib/streams/chprintf.h"
+ 156              		.loc 2 69 0
+ 157              		.cfi_startproc
+ 158              		@ args = 4, pretend = 12, frame = 8
+ 159              		@ frame_needed = 0, uses_anonymous_args = 1
+ 160              	.LVL20:
+ 161 0000 0EB4     		push	{r1, r2, r3}
+ 162              		.cfi_def_cfa_offset 12
+ 163              		.cfi_offset 1, -12
+ 164              		.cfi_offset 2, -8
+ 165              		.cfi_offset 3, -4
+ 166 0002 00B5     		push	{lr}
+ 167              		.cfi_def_cfa_offset 16
+ 168              		.cfi_offset 14, -16
+ 169 0004 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 4
+
+
+ 170              		.cfi_def_cfa_offset 24
+ 171              		.loc 2 73 0
+ 172 0006 04AB     		add	r3, sp, #16
+ 173              		.loc 2 74 0
+ 174 0008 1A46     		mov	r2, r3
+ 175 000a 0549     		ldr	r1, .L21
+ 176 000c 0548     		ldr	r0, .L21+4
+ 177              	.LVL21:
+ 178              		.loc 2 73 0
+ 179 000e 0193     		str	r3, [sp, #4]
+ 180              		.loc 2 74 0
+ 181 0010 FFF7FEFF 		bl	chvprintf
+ 182              	.LVL22:
+ 183              		.loc 2 78 0
+ 184 0014 02B0     		add	sp, sp, #8
+ 185              		.cfi_def_cfa_offset 16
+ 186              		@ sp needed
+ 187 0016 5DF804EB 		ldr	lr, [sp], #4
+ 188              		.cfi_restore 14
+ 189              		.cfi_def_cfa_offset 12
+ 190 001a 03B0     		add	sp, sp, #12
+ 191              		.cfi_restore 3
+ 192              		.cfi_restore 2
+ 193              		.cfi_restore 1
+ 194              		.cfi_def_cfa_offset 0
+ 195 001c 7047     		bx	lr
+ 196              	.L22:
+ 197 001e 00BF     		.align	2
+ 198              	.L21:
+ 199 0020 00000000 		.word	.LC0
+ 200 0024 00000000 		.word	itm_port
+ 201              		.cfi_endproc
+ 202              	.LFE261:
+ 203              		.size	chprintf.constprop.0, .-chprintf.constprop.0
+ 204 0028 AFF30080 		.section	.text.inet_chksum_pseudo,"ax",%progbits
+ 204      AFF30080 
+ 205              		.align	2
+ 206              		.p2align 4,,15
+ 207              		.global	inet_chksum_pseudo
+ 208              		.thumb
+ 209              		.thumb_func
+ 210              		.type	inet_chksum_pseudo, %function
+ 211              	inet_chksum_pseudo:
+ 212              	.LFB257:
+ 213              		.loc 1 275 0
+ 214              		.cfi_startproc
+ 215              		@ args = 4, pretend = 0, frame = 0
+ 216              		@ frame_needed = 0, uses_anonymous_args = 0
+ 217              	.LVL23:
+ 218 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 219              		.cfi_def_cfa_offset 32
+ 220              		.cfi_offset 4, -32
+ 221              		.cfi_offset 5, -28
+ 222              		.cfi_offset 6, -24
+ 223              		.cfi_offset 7, -20
+ 224              		.cfi_offset 8, -16
+ 225              		.cfi_offset 9, -12
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 5
+
+
+ 226              		.cfi_offset 10, -8
+ 227              		.cfi_offset 14, -4
+ 228              		.loc 1 275 0
+ 229 0004 8A46     		mov	r10, r1
+ 230 0006 9146     		mov	r9, r2
+ 231 0008 9846     		mov	r8, r3
+ 232 000a BDF82070 		ldrh	r7, [sp, #32]
+ 233              		.loc 1 284 0
+ 234 000e 0546     		mov	r5, r0
+ 235 0010 0028     		cmp	r0, #0
+ 236 0012 3BD0     		beq	.L27
+ 237 0014 0026     		movs	r6, #0
+ 238 0016 3446     		mov	r4, r6
+ 239              	.LVL24:
+ 240              	.L26:
+ 241              		.loc 1 287 0
+ 242 0018 6868     		ldr	r0, [r5, #4]
+ 243 001a 6989     		ldrh	r1, [r5, #10]
+ 244 001c FFF7FEFF 		bl	lwip_standard_chksum
+ 245              	.LVL25:
+ 246              		.loc 1 292 0
+ 247 0020 6B89     		ldrh	r3, [r5, #10]
+ 248              		.loc 1 287 0
+ 249 0022 2044     		add	r0, r0, r4
+ 250              	.LVL26:
+ 251              		.loc 1 291 0
+ 252 0024 84B2     		uxth	r4, r0
+ 253              		.loc 1 292 0
+ 254 0026 DB07     		lsls	r3, r3, #31
+ 255              		.loc 1 291 0
+ 256 0028 04EB1044 		add	r4, r4, r0, lsr #16
+ 257              	.LVL27:
+ 258              		.loc 1 292 0
+ 259 002c 07D5     		bpl	.L25
+ 260              		.loc 1 294 0
+ 261 002e 2302     		lsls	r3, r4, #8
+ 262              		.loc 1 293 0
+ 263 0030 C6F10106 		rsb	r6, r6, #1
+ 264              	.LVL28:
+ 265              		.loc 1 294 0
+ 266 0034 9BB2     		uxth	r3, r3
+ 267 0036 C4F30724 		ubfx	r4, r4, #8, #8
+ 268              	.LVL29:
+ 269              		.loc 1 293 0
+ 270 003a F6B2     		uxtb	r6, r6
+ 271              	.LVL30:
+ 272              		.loc 1 294 0
+ 273 003c 1C43     		orrs	r4, r4, r3
+ 274              	.LVL31:
+ 275              	.L25:
+ 276              		.loc 1 284 0 discriminator 2
+ 277 003e 2D68     		ldr	r5, [r5]
+ 278              	.LVL32:
+ 279 0040 002D     		cmp	r5, #0
+ 280 0042 E9D1     		bne	.L26
+ 281              		.loc 1 299 0
+ 282 0044 26B1     		cbz	r6, .L24
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 6
+
+
+ 283              		.loc 1 300 0
+ 284 0046 2302     		lsls	r3, r4, #8
+ 285 0048 9BB2     		uxth	r3, r3
+ 286 004a C4F30724 		ubfx	r4, r4, #8, #8
+ 287              	.LVL33:
+ 288 004e 1C43     		orrs	r4, r4, r3
+ 289              	.LVL34:
+ 290              	.L24:
+ 291              		.loc 1 302 0
+ 292 0050 DAF80030 		ldr	r3, [r10]
+ 293              	.LVL35:
+ 294              		.loc 1 305 0
+ 295 0054 D9F80010 		ldr	r1, [r9]
+ 296              	.LVL36:
+ 297              		.loc 1 303 0
+ 298 0058 9AB2     		uxth	r2, r3
+ 299 005a 02EB1343 		add	r3, r2, r3, lsr #16
+ 300              	.LVL37:
+ 301 005e 13FA81F3 		uxtah	r3, r3, r1
+ 302 0062 03EB1143 		add	r3, r3, r1, lsr #16
+ 303              		.loc 1 308 0
+ 304 0066 4046     		mov	r0, r8
+ 305              		.loc 1 307 0
+ 306 0068 1C44     		add	r4, r4, r3
+ 307              	.LVL38:
+ 308              		.loc 1 308 0
+ 309 006a FFF7FEFF 		bl	lwip_htons
+ 310              	.LVL39:
+ 311 006e 0444     		add	r4, r4, r0
+ 312              	.LVL40:
+ 313              		.loc 1 309 0
+ 314 0070 3846     		mov	r0, r7
+ 315 0072 FFF7FEFF 		bl	lwip_htons
+ 316              	.LVL41:
+ 317 0076 2044     		add	r0, r0, r4
+ 318              	.LVL42:
+ 319              		.loc 1 313 0
+ 320 0078 83B2     		uxth	r3, r0
+ 321 007a 03EB1040 		add	r0, r3, r0, lsr #16
+ 322              	.LVL43:
+ 323              		.loc 1 314 0
+ 324 007e 83B2     		uxth	r3, r0
+ 325              	.LVL44:
+ 326 0080 03EB1040 		add	r0, r3, r0, lsr #16
+ 327              	.LVL45:
+ 328              		.loc 1 316 0
+ 329 0084 C043     		mvns	r0, r0
+ 330              	.LVL46:
+ 331              		.loc 1 317 0
+ 332 0086 80B2     		uxth	r0, r0
+ 333              	.LVL47:
+ 334 0088 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 335              	.LVL48:
+ 336              	.L27:
+ 337              		.loc 1 281 0
+ 338 008c 0446     		mov	r4, r0
+ 339 008e DFE7     		b	.L24
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 7
+
+
+ 340              		.cfi_endproc
+ 341              	.LFE257:
+ 342              		.size	inet_chksum_pseudo, .-inet_chksum_pseudo
+ 343              		.section	.text.inet_chksum_pseudo_partial,"ax",%progbits
+ 344              		.align	2
+ 345              		.p2align 4,,15
+ 346              		.global	inet_chksum_pseudo_partial
+ 347              		.thumb
+ 348              		.thumb_func
+ 349              		.type	inet_chksum_pseudo_partial, %function
+ 350              	inet_chksum_pseudo_partial:
+ 351              	.LFB258:
+ 352              		.loc 1 335 0
+ 353              		.cfi_startproc
+ 354              		@ args = 8, pretend = 0, frame = 8
+ 355              		@ frame_needed = 0, uses_anonymous_args = 0
+ 356              	.LVL49:
+ 357 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 358              		.cfi_def_cfa_offset 36
+ 359              		.cfi_offset 4, -36
+ 360              		.cfi_offset 5, -32
+ 361              		.cfi_offset 6, -28
+ 362              		.cfi_offset 7, -24
+ 363              		.cfi_offset 8, -20
+ 364              		.cfi_offset 9, -16
+ 365              		.cfi_offset 10, -12
+ 366              		.cfi_offset 11, -8
+ 367              		.cfi_offset 14, -4
+ 368 0004 85B0     		sub	sp, sp, #20
+ 369              		.cfi_def_cfa_offset 56
+ 370              		.loc 1 335 0
+ 371 0006 8B46     		mov	fp, r1
+ 372 0008 0293     		str	r3, [sp, #8]
+ 373 000a BDF83830 		ldrh	r3, [sp, #56]
+ 374              	.LVL50:
+ 375 000e 0393     		str	r3, [sp, #12]
+ 376 0010 9246     		mov	r10, r2
+ 377 0012 BDF83C70 		ldrh	r7, [sp, #60]
+ 378              	.LVL51:
+ 379              		.loc 1 345 0
+ 380 0016 0546     		mov	r5, r0
+ 381 0018 0028     		cmp	r0, #0
+ 382 001a 5BD0     		beq	.L44
+ 383 001c 002F     		cmp	r7, #0
+ 384 001e 5BD0     		beq	.L45
+ 385 0020 0026     		movs	r6, #0
+ 386              		.loc 1 354 0
+ 387 0022 DFF8C480 		ldr	r8, .L51+12
+ 388              		.loc 1 345 0
+ 389 0026 3446     		mov	r4, r6
+ 390 0028 10E0     		b	.L42
+ 391              	.LVL52:
+ 392              	.L38:
+ 393              		.loc 1 358 0
+ 394 002a 6B89     		ldrh	r3, [r5, #10]
+ 395              		.loc 1 357 0
+ 396 002c A2B2     		uxth	r2, r4
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 8
+
+
+ 397              		.loc 1 358 0
+ 398 002e DB07     		lsls	r3, r3, #31
+ 399              		.loc 1 357 0
+ 400 0030 02EB1444 		add	r4, r2, r4, lsr #16
+ 401              	.LVL53:
+ 402              		.loc 1 358 0
+ 403 0034 07D5     		bpl	.L39
+ 404              		.loc 1 360 0
+ 405 0036 2302     		lsls	r3, r4, #8
+ 406 0038 9BB2     		uxth	r3, r3
+ 407 003a C4F30724 		ubfx	r4, r4, #8, #8
+ 408              	.LVL54:
+ 409              		.loc 1 359 0
+ 410 003e C6F10106 		rsb	r6, r6, #1
+ 411              	.LVL55:
+ 412              		.loc 1 360 0
+ 413 0042 1C43     		orrs	r4, r4, r3
+ 414              		.loc 1 359 0
+ 415 0044 F6B2     		uxtb	r6, r6
+ 416              	.LVL56:
+ 417              	.L39:
+ 418              		.loc 1 345 0 discriminator 2
+ 419 0046 2D68     		ldr	r5, [r5]
+ 420              	.LVL57:
+ 421 0048 FDB1     		cbz	r5, .L43
+ 422              		.loc 1 345 0 is_stmt 0 discriminator 3
+ 423 004a F7B1     		cbz	r7, .L43
+ 424              	.LVL58:
+ 425              	.L42:
+ 426              		.loc 1 348 0 is_stmt 1
+ 427 004c 6B89     		ldrh	r3, [r5, #10]
+ 428              	.LVL59:
+ 429              		.loc 1 352 0
+ 430 004e 6868     		ldr	r0, [r5, #4]
+ 431 0050 BB42     		cmp	r3, r7
+ 432 0052 28BF     		it	cs
+ 433 0054 3B46     		movcs	r3, r7
+ 434              	.LVL60:
+ 435 0056 9946     		mov	r9, r3
+ 436              	.LVL61:
+ 437 0058 1946     		mov	r1, r3
+ 438 005a FFF7FEFF 		bl	lwip_standard_chksum
+ 439              	.LVL62:
+ 440              		.loc 1 353 0
+ 441 005e C9EB070C 		rsb	ip, r9, r7
+ 442 0062 1FFA8CF7 		uxth	r7, ip
+ 443              	.LVL63:
+ 444              		.loc 1 354 0
+ 445 0066 47F6FE73 		movw	r3, #32766
+ 446 006a 9F42     		cmp	r7, r3
+ 447              		.loc 1 352 0
+ 448 006c 0444     		add	r4, r4, r0
+ 449              	.LVL64:
+ 450              		.loc 1 354 0
+ 451 006e DCD9     		bls	.L38
+ 452              		.loc 1 354 0 is_stmt 0 discriminator 1
+ 453 0070 CDF80080 		str	r8, [sp]
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 9
+
+
+ 454 0074 1949     		ldr	r1, .L51
+ 455 0076 1A4A     		ldr	r2, .L51+4
+ 456 0078 1A48     		ldr	r0, .L51+8
+ 457 007a 4FF4B173 		mov	r3, #354
+ 458 007e FFF7FEFF 		bl	chprintf.constprop.0
+ 459              	.LVL65:
+ 460              	.LBB4:
+ 461              	.LBB5:
+ 462              		.file 3 "../../../os/hal/osal/rt/osal.h"
+ 463              		.loc 3 414 0 is_stmt 1 discriminator 1
+ 464 0082 1748     		ldr	r0, .L51+4
+ 465 0084 FFF7FEFF 		bl	chSysHalt
+ 466              	.LVL66:
+ 467 0088 CFE7     		b	.L38
+ 468              	.LVL67:
+ 469              	.L43:
+ 470              	.LBE5:
+ 471              	.LBE4:
+ 472              		.loc 1 365 0
+ 473 008a 26B1     		cbz	r6, .L37
+ 474              		.loc 1 366 0
+ 475 008c 2302     		lsls	r3, r4, #8
+ 476 008e 9BB2     		uxth	r3, r3
+ 477 0090 C4F30724 		ubfx	r4, r4, #8, #8
+ 478              	.LVL68:
+ 479 0094 1C43     		orrs	r4, r4, r3
+ 480              	.LVL69:
+ 481              	.L37:
+ 482              		.loc 1 368 0
+ 483 0096 DBF80030 		ldr	r3, [fp]
+ 484              	.LVL70:
+ 485              		.loc 1 371 0
+ 486 009a DAF80010 		ldr	r1, [r10]
+ 487              	.LVL71:
+ 488              		.loc 1 374 0
+ 489 009e 0298     		ldr	r0, [sp, #8]
+ 490              		.loc 1 369 0
+ 491 00a0 9AB2     		uxth	r2, r3
+ 492 00a2 02EB1343 		add	r3, r2, r3, lsr #16
+ 493              	.LVL72:
+ 494 00a6 13FA81F3 		uxtah	r3, r3, r1
+ 495 00aa 03EB1143 		add	r3, r3, r1, lsr #16
+ 496              		.loc 1 373 0
+ 497 00ae 1C44     		add	r4, r4, r3
+ 498              	.LVL73:
+ 499              		.loc 1 374 0
+ 500 00b0 FFF7FEFF 		bl	lwip_htons
+ 501              	.LVL74:
+ 502 00b4 0444     		add	r4, r4, r0
+ 503              	.LVL75:
+ 504              		.loc 1 375 0
+ 505 00b6 0398     		ldr	r0, [sp, #12]
+ 506 00b8 FFF7FEFF 		bl	lwip_htons
+ 507              	.LVL76:
+ 508 00bc 2044     		add	r0, r0, r4
+ 509              	.LVL77:
+ 510              		.loc 1 379 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 10
+
+
+ 511 00be 83B2     		uxth	r3, r0
+ 512 00c0 03EB1040 		add	r0, r3, r0, lsr #16
+ 513              	.LVL78:
+ 514              		.loc 1 380 0
+ 515 00c4 83B2     		uxth	r3, r0
+ 516              	.LVL79:
+ 517 00c6 03EB1040 		add	r0, r3, r0, lsr #16
+ 518              	.LVL80:
+ 519              		.loc 1 382 0
+ 520 00ca C043     		mvns	r0, r0
+ 521              	.LVL81:
+ 522              		.loc 1 383 0
+ 523 00cc 80B2     		uxth	r0, r0
+ 524              	.LVL82:
+ 525 00ce 05B0     		add	sp, sp, #20
+ 526              		.cfi_remember_state
+ 527              		.cfi_def_cfa_offset 36
+ 528              		@ sp needed
+ 529 00d0 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 530              	.LVL83:
+ 531              	.L44:
+ 532              		.cfi_restore_state
+ 533              		.loc 1 345 0
+ 534 00d4 0446     		mov	r4, r0
+ 535 00d6 DEE7     		b	.L37
+ 536              	.L45:
+ 537 00d8 3C46     		mov	r4, r7
+ 538 00da DCE7     		b	.L37
+ 539              	.L52:
+ 540              		.align	2
+ 541              	.L51:
+ 542 00dc 00000000 		.word	.LC0
+ 543 00e0 28000000 		.word	.LC1
+ 544 00e4 00000000 		.word	itm_port
+ 545 00e8 34000000 		.word	.LC2
+ 546              		.cfi_endproc
+ 547              	.LFE258:
+ 548              		.size	inet_chksum_pseudo_partial, .-inet_chksum_pseudo_partial
+ 549 00ec AFF30080 		.section	.text.inet_chksum,"ax",%progbits
+ 550              		.align	2
+ 551              		.p2align 4,,15
+ 552              		.global	inet_chksum
+ 553              		.thumb
+ 554              		.thumb_func
+ 555              		.type	inet_chksum, %function
+ 556              	inet_chksum:
+ 557              	.LFB259:
+ 558              		.loc 1 397 0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562              	.LVL84:
+ 563 0000 08B5     		push	{r3, lr}
+ 564              		.cfi_def_cfa_offset 8
+ 565              		.cfi_offset 3, -8
+ 566              		.cfi_offset 14, -4
+ 567              		.loc 1 398 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 11
+
+
+ 568 0002 FFF7FEFF 		bl	lwip_standard_chksum
+ 569              	.LVL85:
+ 570 0006 C043     		mvns	r0, r0
+ 571              		.loc 1 399 0
+ 572 0008 80B2     		uxth	r0, r0
+ 573 000a 08BD     		pop	{r3, pc}
+ 574              		.cfi_endproc
+ 575              	.LFE259:
+ 576              		.size	inet_chksum, .-inet_chksum
+ 577 000c AFF30080 		.section	.text.inet_chksum_pbuf,"ax",%progbits
+ 578              		.align	2
+ 579              		.p2align 4,,15
+ 580              		.global	inet_chksum_pbuf
+ 581              		.thumb
+ 582              		.thumb_func
+ 583              		.type	inet_chksum_pbuf, %function
+ 584              	inet_chksum_pbuf:
+ 585              	.LFB260:
+ 586              		.loc 1 410 0
+ 587              		.cfi_startproc
+ 588              		@ args = 0, pretend = 0, frame = 0
+ 589              		@ frame_needed = 0, uses_anonymous_args = 0
+ 590              	.LVL86:
+ 591 0000 70B5     		push	{r4, r5, r6, lr}
+ 592              		.cfi_def_cfa_offset 16
+ 593              		.cfi_offset 4, -16
+ 594              		.cfi_offset 5, -12
+ 595              		.cfi_offset 6, -8
+ 596              		.cfi_offset 14, -4
+ 597              		.loc 1 417 0
+ 598 0002 0546     		mov	r5, r0
+ 599 0004 00B3     		cbz	r0, .L60
+ 600 0006 0026     		movs	r6, #0
+ 601 0008 3446     		mov	r4, r6
+ 602              	.LVL87:
+ 603              	.L58:
+ 604              		.loc 1 418 0
+ 605 000a 6868     		ldr	r0, [r5, #4]
+ 606 000c 6989     		ldrh	r1, [r5, #10]
+ 607 000e FFF7FEFF 		bl	lwip_standard_chksum
+ 608              	.LVL88:
+ 609              		.loc 1 420 0
+ 610 0012 6B89     		ldrh	r3, [r5, #10]
+ 611              		.loc 1 418 0
+ 612 0014 2044     		add	r0, r0, r4
+ 613              	.LVL89:
+ 614              		.loc 1 419 0
+ 615 0016 84B2     		uxth	r4, r0
+ 616              		.loc 1 420 0
+ 617 0018 DB07     		lsls	r3, r3, #31
+ 618              		.loc 1 419 0
+ 619 001a 04EB1044 		add	r4, r4, r0, lsr #16
+ 620              	.LVL90:
+ 621              		.loc 1 420 0
+ 622 001e 07D5     		bpl	.L57
+ 623              		.loc 1 422 0
+ 624 0020 2302     		lsls	r3, r4, #8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 12
+
+
+ 625              		.loc 1 421 0
+ 626 0022 C6F10106 		rsb	r6, r6, #1
+ 627              	.LVL91:
+ 628              		.loc 1 422 0
+ 629 0026 9BB2     		uxth	r3, r3
+ 630 0028 C4F30724 		ubfx	r4, r4, #8, #8
+ 631              	.LVL92:
+ 632              		.loc 1 421 0
+ 633 002c F6B2     		uxtb	r6, r6
+ 634              	.LVL93:
+ 635              		.loc 1 422 0
+ 636 002e 1C43     		orrs	r4, r4, r3
+ 637              	.LVL94:
+ 638              	.L57:
+ 639              		.loc 1 417 0 discriminator 2
+ 640 0030 2D68     		ldr	r5, [r5]
+ 641              	.LVL95:
+ 642 0032 002D     		cmp	r5, #0
+ 643 0034 E9D1     		bne	.L58
+ 644              		.loc 1 426 0
+ 645 0036 26B1     		cbz	r6, .L66
+ 646              		.loc 1 427 0
+ 647 0038 2002     		lsls	r0, r4, #8
+ 648 003a 80B2     		uxth	r0, r0
+ 649 003c C4F30724 		ubfx	r4, r4, #8, #8
+ 650              	.LVL96:
+ 651 0040 0443     		orrs	r4, r4, r0
+ 652              	.LVL97:
+ 653              	.L66:
+ 654 0042 E443     		mvns	r4, r4
+ 655              	.LVL98:
+ 656 0044 A0B2     		uxth	r0, r4
+ 657 0046 70BD     		pop	{r4, r5, r6, pc}
+ 658              	.LVL99:
+ 659              	.L60:
+ 660              		.loc 1 417 0
+ 661 0048 4FF6FF70 		movw	r0, #65535
+ 662              	.LVL100:
+ 663              		.loc 1 430 0
+ 664 004c 70BD     		pop	{r4, r5, r6, pc}
+ 665              		.cfi_endproc
+ 666              	.LFE260:
+ 667              		.size	inet_chksum_pbuf, .-inet_chksum_pbuf
+ 668 004e 00BF     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 669              		.align	2
+ 670              	.LC0:
+ 671 0000 41737365 		.ascii	"Assertion \"%s\" failed at line %d in %s\012\000"
+ 671      7274696F 
+ 671      6E202225 
+ 671      73222066 
+ 671      61696C65 
+ 672              	.LC1:
+ 673 0028 64656C65 		.ascii	"delete me\000"
+ 673      7465206D 
+ 673      6500
+ 674 0032 0000     		.space	2
+ 675              	.LC2:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 13
+
+
+ 676 0034 2E2E2F2E 		.ascii	"../../../os/ext/lwip-1.4.1/src/core/ipv4/inet_chksu"
+ 676      2E2F2E2E 
+ 676      2F6F732F 
+ 676      6578742F 
+ 676      6C776970 
+ 677 0067 6D2E6300 		.ascii	"m.c\000"
+ 678 006b 00       		.text
+ 679              	.Letext0:
+ 680              		.file 4 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\lib\\gcc\\arm-none-eabi\\4.9.3\\in
+ 681              		.file 5 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\machine\\_
+ 682              		.file 6 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\stdint.h"
+ 683              		.file 7 "../../../os/rt/ports/ARMCMx/compilers/GCC/chtypes.h"
+ 684              		.file 8 "../../../os/rt/include/chsystypes.h"
+ 685              		.file 9 "../../../os/rt/include/chschd.h"
+ 686              		.file 10 "../../../os/rt/ports/ARMCMx/chcore.h"
+ 687              		.file 11 "../../../os/rt/ports/ARMCMx/chcore_v7m.h"
+ 688              		.file 12 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\lib\\gcc\\arm-none-eabi\\4.9.3\\i
+ 689              		.file 13 "<built-in>"
+ 690              		.file 14 "../../../os/rt/include/chtm.h"
+ 691              		.file 15 "../../../os/rt/include/chmtx.h"
+ 692              		.file 16 "../../../os/rt/include/chstreams.h"
+ 693              		.file 17 "./ITM_trace.h"
+ 694              		.file 18 "../../../os/various/lwip_bindings/arch/cc.h"
+ 695              		.file 19 "../../../os/ext/lwip-1.4.1/src/include/lwip/pbuf.h"
+ 696              		.file 20 "../../../os/ext/lwip-1.4.1/src/include/ipv4/lwip/ip_addr.h"
+ 697              		.file 21 "../../../os/ext/CMSIS/include/core_cm4.h"
+ 698              		.file 22 "../../../os/ext/lwip-1.4.1/src/include/lwip/def.h"
+ 699              		.file 23 "../../../os/rt/include/chsys.h"
+ 700              		.section	.debug_info,"",%progbits
+ 701              	.Ldebug_info0:
+ 702 0000 5D0D0000 		.4byte	0xd5d
+ 703 0004 0400     		.2byte	0x4
+ 704 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 705 000a 04       		.byte	0x4
+ 706 000b 01       		.uleb128 0x1
+ 707 000c D2030000 		.4byte	.LASF137
+ 708 0010 01       		.byte	0x1
+ 709 0011 DE060000 		.4byte	.LASF138
+ 710 0015 79050000 		.4byte	.LASF139
+ 711 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 712 001d 00000000 		.4byte	0
+ 713 0021 00000000 		.4byte	.Ldebug_line0
+ 714 0025 02       		.uleb128 0x2
+ 715 0026 04       		.byte	0x4
+ 716 0027 05       		.byte	0x5
+ 717 0028 696E7400 		.ascii	"int\000"
+ 718 002c 03       		.uleb128 0x3
+ 719 002d 0D000000 		.4byte	.LASF2
+ 720 0031 04       		.byte	0x4
+ 721 0032 D4       		.byte	0xd4
+ 722 0033 37000000 		.4byte	0x37
+ 723 0037 04       		.uleb128 0x4
+ 724 0038 04       		.byte	0x4
+ 725 0039 07       		.byte	0x7
+ 726 003a BE010000 		.4byte	.LASF0
+ 727 003e 04       		.uleb128 0x4
+ 728 003f 01       		.byte	0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 14
+
+
+ 729 0040 06       		.byte	0x6
+ 730 0041 10010000 		.4byte	.LASF1
+ 731 0045 03       		.uleb128 0x3
+ 732 0046 3F000000 		.4byte	.LASF3
+ 733 004a 05       		.byte	0x5
+ 734 004b 1D       		.byte	0x1d
+ 735 004c 50000000 		.4byte	0x50
+ 736 0050 04       		.uleb128 0x4
+ 737 0051 01       		.byte	0x1
+ 738 0052 08       		.byte	0x8
+ 739 0053 83030000 		.4byte	.LASF4
+ 740 0057 04       		.uleb128 0x4
+ 741 0058 02       		.byte	0x2
+ 742 0059 05       		.byte	0x5
+ 743 005a A3030000 		.4byte	.LASF5
+ 744 005e 03       		.uleb128 0x3
+ 745 005f C1050000 		.4byte	.LASF6
+ 746 0063 05       		.byte	0x5
+ 747 0064 2B       		.byte	0x2b
+ 748 0065 69000000 		.4byte	0x69
+ 749 0069 04       		.uleb128 0x4
+ 750 006a 02       		.byte	0x2
+ 751 006b 07       		.byte	0x7
+ 752 006c F6010000 		.4byte	.LASF7
+ 753 0070 03       		.uleb128 0x3
+ 754 0071 57020000 		.4byte	.LASF8
+ 755 0075 05       		.byte	0x5
+ 756 0076 3F       		.byte	0x3f
+ 757 0077 7B000000 		.4byte	0x7b
+ 758 007b 04       		.uleb128 0x4
+ 759 007c 04       		.byte	0x4
+ 760 007d 05       		.byte	0x5
+ 761 007e 42010000 		.4byte	.LASF9
+ 762 0082 03       		.uleb128 0x3
+ 763 0083 07060000 		.4byte	.LASF10
+ 764 0087 05       		.byte	0x5
+ 765 0088 41       		.byte	0x41
+ 766 0089 8D000000 		.4byte	0x8d
+ 767 008d 04       		.uleb128 0x4
+ 768 008e 04       		.byte	0x4
+ 769 008f 07       		.byte	0x7
+ 770 0090 4B050000 		.4byte	.LASF11
+ 771 0094 04       		.uleb128 0x4
+ 772 0095 08       		.byte	0x8
+ 773 0096 05       		.byte	0x5
+ 774 0097 02010000 		.4byte	.LASF12
+ 775 009b 03       		.uleb128 0x3
+ 776 009c 83020000 		.4byte	.LASF13
+ 777 00a0 05       		.byte	0x5
+ 778 00a1 5B       		.byte	0x5b
+ 779 00a2 A6000000 		.4byte	0xa6
+ 780 00a6 04       		.uleb128 0x4
+ 781 00a7 08       		.byte	0x8
+ 782 00a8 07       		.byte	0x7
+ 783 00a9 87000000 		.4byte	.LASF14
+ 784 00ad 03       		.uleb128 0x3
+ 785 00ae 89060000 		.4byte	.LASF15
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 15
+
+
+ 786 00b2 06       		.byte	0x6
+ 787 00b3 15       		.byte	0x15
+ 788 00b4 45000000 		.4byte	0x45
+ 789 00b8 03       		.uleb128 0x3
+ 790 00b9 D3010000 		.4byte	.LASF16
+ 791 00bd 06       		.byte	0x6
+ 792 00be 21       		.byte	0x21
+ 793 00bf 5E000000 		.4byte	0x5e
+ 794 00c3 03       		.uleb128 0x3
+ 795 00c4 7B030000 		.4byte	.LASF17
+ 796 00c8 06       		.byte	0x6
+ 797 00c9 2C       		.byte	0x2c
+ 798 00ca 70000000 		.4byte	0x70
+ 799 00ce 03       		.uleb128 0x3
+ 800 00cf 1D070000 		.4byte	.LASF18
+ 801 00d3 06       		.byte	0x6
+ 802 00d4 2D       		.byte	0x2d
+ 803 00d5 82000000 		.4byte	0x82
+ 804 00d9 03       		.uleb128 0x3
+ 805 00da 1B000000 		.4byte	.LASF19
+ 806 00de 06       		.byte	0x6
+ 807 00df 39       		.byte	0x39
+ 808 00e0 9B000000 		.4byte	0x9b
+ 809 00e4 05       		.uleb128 0x5
+ 810 00e5 C3000000 		.4byte	0xc3
+ 811 00e9 03       		.uleb128 0x3
+ 812 00ea 30060000 		.4byte	.LASF20
+ 813 00ee 07       		.byte	0x7
+ 814 00ef 45       		.byte	0x45
+ 815 00f0 CE000000 		.4byte	0xce
+ 816 00f4 03       		.uleb128 0x3
+ 817 00f5 35020000 		.4byte	.LASF21
+ 818 00f9 07       		.byte	0x7
+ 819 00fa 48       		.byte	0x48
+ 820 00fb AD000000 		.4byte	0xad
+ 821 00ff 03       		.uleb128 0x3
+ 822 0100 5E010000 		.4byte	.LASF22
+ 823 0104 07       		.byte	0x7
+ 824 0105 49       		.byte	0x49
+ 825 0106 AD000000 		.4byte	0xad
+ 826 010a 03       		.uleb128 0x3
+ 827 010b 00000000 		.4byte	.LASF23
+ 828 010f 07       		.byte	0x7
+ 829 0110 4A       		.byte	0x4a
+ 830 0111 AD000000 		.4byte	0xad
+ 831 0115 03       		.uleb128 0x3
+ 832 0116 57030000 		.4byte	.LASF24
+ 833 011a 07       		.byte	0x7
+ 834 011b 4C       		.byte	0x4c
+ 835 011c CE000000 		.4byte	0xce
+ 836 0120 03       		.uleb128 0x3
+ 837 0121 13020000 		.4byte	.LASF25
+ 838 0125 07       		.byte	0x7
+ 839 0126 4D       		.byte	0x4d
+ 840 0127 C3000000 		.4byte	0xc3
+ 841 012b 03       		.uleb128 0x3
+ 842 012c 4B020000 		.4byte	.LASF26
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 16
+
+
+ 843 0130 07       		.byte	0x7
+ 844 0131 4F       		.byte	0x4f
+ 845 0132 CE000000 		.4byte	0xce
+ 846 0136 03       		.uleb128 0x3
+ 847 0137 E9050000 		.4byte	.LASF27
+ 848 013b 08       		.byte	0x8
+ 849 013c 33       		.byte	0x33
+ 850 013d CE000000 		.4byte	0xce
+ 851 0141 03       		.uleb128 0x3
+ 852 0142 D9050000 		.4byte	.LASF28
+ 853 0146 08       		.byte	0x8
+ 854 0147 3F       		.byte	0x3f
+ 855 0148 4C010000 		.4byte	0x14c
+ 856 014c 06       		.uleb128 0x6
+ 857 014d 09020000 		.4byte	.LASF47
+ 858 0151 44       		.byte	0x44
+ 859 0152 09       		.byte	0x9
+ 860 0153 BE       		.byte	0xbe
+ 861 0154 39020000 		.4byte	0x239
+ 862 0158 07       		.uleb128 0x7
+ 863 0159 CB030000 		.4byte	.LASF29
+ 864 015d 09       		.byte	0x9
+ 865 015e BF       		.byte	0xbf
+ 866 015f 17060000 		.4byte	0x617
+ 867 0163 00       		.byte	0
+ 868 0164 07       		.uleb128 0x7
+ 869 0165 50030000 		.4byte	.LASF30
+ 870 0169 09       		.byte	0x9
+ 871 016a C1       		.byte	0xc1
+ 872 016b 17060000 		.4byte	0x617
+ 873 016f 04       		.byte	0x4
+ 874 0170 07       		.uleb128 0x7
+ 875 0171 FB000000 		.4byte	.LASF31
+ 876 0175 09       		.byte	0x9
+ 877 0176 C3       		.byte	0xc3
+ 878 0177 15010000 		.4byte	0x115
+ 879 017b 08       		.byte	0x8
+ 880 017c 07       		.uleb128 0x7
+ 881 017d 26070000 		.4byte	.LASF32
+ 882 0181 09       		.byte	0x9
+ 883 0182 C4       		.byte	0xc4
+ 884 0183 63040000 		.4byte	0x463
+ 885 0187 0C       		.byte	0xc
+ 886 0188 07       		.uleb128 0x7
+ 887 0189 71010000 		.4byte	.LASF33
+ 888 018d 09       		.byte	0x9
+ 889 018e C6       		.byte	0xc6
+ 890 018f 17060000 		.4byte	0x617
+ 891 0193 10       		.byte	0x10
+ 892 0194 07       		.uleb128 0x7
+ 893 0195 B5030000 		.4byte	.LASF34
+ 894 0199 09       		.byte	0x9
+ 895 019a C7       		.byte	0xc7
+ 896 019b 17060000 		.4byte	0x617
+ 897 019f 14       		.byte	0x14
+ 898 01a0 07       		.uleb128 0x7
+ 899 01a1 75060000 		.4byte	.LASF35
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 17
+
+
+ 900 01a5 09       		.byte	0x9
+ 901 01a6 CE       		.byte	0xce
+ 902 01a7 EC050000 		.4byte	0x5ec
+ 903 01ab 18       		.byte	0x18
+ 904 01ac 07       		.uleb128 0x7
+ 905 01ad AD030000 		.4byte	.LASF36
+ 906 01b1 09       		.byte	0x9
+ 907 01b2 D9       		.byte	0xd9
+ 908 01b3 FF000000 		.4byte	0xff
+ 909 01b7 1C       		.byte	0x1c
+ 910 01b8 07       		.uleb128 0x7
+ 911 01b9 F3040000 		.4byte	.LASF37
+ 912 01bd 09       		.byte	0x9
+ 913 01be DD       		.byte	0xdd
+ 914 01bf F4000000 		.4byte	0xf4
+ 915 01c3 1D       		.byte	0x1d
+ 916 01c4 07       		.uleb128 0x7
+ 917 01c5 7C060000 		.4byte	.LASF38
+ 918 01c9 09       		.byte	0x9
+ 919 01ca E2       		.byte	0xe2
+ 920 01cb 0A010000 		.4byte	0x10a
+ 921 01cf 1E       		.byte	0x1e
+ 922 01d0 08       		.uleb128 0x8
+ 923 01d1 705F7500 		.ascii	"p_u\000"
+ 924 01d5 09       		.byte	0x9
+ 925 01d6 1401     		.2byte	0x114
+ 926 01d8 1D060000 		.4byte	0x61d
+ 927 01dc 20       		.byte	0x20
+ 928 01dd 09       		.uleb128 0x9
+ 929 01de 9E020000 		.4byte	.LASF39
+ 930 01e2 09       		.byte	0x9
+ 931 01e3 1901     		.2byte	0x119
+ 932 01e5 39020000 		.4byte	0x239
+ 933 01e9 24       		.byte	0x24
+ 934 01ea 09       		.uleb128 0x9
+ 935 01eb E5010000 		.4byte	.LASF40
+ 936 01ef 09       		.byte	0x9
+ 937 01f0 1F01     		.2byte	0x11f
+ 938 01f2 5D020000 		.4byte	0x25d
+ 939 01f6 28       		.byte	0x28
+ 940 01f7 09       		.uleb128 0x9
+ 941 01f8 D8060000 		.4byte	.LASF41
+ 942 01fc 09       		.byte	0x9
+ 943 01fd 2301     		.2byte	0x123
+ 944 01ff 20010000 		.4byte	0x120
+ 945 0203 30       		.byte	0x30
+ 946 0204 09       		.uleb128 0x9
+ 947 0205 19050000 		.4byte	.LASF42
+ 948 0209 09       		.byte	0x9
+ 949 020a 2901     		.2byte	0x129
+ 950 020c 2B010000 		.4byte	0x12b
+ 951 0210 34       		.byte	0x34
+ 952 0211 09       		.uleb128 0x9
+ 953 0212 99030000 		.4byte	.LASF43
+ 954 0216 09       		.byte	0x9
+ 955 0217 3001     		.2byte	0x130
+ 956 0219 86060000 		.4byte	0x686
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 18
+
+
+ 957 021d 38       		.byte	0x38
+ 958 021e 09       		.uleb128 0x9
+ 959 021f F3050000 		.4byte	.LASF44
+ 960 0223 09       		.byte	0x9
+ 961 0224 3401     		.2byte	0x134
+ 962 0226 15010000 		.4byte	0x115
+ 963 022a 3C       		.byte	0x3c
+ 964 022b 09       		.uleb128 0x9
+ 965 022c 1C010000 		.4byte	.LASF45
+ 966 0230 09       		.byte	0x9
+ 967 0231 3A01     		.2byte	0x13a
+ 968 0233 10030000 		.4byte	0x310
+ 969 0237 40       		.byte	0x40
+ 970 0238 00       		.byte	0
+ 971 0239 03       		.uleb128 0x3
+ 972 023a BE060000 		.4byte	.LASF46
+ 973 023e 08       		.byte	0x8
+ 974 023f 44       		.byte	0x44
+ 975 0240 44020000 		.4byte	0x244
+ 976 0244 06       		.uleb128 0x6
+ 977 0245 19020000 		.4byte	.LASF48
+ 978 0249 04       		.byte	0x4
+ 979 024a 09       		.byte	0x9
+ 980 024b AC       		.byte	0xac
+ 981 024c 5D020000 		.4byte	0x25d
+ 982 0250 07       		.uleb128 0x7
+ 983 0251 CB030000 		.4byte	.LASF29
+ 984 0255 09       		.byte	0x9
+ 985 0256 AD       		.byte	0xad
+ 986 0257 17060000 		.4byte	0x617
+ 987 025b 00       		.byte	0
+ 988 025c 00       		.byte	0
+ 989 025d 03       		.uleb128 0x3
+ 990 025e 65060000 		.4byte	.LASF49
+ 991 0262 08       		.byte	0x8
+ 992 0263 4B       		.byte	0x4b
+ 993 0264 68020000 		.4byte	0x268
+ 994 0268 06       		.uleb128 0x6
+ 995 0269 EA000000 		.4byte	.LASF50
+ 996 026d 08       		.byte	0x8
+ 997 026e 09       		.byte	0x9
+ 998 026f B3       		.byte	0xb3
+ 999 0270 8D020000 		.4byte	0x28d
+ 1000 0274 07       		.uleb128 0x7
+ 1001 0275 CB030000 		.4byte	.LASF29
+ 1002 0279 09       		.byte	0x9
+ 1003 027a B4       		.byte	0xb4
+ 1004 027b 17060000 		.4byte	0x617
+ 1005 027f 00       		.byte	0
+ 1006 0280 07       		.uleb128 0x7
+ 1007 0281 50030000 		.4byte	.LASF30
+ 1008 0285 09       		.byte	0x9
+ 1009 0286 B5       		.byte	0xb5
+ 1010 0287 17060000 		.4byte	0x617
+ 1011 028b 04       		.byte	0x4
+ 1012 028c 00       		.byte	0
+ 1013 028d 03       		.uleb128 0x3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 19
+
+
+ 1014 028e 4F060000 		.4byte	.LASF51
+ 1015 0292 08       		.byte	0x8
+ 1016 0293 52       		.byte	0x52
+ 1017 0294 98020000 		.4byte	0x298
+ 1018 0298 0A       		.uleb128 0xa
+ 1019 0299 3D020000 		.4byte	.LASF52
+ 1020 029d 1C       		.byte	0x1c
+ 1021 029e 09       		.byte	0x9
+ 1022 029f 7201     		.2byte	0x172
+ 1023 02a1 F4020000 		.4byte	0x2f4
+ 1024 02a5 09       		.uleb128 0x9
+ 1025 02a6 3C050000 		.4byte	.LASF53
+ 1026 02aa 09       		.byte	0x9
+ 1027 02ab 7301     		.2byte	0x173
+ 1028 02ad 5D020000 		.4byte	0x25d
+ 1029 02b1 00       		.byte	0
+ 1030 02b2 09       		.uleb128 0x9
+ 1031 02b3 BD030000 		.4byte	.LASF54
+ 1032 02b7 09       		.byte	0x9
+ 1033 02b8 7401     		.2byte	0x174
+ 1034 02ba 15010000 		.4byte	0x115
+ 1035 02be 08       		.byte	0x8
+ 1036 02bf 09       		.uleb128 0x9
+ 1037 02c0 01030000 		.4byte	.LASF55
+ 1038 02c4 09       		.byte	0x9
+ 1039 02c5 7601     		.2byte	0x176
+ 1040 02c7 63040000 		.4byte	0x463
+ 1041 02cb 0C       		.byte	0xc
+ 1042 02cc 09       		.uleb128 0x9
+ 1043 02cd 79010000 		.4byte	.LASF56
+ 1044 02d1 09       		.byte	0x9
+ 1045 02d2 7901     		.2byte	0x179
+ 1046 02d4 17060000 		.4byte	0x617
+ 1047 02d8 10       		.byte	0x10
+ 1048 02d9 09       		.uleb128 0x9
+ 1049 02da 1D030000 		.4byte	.LASF57
+ 1050 02de 09       		.byte	0x9
+ 1051 02df 7A01     		.2byte	0x17a
+ 1052 02e1 17060000 		.4byte	0x617
+ 1053 02e5 14       		.byte	0x14
+ 1054 02e6 09       		.uleb128 0x9
+ 1055 02e7 5D050000 		.4byte	.LASF58
+ 1056 02eb 09       		.byte	0x9
+ 1057 02ec 7D01     		.2byte	0x17d
+ 1058 02ee 17060000 		.4byte	0x617
+ 1059 02f2 18       		.byte	0x18
+ 1060 02f3 00       		.byte	0
+ 1061 02f4 03       		.uleb128 0x3
+ 1062 02f5 FE050000 		.4byte	.LASF59
+ 1063 02f9 08       		.byte	0x8
+ 1064 02fa 57       		.byte	0x57
+ 1065 02fb FF020000 		.4byte	0x2ff
+ 1066 02ff 0B       		.uleb128 0xb
+ 1067 0300 04       		.byte	0x4
+ 1068 0301 05030000 		.4byte	0x305
+ 1069 0305 0C       		.uleb128 0xc
+ 1070 0306 10030000 		.4byte	0x310
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 20
+
+
+ 1071 030a 0D       		.uleb128 0xd
+ 1072 030b 10030000 		.4byte	0x310
+ 1073 030f 00       		.byte	0
+ 1074 0310 0E       		.uleb128 0xe
+ 1075 0311 04       		.byte	0x4
+ 1076 0312 03       		.uleb128 0x3
+ 1077 0313 40030000 		.4byte	.LASF60
+ 1078 0317 08       		.byte	0x8
+ 1079 0318 5C       		.byte	0x5c
+ 1080 0319 1D030000 		.4byte	0x31d
+ 1081 031d 0A       		.uleb128 0xa
+ 1082 031e 08050000 		.4byte	.LASF61
+ 1083 0322 14       		.byte	0x14
+ 1084 0323 09       		.byte	0x9
+ 1085 0324 4D01     		.2byte	0x14d
+ 1086 0326 6C030000 		.4byte	0x36c
+ 1087 032a 09       		.uleb128 0x9
+ 1088 032b CB010000 		.4byte	.LASF62
+ 1089 032f 09       		.byte	0x9
+ 1090 0330 4E01     		.2byte	0x14e
+ 1091 0332 8C060000 		.4byte	0x68c
+ 1092 0336 00       		.byte	0
+ 1093 0337 09       		.uleb128 0x9
+ 1094 0338 8A010000 		.4byte	.LASF63
+ 1095 033c 09       		.byte	0x9
+ 1096 033d 4F01     		.2byte	0x14f
+ 1097 033f 8C060000 		.4byte	0x68c
+ 1098 0343 04       		.byte	0x4
+ 1099 0344 09       		.uleb128 0x9
+ 1100 0345 DC010000 		.4byte	.LASF64
+ 1101 0349 09       		.byte	0x9
+ 1102 034a 5001     		.2byte	0x150
+ 1103 034c 36010000 		.4byte	0x136
+ 1104 0350 08       		.byte	0x8
+ 1105 0351 09       		.uleb128 0x9
+ 1106 0352 2C070000 		.4byte	.LASF65
+ 1107 0356 09       		.byte	0x9
+ 1108 0357 5101     		.2byte	0x151
+ 1109 0359 F4020000 		.4byte	0x2f4
+ 1110 035d 0C       		.byte	0xc
+ 1111 035e 09       		.uleb128 0x9
+ 1112 035f 38060000 		.4byte	.LASF66
+ 1113 0363 09       		.byte	0x9
+ 1114 0364 5301     		.2byte	0x153
+ 1115 0366 10030000 		.4byte	0x310
+ 1116 036a 10       		.byte	0x10
+ 1117 036b 00       		.byte	0
+ 1118 036c 03       		.uleb128 0x3
+ 1119 036d C2000000 		.4byte	.LASF67
+ 1120 0371 08       		.byte	0x8
+ 1121 0372 61       		.byte	0x61
+ 1122 0373 77030000 		.4byte	0x377
+ 1123 0377 0A       		.uleb128 0xa
+ 1124 0378 CB020000 		.4byte	.LASF68
+ 1125 037c 10       		.byte	0x10
+ 1126 037d 09       		.byte	0x9
+ 1127 037e 5D01     		.2byte	0x15d
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 21
+
+
+ 1128 0380 B9030000 		.4byte	0x3b9
+ 1129 0384 09       		.uleb128 0x9
+ 1130 0385 CB010000 		.4byte	.LASF62
+ 1131 0389 09       		.byte	0x9
+ 1132 038a 5E01     		.2byte	0x15e
+ 1133 038c 8C060000 		.4byte	0x68c
+ 1134 0390 00       		.byte	0
+ 1135 0391 09       		.uleb128 0x9
+ 1136 0392 8A010000 		.4byte	.LASF63
+ 1137 0396 09       		.byte	0x9
+ 1138 0397 6001     		.2byte	0x160
+ 1139 0399 8C060000 		.4byte	0x68c
+ 1140 039d 04       		.byte	0x4
+ 1141 039e 09       		.uleb128 0x9
+ 1142 039f DC010000 		.4byte	.LASF64
+ 1143 03a3 09       		.byte	0x9
+ 1144 03a4 6201     		.2byte	0x162
+ 1145 03a6 36010000 		.4byte	0x136
+ 1146 03aa 08       		.byte	0x8
+ 1147 03ab 09       		.uleb128 0x9
+ 1148 03ac A1060000 		.4byte	.LASF69
+ 1149 03b0 09       		.byte	0x9
+ 1150 03b1 6A01     		.2byte	0x16a
+ 1151 03b3 36010000 		.4byte	0x136
+ 1152 03b7 0C       		.byte	0xc
+ 1153 03b8 00       		.byte	0
+ 1154 03b9 03       		.uleb128 0x3
+ 1155 03ba 5D000000 		.4byte	.LASF70
+ 1156 03be 08       		.byte	0x8
+ 1157 03bf 66       		.byte	0x66
+ 1158 03c0 C4030000 		.4byte	0x3c4
+ 1159 03c4 0A       		.uleb128 0xa
+ 1160 03c5 65030000 		.4byte	.LASF71
+ 1161 03c9 04       		.byte	0x4
+ 1162 03ca 09       		.byte	0x9
+ 1163 03cb 8401     		.2byte	0x184
+ 1164 03cd DF030000 		.4byte	0x3df
+ 1165 03d1 09       		.uleb128 0x9
+ 1166 03d2 12060000 		.4byte	.LASF72
+ 1167 03d6 09       		.byte	0x9
+ 1168 03d7 8C01     		.2byte	0x18c
+ 1169 03d9 92060000 		.4byte	0x692
+ 1170 03dd 00       		.byte	0
+ 1171 03de 00       		.byte	0
+ 1172 03df 03       		.uleb128 0x3
+ 1173 03e0 29020000 		.4byte	.LASF73
+ 1174 03e4 08       		.byte	0x8
+ 1175 03e5 6B       		.byte	0x6b
+ 1176 03e6 EA030000 		.4byte	0x3ea
+ 1177 03ea 0F       		.uleb128 0xf
+ 1178 03eb 38010000 		.4byte	.LASF74
+ 1179 03ef D801     		.2byte	0x1d8
+ 1180 03f1 09       		.byte	0x9
+ 1181 03f2 A401     		.2byte	0x1a4
+ 1182 03f4 46040000 		.4byte	0x446
+ 1183 03f8 09       		.uleb128 0x9
+ 1184 03f9 83060000 		.4byte	.LASF75
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 22
+
+
+ 1185 03fd 09       		.byte	0x9
+ 1186 03fe A801     		.2byte	0x1a8
+ 1187 0400 8D020000 		.4byte	0x28d
+ 1188 0404 00       		.byte	0
+ 1189 0405 09       		.uleb128 0x9
+ 1190 0406 29010000 		.4byte	.LASF76
+ 1191 040a 09       		.byte	0x9
+ 1192 040b AC01     		.2byte	0x1ac
+ 1193 040d 6C030000 		.4byte	0x36c
+ 1194 0411 1C       		.byte	0x1c
+ 1195 0412 08       		.uleb128 0x8
+ 1196 0413 64626700 		.ascii	"dbg\000"
+ 1197 0417 09       		.byte	0x9
+ 1198 0418 B001     		.2byte	0x1b0
+ 1199 041a B9030000 		.4byte	0x3b9
+ 1200 041e 2C       		.byte	0x2c
+ 1201 041f 09       		.uleb128 0x9
+ 1202 0420 B7000000 		.4byte	.LASF77
+ 1203 0424 09       		.byte	0x9
+ 1204 0425 B401     		.2byte	0x1b4
+ 1205 0427 41010000 		.4byte	0x141
+ 1206 042b 30       		.byte	0x30
+ 1207 042c 08       		.uleb128 0x8
+ 1208 042d 746D00   		.ascii	"tm\000"
+ 1209 0430 09       		.byte	0x9
+ 1210 0431 B901     		.2byte	0x1b9
+ 1211 0433 0C060000 		.4byte	0x60c
+ 1212 0437 74       		.byte	0x74
+ 1213 0438 09       		.uleb128 0x9
+ 1214 0439 AF010000 		.4byte	.LASF78
+ 1215 043d 09       		.byte	0x9
+ 1216 043e C501     		.2byte	0x1c5
+ 1217 0440 97060000 		.4byte	0x697
+ 1218 0444 78       		.byte	0x78
+ 1219 0445 00       		.byte	0
+ 1220 0446 04       		.uleb128 0x4
+ 1221 0447 04       		.byte	0x4
+ 1222 0448 07       		.byte	0x7
+ 1223 0449 C2020000 		.4byte	.LASF79
+ 1224 044d 03       		.uleb128 0x3
+ 1225 044e 81010000 		.4byte	.LASF80
+ 1226 0452 0A       		.byte	0xa
+ 1227 0453 85       		.byte	0x85
+ 1228 0454 10030000 		.4byte	0x310
+ 1229 0458 03       		.uleb128 0x3
+ 1230 0459 6C020000 		.4byte	.LASF81
+ 1231 045d 0A       		.byte	0xa
+ 1232 045e 8D       		.byte	0x8d
+ 1233 045f D9000000 		.4byte	0xd9
+ 1234 0463 06       		.uleb128 0x6
+ 1235 0464 28060000 		.4byte	.LASF82
+ 1236 0468 04       		.byte	0x4
+ 1237 0469 0A       		.byte	0xa
+ 1238 046a A9       		.byte	0xa9
+ 1239 046b 7C040000 		.4byte	0x47c
+ 1240 046f 10       		.uleb128 0x10
+ 1241 0470 72313300 		.ascii	"r13\000"
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 23
+
+
+ 1242 0474 0A       		.byte	0xa
+ 1243 0475 AA       		.byte	0xaa
+ 1244 0476 BD050000 		.4byte	0x5bd
+ 1245 047a 00       		.byte	0
+ 1246 047b 00       		.byte	0
+ 1247 047c 06       		.uleb128 0x6
+ 1248 047d 49000000 		.4byte	.LASF83
+ 1249 0481 64       		.byte	0x64
+ 1250 0482 0B       		.byte	0xb
+ 1251 0483 F4       		.byte	0xf4
+ 1252 0484 BD050000 		.4byte	0x5bd
+ 1253 0488 10       		.uleb128 0x10
+ 1254 0489 73313600 		.ascii	"s16\000"
+ 1255 048d 0B       		.byte	0xb
+ 1256 048e F6       		.byte	0xf6
+ 1257 048f 4D040000 		.4byte	0x44d
+ 1258 0493 00       		.byte	0
+ 1259 0494 10       		.uleb128 0x10
+ 1260 0495 73313700 		.ascii	"s17\000"
+ 1261 0499 0B       		.byte	0xb
+ 1262 049a F7       		.byte	0xf7
+ 1263 049b 4D040000 		.4byte	0x44d
+ 1264 049f 04       		.byte	0x4
+ 1265 04a0 10       		.uleb128 0x10
+ 1266 04a1 73313800 		.ascii	"s18\000"
+ 1267 04a5 0B       		.byte	0xb
+ 1268 04a6 F8       		.byte	0xf8
+ 1269 04a7 4D040000 		.4byte	0x44d
+ 1270 04ab 08       		.byte	0x8
+ 1271 04ac 10       		.uleb128 0x10
+ 1272 04ad 73313900 		.ascii	"s19\000"
+ 1273 04b1 0B       		.byte	0xb
+ 1274 04b2 F9       		.byte	0xf9
+ 1275 04b3 4D040000 		.4byte	0x44d
+ 1276 04b7 0C       		.byte	0xc
+ 1277 04b8 10       		.uleb128 0x10
+ 1278 04b9 73323000 		.ascii	"s20\000"
+ 1279 04bd 0B       		.byte	0xb
+ 1280 04be FA       		.byte	0xfa
+ 1281 04bf 4D040000 		.4byte	0x44d
+ 1282 04c3 10       		.byte	0x10
+ 1283 04c4 10       		.uleb128 0x10
+ 1284 04c5 73323100 		.ascii	"s21\000"
+ 1285 04c9 0B       		.byte	0xb
+ 1286 04ca FB       		.byte	0xfb
+ 1287 04cb 4D040000 		.4byte	0x44d
+ 1288 04cf 14       		.byte	0x14
+ 1289 04d0 10       		.uleb128 0x10
+ 1290 04d1 73323200 		.ascii	"s22\000"
+ 1291 04d5 0B       		.byte	0xb
+ 1292 04d6 FC       		.byte	0xfc
+ 1293 04d7 4D040000 		.4byte	0x44d
+ 1294 04db 18       		.byte	0x18
+ 1295 04dc 10       		.uleb128 0x10
+ 1296 04dd 73323300 		.ascii	"s23\000"
+ 1297 04e1 0B       		.byte	0xb
+ 1298 04e2 FD       		.byte	0xfd
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 24
+
+
+ 1299 04e3 4D040000 		.4byte	0x44d
+ 1300 04e7 1C       		.byte	0x1c
+ 1301 04e8 10       		.uleb128 0x10
+ 1302 04e9 73323400 		.ascii	"s24\000"
+ 1303 04ed 0B       		.byte	0xb
+ 1304 04ee FE       		.byte	0xfe
+ 1305 04ef 4D040000 		.4byte	0x44d
+ 1306 04f3 20       		.byte	0x20
+ 1307 04f4 10       		.uleb128 0x10
+ 1308 04f5 73323500 		.ascii	"s25\000"
+ 1309 04f9 0B       		.byte	0xb
+ 1310 04fa FF       		.byte	0xff
+ 1311 04fb 4D040000 		.4byte	0x44d
+ 1312 04ff 24       		.byte	0x24
+ 1313 0500 08       		.uleb128 0x8
+ 1314 0501 73323600 		.ascii	"s26\000"
+ 1315 0505 0B       		.byte	0xb
+ 1316 0506 0001     		.2byte	0x100
+ 1317 0508 4D040000 		.4byte	0x44d
+ 1318 050c 28       		.byte	0x28
+ 1319 050d 08       		.uleb128 0x8
+ 1320 050e 73323700 		.ascii	"s27\000"
+ 1321 0512 0B       		.byte	0xb
+ 1322 0513 0101     		.2byte	0x101
+ 1323 0515 4D040000 		.4byte	0x44d
+ 1324 0519 2C       		.byte	0x2c
+ 1325 051a 08       		.uleb128 0x8
+ 1326 051b 73323800 		.ascii	"s28\000"
+ 1327 051f 0B       		.byte	0xb
+ 1328 0520 0201     		.2byte	0x102
+ 1329 0522 4D040000 		.4byte	0x44d
+ 1330 0526 30       		.byte	0x30
+ 1331 0527 08       		.uleb128 0x8
+ 1332 0528 73323900 		.ascii	"s29\000"
+ 1333 052c 0B       		.byte	0xb
+ 1334 052d 0301     		.2byte	0x103
+ 1335 052f 4D040000 		.4byte	0x44d
+ 1336 0533 34       		.byte	0x34
+ 1337 0534 08       		.uleb128 0x8
+ 1338 0535 73333000 		.ascii	"s30\000"
+ 1339 0539 0B       		.byte	0xb
+ 1340 053a 0401     		.2byte	0x104
+ 1341 053c 4D040000 		.4byte	0x44d
+ 1342 0540 38       		.byte	0x38
+ 1343 0541 08       		.uleb128 0x8
+ 1344 0542 73333100 		.ascii	"s31\000"
+ 1345 0546 0B       		.byte	0xb
+ 1346 0547 0501     		.2byte	0x105
+ 1347 0549 4D040000 		.4byte	0x44d
+ 1348 054d 3C       		.byte	0x3c
+ 1349 054e 08       		.uleb128 0x8
+ 1350 054f 723400   		.ascii	"r4\000"
+ 1351 0552 0B       		.byte	0xb
+ 1352 0553 0701     		.2byte	0x107
+ 1353 0555 4D040000 		.4byte	0x44d
+ 1354 0559 40       		.byte	0x40
+ 1355 055a 08       		.uleb128 0x8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 25
+
+
+ 1356 055b 723500   		.ascii	"r5\000"
+ 1357 055e 0B       		.byte	0xb
+ 1358 055f 0801     		.2byte	0x108
+ 1359 0561 4D040000 		.4byte	0x44d
+ 1360 0565 44       		.byte	0x44
+ 1361 0566 08       		.uleb128 0x8
+ 1362 0567 723600   		.ascii	"r6\000"
+ 1363 056a 0B       		.byte	0xb
+ 1364 056b 0901     		.2byte	0x109
+ 1365 056d 4D040000 		.4byte	0x44d
+ 1366 0571 48       		.byte	0x48
+ 1367 0572 08       		.uleb128 0x8
+ 1368 0573 723700   		.ascii	"r7\000"
+ 1369 0576 0B       		.byte	0xb
+ 1370 0577 0A01     		.2byte	0x10a
+ 1371 0579 4D040000 		.4byte	0x44d
+ 1372 057d 4C       		.byte	0x4c
+ 1373 057e 08       		.uleb128 0x8
+ 1374 057f 723800   		.ascii	"r8\000"
+ 1375 0582 0B       		.byte	0xb
+ 1376 0583 0B01     		.2byte	0x10b
+ 1377 0585 4D040000 		.4byte	0x44d
+ 1378 0589 50       		.byte	0x50
+ 1379 058a 08       		.uleb128 0x8
+ 1380 058b 723900   		.ascii	"r9\000"
+ 1381 058e 0B       		.byte	0xb
+ 1382 058f 0C01     		.2byte	0x10c
+ 1383 0591 4D040000 		.4byte	0x44d
+ 1384 0595 54       		.byte	0x54
+ 1385 0596 08       		.uleb128 0x8
+ 1386 0597 72313000 		.ascii	"r10\000"
+ 1387 059b 0B       		.byte	0xb
+ 1388 059c 0D01     		.2byte	0x10d
+ 1389 059e 4D040000 		.4byte	0x44d
+ 1390 05a2 58       		.byte	0x58
+ 1391 05a3 08       		.uleb128 0x8
+ 1392 05a4 72313100 		.ascii	"r11\000"
+ 1393 05a8 0B       		.byte	0xb
+ 1394 05a9 0E01     		.2byte	0x10e
+ 1395 05ab 4D040000 		.4byte	0x44d
+ 1396 05af 5C       		.byte	0x5c
+ 1397 05b0 08       		.uleb128 0x8
+ 1398 05b1 6C7200   		.ascii	"lr\000"
+ 1399 05b4 0B       		.byte	0xb
+ 1400 05b5 0F01     		.2byte	0x10f
+ 1401 05b7 4D040000 		.4byte	0x44d
+ 1402 05bb 60       		.byte	0x60
+ 1403 05bc 00       		.byte	0
+ 1404 05bd 0B       		.uleb128 0xb
+ 1405 05be 04       		.byte	0x4
+ 1406 05bf 7C040000 		.4byte	0x47c
+ 1407 05c3 03       		.uleb128 0x3
+ 1408 05c4 E2020000 		.4byte	.LASF84
+ 1409 05c8 0C       		.byte	0xc
+ 1410 05c9 28       		.byte	0x28
+ 1411 05ca CE050000 		.4byte	0x5ce
+ 1412 05ce 06       		.uleb128 0x6
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 26
+
+
+ 1413 05cf 67010000 		.4byte	.LASF85
+ 1414 05d3 04       		.byte	0x4
+ 1415 05d4 0D       		.byte	0xd
+ 1416 05d5 00       		.byte	0
+ 1417 05d6 E5050000 		.4byte	0x5e5
+ 1418 05da 11       		.uleb128 0x11
+ 1419 05db 23060000 		.4byte	.LASF89
+ 1420 05df 10030000 		.4byte	0x310
+ 1421 05e3 00       		.byte	0
+ 1422 05e4 00       		.byte	0
+ 1423 05e5 04       		.uleb128 0x4
+ 1424 05e6 01       		.byte	0x1
+ 1425 05e7 08       		.byte	0x8
+ 1426 05e8 6C050000 		.4byte	.LASF86
+ 1427 05ec 0B       		.uleb128 0xb
+ 1428 05ed 04       		.byte	0x4
+ 1429 05ee F2050000 		.4byte	0x5f2
+ 1430 05f2 12       		.uleb128 0x12
+ 1431 05f3 E5050000 		.4byte	0x5e5
+ 1432 05f7 13       		.uleb128 0x13
+ 1433 05f8 04       		.byte	0x4
+ 1434 05f9 0E       		.byte	0xe
+ 1435 05fa 38       		.byte	0x38
+ 1436 05fb 0C060000 		.4byte	0x60c
+ 1437 05ff 07       		.uleb128 0x7
+ 1438 0600 1C060000 		.4byte	.LASF87
+ 1439 0604 0E       		.byte	0xe
+ 1440 0605 3C       		.byte	0x3c
+ 1441 0606 E9000000 		.4byte	0xe9
+ 1442 060a 00       		.byte	0
+ 1443 060b 00       		.byte	0
+ 1444 060c 03       		.uleb128 0x3
+ 1445 060d 07030000 		.4byte	.LASF88
+ 1446 0611 0E       		.byte	0xe
+ 1447 0612 3D       		.byte	0x3d
+ 1448 0613 F7050000 		.4byte	0x5f7
+ 1449 0617 0B       		.uleb128 0xb
+ 1450 0618 04       		.byte	0x4
+ 1451 0619 41010000 		.4byte	0x141
+ 1452 061d 14       		.uleb128 0x14
+ 1453 061e 04       		.byte	0x4
+ 1454 061f 09       		.byte	0x9
+ 1455 0620 F6       		.byte	0xf6
+ 1456 0621 55060000 		.4byte	0x655
+ 1457 0625 15       		.uleb128 0x15
+ 1458 0626 14000000 		.4byte	.LASF90
+ 1459 062a 09       		.byte	0x9
+ 1460 062b FD       		.byte	0xfd
+ 1461 062c 20010000 		.4byte	0x120
+ 1462 0630 16       		.uleb128 0x16
+ 1463 0631 AE000000 		.4byte	.LASF91
+ 1464 0635 09       		.byte	0x9
+ 1465 0636 0401     		.2byte	0x104
+ 1466 0638 20010000 		.4byte	0x120
+ 1467 063c 16       		.uleb128 0x16
+ 1468 063d B7060000 		.4byte	.LASF92
+ 1469 0641 09       		.byte	0x9
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 27
+
+
+ 1470 0642 0B01     		.2byte	0x10b
+ 1471 0644 10030000 		.4byte	0x310
+ 1472 0648 16       		.uleb128 0x16
+ 1473 0649 C4030000 		.4byte	.LASF93
+ 1474 064d 09       		.byte	0x9
+ 1475 064e 1201     		.2byte	0x112
+ 1476 0650 2B010000 		.4byte	0x12b
+ 1477 0654 00       		.byte	0
+ 1478 0655 06       		.uleb128 0x6
+ 1479 0656 5F030000 		.4byte	.LASF94
+ 1480 065a 10       		.byte	0x10
+ 1481 065b 0F       		.byte	0xf
+ 1482 065c 39       		.byte	0x39
+ 1483 065d 86060000 		.4byte	0x686
+ 1484 0661 07       		.uleb128 0x7
+ 1485 0662 91030000 		.4byte	.LASF95
+ 1486 0666 0F       		.byte	0xf
+ 1487 0667 3A       		.byte	0x3a
+ 1488 0668 5D020000 		.4byte	0x25d
+ 1489 066c 00       		.byte	0
+ 1490 066d 07       		.uleb128 0x7
+ 1491 066e 15070000 		.4byte	.LASF96
+ 1492 0672 0F       		.byte	0xf
+ 1493 0673 3C       		.byte	0x3c
+ 1494 0674 17060000 		.4byte	0x617
+ 1495 0678 08       		.byte	0x8
+ 1496 0679 07       		.uleb128 0x7
+ 1497 067a E2050000 		.4byte	.LASF97
+ 1498 067e 0F       		.byte	0xf
+ 1499 067f 3E       		.byte	0x3e
+ 1500 0680 C7060000 		.4byte	0x6c7
+ 1501 0684 0C       		.byte	0xc
+ 1502 0685 00       		.byte	0
+ 1503 0686 0B       		.uleb128 0xb
+ 1504 0687 04       		.byte	0x4
+ 1505 0688 55060000 		.4byte	0x655
+ 1506 068c 0B       		.uleb128 0xb
+ 1507 068d 04       		.byte	0x4
+ 1508 068e 12030000 		.4byte	0x312
+ 1509 0692 05       		.uleb128 0x5
+ 1510 0693 EC050000 		.4byte	0x5ec
+ 1511 0697 17       		.uleb128 0x17
+ 1512 0698 58040000 		.4byte	0x458
+ 1513 069c A7060000 		.4byte	0x6a7
+ 1514 06a0 18       		.uleb128 0x18
+ 1515 06a1 46040000 		.4byte	0x446
+ 1516 06a5 2B       		.byte	0x2b
+ 1517 06a6 00       		.byte	0
+ 1518 06a7 0B       		.uleb128 0xb
+ 1519 06a8 04       		.byte	0x4
+ 1520 06a9 AD060000 		.4byte	0x6ad
+ 1521 06ad 19       		.uleb128 0x19
+ 1522 06ae 20010000 		.4byte	0x120
+ 1523 06b2 BC060000 		.4byte	0x6bc
+ 1524 06b6 0D       		.uleb128 0xd
+ 1525 06b7 10030000 		.4byte	0x310
+ 1526 06bb 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 28
+
+
+ 1527 06bc 03       		.uleb128 0x3
+ 1528 06bd 92010000 		.4byte	.LASF98
+ 1529 06c1 0F       		.byte	0xf
+ 1530 06c2 34       		.byte	0x34
+ 1531 06c3 55060000 		.4byte	0x655
+ 1532 06c7 0B       		.uleb128 0xb
+ 1533 06c8 04       		.byte	0x4
+ 1534 06c9 BC060000 		.4byte	0x6bc
+ 1535 06cd 0B       		.uleb128 0xb
+ 1536 06ce 04       		.byte	0x4
+ 1537 06cf AD000000 		.4byte	0xad
+ 1538 06d3 06       		.uleb128 0x6
+ 1539 06d4 24050000 		.4byte	.LASF99
+ 1540 06d8 10       		.byte	0x10
+ 1541 06d9 10       		.byte	0x10
+ 1542 06da 40       		.byte	0x40
+ 1543 06db 10070000 		.4byte	0x710
+ 1544 06df 07       		.uleb128 0x7
+ 1545 06e0 8E020000 		.4byte	.LASF100
+ 1546 06e4 10       		.byte	0x10
+ 1547 06e5 41       		.byte	0x41
+ 1548 06e6 34070000 		.4byte	0x734
+ 1549 06ea 00       		.byte	0
+ 1550 06eb 07       		.uleb128 0x7
+ 1551 06ec 67050000 		.4byte	.LASF101
+ 1552 06f0 10       		.byte	0x10
+ 1553 06f1 41       		.byte	0x41
+ 1554 06f2 53070000 		.4byte	0x753
+ 1555 06f6 04       		.byte	0x4
+ 1556 06f7 10       		.uleb128 0x10
+ 1557 06f8 70757400 		.ascii	"put\000"
+ 1558 06fc 10       		.byte	0x10
+ 1559 06fd 41       		.byte	0x41
+ 1560 06fe 6D070000 		.4byte	0x76d
+ 1561 0702 08       		.byte	0x8
+ 1562 0703 10       		.uleb128 0x10
+ 1563 0704 67657400 		.ascii	"get\000"
+ 1564 0708 10       		.byte	0x10
+ 1565 0709 41       		.byte	0x41
+ 1566 070a A7060000 		.4byte	0x6a7
+ 1567 070e 0C       		.byte	0xc
+ 1568 070f 00       		.byte	0
+ 1569 0710 19       		.uleb128 0x19
+ 1570 0711 2C000000 		.4byte	0x2c
+ 1571 0715 29070000 		.4byte	0x729
+ 1572 0719 0D       		.uleb128 0xd
+ 1573 071a 10030000 		.4byte	0x310
+ 1574 071e 0D       		.uleb128 0xd
+ 1575 071f 29070000 		.4byte	0x729
+ 1576 0723 0D       		.uleb128 0xd
+ 1577 0724 2C000000 		.4byte	0x2c
+ 1578 0728 00       		.byte	0
+ 1579 0729 0B       		.uleb128 0xb
+ 1580 072a 04       		.byte	0x4
+ 1581 072b 2F070000 		.4byte	0x72f
+ 1582 072f 12       		.uleb128 0x12
+ 1583 0730 AD000000 		.4byte	0xad
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 29
+
+
+ 1584 0734 0B       		.uleb128 0xb
+ 1585 0735 04       		.byte	0x4
+ 1586 0736 10070000 		.4byte	0x710
+ 1587 073a 19       		.uleb128 0x19
+ 1588 073b 2C000000 		.4byte	0x2c
+ 1589 073f 53070000 		.4byte	0x753
+ 1590 0743 0D       		.uleb128 0xd
+ 1591 0744 10030000 		.4byte	0x310
+ 1592 0748 0D       		.uleb128 0xd
+ 1593 0749 CD060000 		.4byte	0x6cd
+ 1594 074d 0D       		.uleb128 0xd
+ 1595 074e 2C000000 		.4byte	0x2c
+ 1596 0752 00       		.byte	0
+ 1597 0753 0B       		.uleb128 0xb
+ 1598 0754 04       		.byte	0x4
+ 1599 0755 3A070000 		.4byte	0x73a
+ 1600 0759 19       		.uleb128 0x19
+ 1601 075a 20010000 		.4byte	0x120
+ 1602 075e 6D070000 		.4byte	0x76d
+ 1603 0762 0D       		.uleb128 0xd
+ 1604 0763 10030000 		.4byte	0x310
+ 1605 0767 0D       		.uleb128 0xd
+ 1606 0768 AD000000 		.4byte	0xad
+ 1607 076c 00       		.byte	0
+ 1608 076d 0B       		.uleb128 0xb
+ 1609 076e 04       		.byte	0x4
+ 1610 076f 59070000 		.4byte	0x759
+ 1611 0773 13       		.uleb128 0x13
+ 1612 0774 04       		.byte	0x4
+ 1613 0775 10       		.byte	0x10
+ 1614 0776 49       		.byte	0x49
+ 1615 0777 88070000 		.4byte	0x788
+ 1616 077b 10       		.uleb128 0x10
+ 1617 077c 766D7400 		.ascii	"vmt\000"
+ 1618 0780 10       		.byte	0x10
+ 1619 0781 4B       		.byte	0x4b
+ 1620 0782 88070000 		.4byte	0x788
+ 1621 0786 00       		.byte	0
+ 1622 0787 00       		.byte	0
+ 1623 0788 0B       		.uleb128 0xb
+ 1624 0789 04       		.byte	0x4
+ 1625 078a 8E070000 		.4byte	0x78e
+ 1626 078e 12       		.uleb128 0x12
+ 1627 078f D3060000 		.4byte	0x6d3
+ 1628 0793 03       		.uleb128 0x3
+ 1629 0794 9A010000 		.4byte	.LASF102
+ 1630 0798 10       		.byte	0x10
+ 1631 0799 4D       		.byte	0x4d
+ 1632 079a 73070000 		.4byte	0x773
+ 1633 079e 04       		.uleb128 0x4
+ 1634 079f 01       		.byte	0x1
+ 1635 07a0 02       		.byte	0x2
+ 1636 07a1 75030000 		.4byte	.LASF103
+ 1637 07a5 06       		.uleb128 0x6
+ 1638 07a6 CC050000 		.4byte	.LASF104
+ 1639 07aa 10       		.byte	0x10
+ 1640 07ab 11       		.byte	0x11
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 30
+
+
+ 1641 07ac 2E       		.byte	0x2e
+ 1642 07ad E2070000 		.4byte	0x7e2
+ 1643 07b1 07       		.uleb128 0x7
+ 1644 07b2 8E020000 		.4byte	.LASF100
+ 1645 07b6 11       		.byte	0x11
+ 1646 07b7 2F       		.byte	0x2f
+ 1647 07b8 34070000 		.4byte	0x734
+ 1648 07bc 00       		.byte	0
+ 1649 07bd 07       		.uleb128 0x7
+ 1650 07be 67050000 		.4byte	.LASF101
+ 1651 07c2 11       		.byte	0x11
+ 1652 07c3 2F       		.byte	0x2f
+ 1653 07c4 53070000 		.4byte	0x753
+ 1654 07c8 04       		.byte	0x4
+ 1655 07c9 10       		.uleb128 0x10
+ 1656 07ca 70757400 		.ascii	"put\000"
+ 1657 07ce 11       		.byte	0x11
+ 1658 07cf 2F       		.byte	0x2f
+ 1659 07d0 6D070000 		.4byte	0x76d
+ 1660 07d4 08       		.byte	0x8
+ 1661 07d5 10       		.uleb128 0x10
+ 1662 07d6 67657400 		.ascii	"get\000"
+ 1663 07da 11       		.byte	0x11
+ 1664 07db 2F       		.byte	0x2f
+ 1665 07dc A7060000 		.4byte	0x6a7
+ 1666 07e0 0C       		.byte	0xc
+ 1667 07e1 00       		.byte	0
+ 1668 07e2 13       		.uleb128 0x13
+ 1669 07e3 04       		.byte	0x4
+ 1670 07e4 11       		.byte	0x11
+ 1671 07e5 39       		.byte	0x39
+ 1672 07e6 F7070000 		.4byte	0x7f7
+ 1673 07ea 10       		.uleb128 0x10
+ 1674 07eb 766D7400 		.ascii	"vmt\000"
+ 1675 07ef 11       		.byte	0x11
+ 1676 07f0 3B       		.byte	0x3b
+ 1677 07f1 F7070000 		.4byte	0x7f7
+ 1678 07f5 00       		.byte	0
+ 1679 07f6 00       		.byte	0
+ 1680 07f7 0B       		.uleb128 0xb
+ 1681 07f8 04       		.byte	0x4
+ 1682 07f9 FD070000 		.4byte	0x7fd
+ 1683 07fd 12       		.uleb128 0x12
+ 1684 07fe A5070000 		.4byte	0x7a5
+ 1685 0802 03       		.uleb128 0x3
+ 1686 0803 25030000 		.4byte	.LASF105
+ 1687 0807 11       		.byte	0x11
+ 1688 0808 3D       		.byte	0x3d
+ 1689 0809 E2070000 		.4byte	0x7e2
+ 1690 080d 03       		.uleb128 0x3
+ 1691 080e 55000000 		.4byte	.LASF106
+ 1692 0812 0C       		.byte	0xc
+ 1693 0813 62       		.byte	0x62
+ 1694 0814 C3050000 		.4byte	0x5c3
+ 1695 0818 03       		.uleb128 0x3
+ 1696 0819 BD020000 		.4byte	.LASF107
+ 1697 081d 12       		.byte	0x12
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 31
+
+
+ 1698 081e 3D       		.byte	0x3d
+ 1699 081f AD000000 		.4byte	0xad
+ 1700 0823 03       		.uleb128 0x3
+ 1701 0824 3F060000 		.4byte	.LASF108
+ 1702 0828 12       		.byte	0x12
+ 1703 0829 3F       		.byte	0x3f
+ 1704 082a B8000000 		.4byte	0xb8
+ 1705 082e 03       		.uleb128 0x3
+ 1706 082f F0010000 		.4byte	.LASF109
+ 1707 0833 12       		.byte	0x12
+ 1708 0834 41       		.byte	0x41
+ 1709 0835 CE000000 		.4byte	0xce
+ 1710 0839 03       		.uleb128 0x3
+ 1711 083a 45060000 		.4byte	.LASF110
+ 1712 083e 12       		.byte	0x12
+ 1713 083f 43       		.byte	0x43
+ 1714 0840 CE000000 		.4byte	0xce
+ 1715 0844 06       		.uleb128 0x6
+ 1716 0845 08000000 		.4byte	.LASF111
+ 1717 0849 10       		.byte	0x10
+ 1718 084a 13       		.byte	0x13
+ 1719 084b 4F       		.byte	0x4f
+ 1720 084c A5080000 		.4byte	0x8a5
+ 1721 0850 07       		.uleb128 0x7
+ 1722 0851 E5000000 		.4byte	.LASF112
+ 1723 0855 13       		.byte	0x13
+ 1724 0856 51       		.byte	0x51
+ 1725 0857 A5080000 		.4byte	0x8a5
+ 1726 085b 00       		.byte	0
+ 1727 085c 07       		.uleb128 0x7
+ 1728 085d F1020000 		.4byte	.LASF113
+ 1729 0861 13       		.byte	0x13
+ 1730 0862 54       		.byte	0x54
+ 1731 0863 10030000 		.4byte	0x310
+ 1732 0867 04       		.byte	0x4
+ 1733 0868 07       		.uleb128 0x7
+ 1734 0869 30010000 		.4byte	.LASF114
+ 1735 086d 13       		.byte	0x13
+ 1736 086e 5D       		.byte	0x5d
+ 1737 086f 23080000 		.4byte	0x823
+ 1738 0873 08       		.byte	0x8
+ 1739 0874 10       		.uleb128 0x10
+ 1740 0875 6C656E00 		.ascii	"len\000"
+ 1741 0879 13       		.byte	0x13
+ 1742 087a 60       		.byte	0x60
+ 1743 087b 23080000 		.4byte	0x823
+ 1744 087f 0A       		.byte	0xa
+ 1745 0880 07       		.uleb128 0x7
+ 1746 0881 6C000000 		.4byte	.LASF115
+ 1747 0885 13       		.byte	0x13
+ 1748 0886 63       		.byte	0x63
+ 1749 0887 18080000 		.4byte	0x818
+ 1750 088b 0C       		.byte	0xc
+ 1751 088c 07       		.uleb128 0x7
+ 1752 088d 9B060000 		.4byte	.LASF116
+ 1753 0891 13       		.byte	0x13
+ 1754 0892 66       		.byte	0x66
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 32
+
+
+ 1755 0893 18080000 		.4byte	0x818
+ 1756 0897 0D       		.byte	0xd
+ 1757 0898 10       		.uleb128 0x10
+ 1758 0899 72656600 		.ascii	"ref\000"
+ 1759 089d 13       		.byte	0x13
+ 1760 089e 6D       		.byte	0x6d
+ 1761 089f 23080000 		.4byte	0x823
+ 1762 08a3 0E       		.byte	0xe
+ 1763 08a4 00       		.byte	0
+ 1764 08a5 0B       		.uleb128 0xb
+ 1765 08a6 04       		.byte	0x4
+ 1766 08a7 44080000 		.4byte	0x844
+ 1767 08ab 06       		.uleb128 0x6
+ 1768 08ac F9020000 		.4byte	.LASF117
+ 1769 08b0 04       		.byte	0x4
+ 1770 08b1 14       		.byte	0x14
+ 1771 08b2 2C       		.byte	0x2c
+ 1772 08b3 C4080000 		.4byte	0x8c4
+ 1773 08b7 07       		.uleb128 0x7
+ 1774 08b8 24010000 		.4byte	.LASF118
+ 1775 08bc 14       		.byte	0x14
+ 1776 08bd 2D       		.byte	0x2d
+ 1777 08be 2E080000 		.4byte	0x82e
+ 1778 08c2 00       		.byte	0
+ 1779 08c3 00       		.byte	0
+ 1780 08c4 03       		.uleb128 0x3
+ 1781 08c5 94020000 		.4byte	.LASF119
+ 1782 08c9 14       		.byte	0x14
+ 1783 08ca 40       		.byte	0x40
+ 1784 08cb AB080000 		.4byte	0x8ab
+ 1785 08cf 1A       		.uleb128 0x1a
+ 1786 08d0 77020000 		.4byte	.LASF140
+ 1787 08d4 03       		.byte	0x3
+ 1788 08d5 9C01     		.2byte	0x19c
+ 1789 08d7 03       		.byte	0x3
+ 1790 08d8 E9080000 		.4byte	0x8e9
+ 1791 08dc 1B       		.uleb128 0x1b
+ 1792 08dd FB040000 		.4byte	.LASF120
+ 1793 08e1 03       		.byte	0x3
+ 1794 08e2 9C01     		.2byte	0x19c
+ 1795 08e4 EC050000 		.4byte	0x5ec
+ 1796 08e8 00       		.byte	0
+ 1797 08e9 1C       		.uleb128 0x1c
+ 1798 08ea 34070000 		.4byte	.LASF141
+ 1799 08ee 02       		.byte	0x2
+ 1800 08ef 45       		.byte	0x45
+ 1801 08f0 25000000 		.4byte	0x25
+ 1802 08f4 03       		.byte	0x3
+ 1803 08f5 26090000 		.4byte	0x926
+ 1804 08f9 1D       		.uleb128 0x1d
+ 1805 08fa 63687000 		.ascii	"chp\000"
+ 1806 08fe 02       		.byte	0x2
+ 1807 08ff 45       		.byte	0x45
+ 1808 0900 26090000 		.4byte	0x926
+ 1809 0904 1D       		.uleb128 0x1d
+ 1810 0905 666D7400 		.ascii	"fmt\000"
+ 1811 0909 02       		.byte	0x2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 33
+
+
+ 1812 090a 45       		.byte	0x45
+ 1813 090b EC050000 		.4byte	0x5ec
+ 1814 090f 1E       		.uleb128 0x1e
+ 1815 0910 1F       		.uleb128 0x1f
+ 1816 0911 617000   		.ascii	"ap\000"
+ 1817 0914 02       		.byte	0x2
+ 1818 0915 46       		.byte	0x46
+ 1819 0916 0D080000 		.4byte	0x80d
+ 1820 091a 20       		.uleb128 0x20
+ 1821 091b 9E000000 		.4byte	.LASF121
+ 1822 091f 02       		.byte	0x2
+ 1823 0920 47       		.byte	0x47
+ 1824 0921 25000000 		.4byte	0x25
+ 1825 0925 00       		.byte	0
+ 1826 0926 0B       		.uleb128 0xb
+ 1827 0927 04       		.byte	0x4
+ 1828 0928 93070000 		.4byte	0x793
+ 1829 092c 21       		.uleb128 0x21
+ 1830 092d A8020000 		.4byte	.LASF142
+ 1831 0931 01       		.byte	0x1
+ 1832 0932 87       		.byte	0x87
+ 1833 0933 23080000 		.4byte	0x823
+ 1834 0937 00000000 		.4byte	.LFB256
+ 1835 093b 76000000 		.4byte	.LFE256-.LFB256
+ 1836 093f 01       		.uleb128 0x1
+ 1837 0940 9C       		.byte	0x9c
+ 1838 0941 AA090000 		.4byte	0x9aa
+ 1839 0945 22       		.uleb128 0x22
+ 1840 0946 71050000 		.4byte	.LASF122
+ 1841 094a 01       		.byte	0x1
+ 1842 094b 87       		.byte	0x87
+ 1843 094c 10030000 		.4byte	0x310
+ 1844 0950 00000000 		.4byte	.LLST0
+ 1845 0954 23       		.uleb128 0x23
+ 1846 0955 6C656E00 		.ascii	"len\000"
+ 1847 0959 01       		.byte	0x1
+ 1848 095a 87       		.byte	0x87
+ 1849 095b 25000000 		.4byte	0x25
+ 1850 095f 21000000 		.4byte	.LLST1
+ 1851 0963 24       		.uleb128 0x24
+ 1852 0964 706200   		.ascii	"pb\000"
+ 1853 0967 01       		.byte	0x1
+ 1854 0968 89       		.byte	0x89
+ 1855 0969 AA090000 		.4byte	0x9aa
+ 1856 096d 6D000000 		.4byte	.LLST2
+ 1857 0971 24       		.uleb128 0x24
+ 1858 0972 707300   		.ascii	"ps\000"
+ 1859 0975 01       		.byte	0x1
+ 1860 0976 8A       		.byte	0x8a
+ 1861 0977 B0090000 		.4byte	0x9b0
+ 1862 097b A3000000 		.4byte	.LLST3
+ 1863 097f 25       		.uleb128 0x25
+ 1864 0980 7400     		.ascii	"t\000"
+ 1865 0982 01       		.byte	0x1
+ 1866 0983 8A       		.byte	0x8a
+ 1867 0984 23080000 		.4byte	0x823
+ 1868 0988 02       		.uleb128 0x2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 34
+
+
+ 1869 0989 91       		.byte	0x91
+ 1870 098a 6E       		.sleb128 -18
+ 1871 098b 24       		.uleb128 0x24
+ 1872 098c 73756D00 		.ascii	"sum\000"
+ 1873 0990 01       		.byte	0x1
+ 1874 0991 8B       		.byte	0x8b
+ 1875 0992 2E080000 		.4byte	0x82e
+ 1876 0996 E4000000 		.4byte	.LLST4
+ 1877 099a 24       		.uleb128 0x24
+ 1878 099b 6F646400 		.ascii	"odd\000"
+ 1879 099f 01       		.byte	0x1
+ 1880 09a0 8C       		.byte	0x8c
+ 1881 09a1 25000000 		.4byte	0x25
+ 1882 09a5 71010000 		.4byte	.LLST5
+ 1883 09a9 00       		.byte	0
+ 1884 09aa 0B       		.uleb128 0xb
+ 1885 09ab 04       		.byte	0x4
+ 1886 09ac 18080000 		.4byte	0x818
+ 1887 09b0 0B       		.uleb128 0xb
+ 1888 09b1 04       		.byte	0x4
+ 1889 09b2 23080000 		.4byte	0x823
+ 1890 09b6 26       		.uleb128 0x26
+ 1891 09b7 E9080000 		.4byte	0x8e9
+ 1892 09bb 00000000 		.4byte	.LFB261
+ 1893 09bf 28000000 		.4byte	.LFE261-.LFB261
+ 1894 09c3 01       		.uleb128 0x1
+ 1895 09c4 9C       		.byte	0x9c
+ 1896 09c5 150A0000 		.4byte	0xa15
+ 1897 09c9 27       		.uleb128 0x27
+ 1898 09ca F9080000 		.4byte	0x8f9
+ 1899 09ce 9F010000 		.4byte	.LLST6
+ 1900 09d2 28       		.uleb128 0x28
+ 1901 09d3 04090000 		.4byte	0x904
+ 1902 09d7 02       		.uleb128 0x2
+ 1903 09d8 91       		.byte	0x91
+ 1904 09d9 74       		.sleb128 -12
+ 1905 09da 1E       		.uleb128 0x1e
+ 1906 09db 29       		.uleb128 0x29
+ 1907 09dc 10090000 		.4byte	0x910
+ 1908 09e0 02       		.uleb128 0x2
+ 1909 09e1 91       		.byte	0x91
+ 1910 09e2 6C       		.sleb128 -20
+ 1911 09e3 29       		.uleb128 0x29
+ 1912 09e4 1A090000 		.4byte	0x91a
+ 1913 09e8 01       		.uleb128 0x1
+ 1914 09e9 50       		.byte	0x50
+ 1915 09ea 28       		.uleb128 0x28
+ 1916 09eb 04090000 		.4byte	0x904
+ 1917 09ef 06       		.uleb128 0x6
+ 1918 09f0 03       		.byte	0x3
+ 1919 09f1 00000000 		.4byte	.LC0
+ 1920 09f5 9F       		.byte	0x9f
+ 1921 09f6 2A       		.uleb128 0x2a
+ 1922 09f7 F9080000 		.4byte	0x8f9
+ 1923 09fb 2B       		.uleb128 0x2b
+ 1924 09fc 14000000 		.4byte	.LVL22
+ 1925 0a00 1F0D0000 		.4byte	0xd1f
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 35
+
+
+ 1926 0a04 2C       		.uleb128 0x2c
+ 1927 0a05 01       		.uleb128 0x1
+ 1928 0a06 52       		.byte	0x52
+ 1929 0a07 02       		.uleb128 0x2
+ 1930 0a08 91       		.byte	0x91
+ 1931 0a09 60       		.sleb128 -32
+ 1932 0a0a 2C       		.uleb128 0x2c
+ 1933 0a0b 01       		.uleb128 0x1
+ 1934 0a0c 51       		.byte	0x51
+ 1935 0a0d 05       		.uleb128 0x5
+ 1936 0a0e 03       		.byte	0x3
+ 1937 0a0f 00000000 		.4byte	.LC0
+ 1938 0a13 00       		.byte	0
+ 1939 0a14 00       		.byte	0
+ 1940 0a15 2D       		.uleb128 0x2d
+ 1941 0a16 4B010000 		.4byte	.LASF127
+ 1942 0a1a 01       		.byte	0x1
+ 1943 0a1b 1001     		.2byte	0x110
+ 1944 0a1d 23080000 		.4byte	0x823
+ 1945 0a21 00000000 		.4byte	.LFB257
+ 1946 0a25 90000000 		.4byte	.LFE257-.LFB257
+ 1947 0a29 01       		.uleb128 0x1
+ 1948 0a2a 9C       		.byte	0x9c
+ 1949 0a2b E90A0000 		.4byte	0xae9
+ 1950 0a2f 2E       		.uleb128 0x2e
+ 1951 0a30 7000     		.ascii	"p\000"
+ 1952 0a32 01       		.byte	0x1
+ 1953 0a33 1001     		.2byte	0x110
+ 1954 0a35 A5080000 		.4byte	0x8a5
+ 1955 0a39 C0010000 		.4byte	.LLST7
+ 1956 0a3d 2E       		.uleb128 0x2e
+ 1957 0a3e 73726300 		.ascii	"src\000"
+ 1958 0a42 01       		.byte	0x1
+ 1959 0a43 1101     		.2byte	0x111
+ 1960 0a45 E90A0000 		.4byte	0xae9
+ 1961 0a49 EC010000 		.4byte	.LLST8
+ 1962 0a4d 2F       		.uleb128 0x2f
+ 1963 0a4e 18030000 		.4byte	.LASF123
+ 1964 0a52 01       		.byte	0x1
+ 1965 0a53 1101     		.2byte	0x111
+ 1966 0a55 E90A0000 		.4byte	0xae9
+ 1967 0a59 15020000 		.4byte	.LLST9
+ 1968 0a5d 2F       		.uleb128 0x2f
+ 1969 0a5e 02050000 		.4byte	.LASF124
+ 1970 0a62 01       		.byte	0x1
+ 1971 0a63 1201     		.2byte	0x112
+ 1972 0a65 18080000 		.4byte	0x818
+ 1973 0a69 3E020000 		.4byte	.LLST10
+ 1974 0a6d 2F       		.uleb128 0x2f
+ 1975 0a6e AD060000 		.4byte	.LASF125
+ 1976 0a72 01       		.byte	0x1
+ 1977 0a73 1201     		.2byte	0x112
+ 1978 0a75 23080000 		.4byte	0x823
+ 1979 0a79 6A020000 		.4byte	.LLST11
+ 1980 0a7d 30       		.uleb128 0x30
+ 1981 0a7e 61636300 		.ascii	"acc\000"
+ 1982 0a82 01       		.byte	0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 36
+
+
+ 1983 0a83 1401     		.2byte	0x114
+ 1984 0a85 2E080000 		.4byte	0x82e
+ 1985 0a89 8A020000 		.4byte	.LLST12
+ 1986 0a8d 31       		.uleb128 0x31
+ 1987 0a8e 24010000 		.4byte	.LASF118
+ 1988 0a92 01       		.byte	0x1
+ 1989 0a93 1501     		.2byte	0x115
+ 1990 0a95 2E080000 		.4byte	0x82e
+ 1991 0a99 93030000 		.4byte	.LLST13
+ 1992 0a9d 30       		.uleb128 0x30
+ 1993 0a9e 7100     		.ascii	"q\000"
+ 1994 0aa0 01       		.byte	0x1
+ 1995 0aa1 1601     		.2byte	0x116
+ 1996 0aa3 A5080000 		.4byte	0x8a5
+ 1997 0aa7 B1030000 		.4byte	.LLST14
+ 1998 0aab 31       		.uleb128 0x31
+ 1999 0aac EB040000 		.4byte	.LASF126
+ 2000 0ab0 01       		.byte	0x1
+ 2001 0ab1 1701     		.2byte	0x117
+ 2002 0ab3 18080000 		.4byte	0x818
+ 2003 0ab7 DA030000 		.4byte	.LLST15
+ 2004 0abb 32       		.uleb128 0x32
+ 2005 0abc 20000000 		.4byte	.LVL25
+ 2006 0ac0 2C090000 		.4byte	0x92c
+ 2007 0ac4 33       		.uleb128 0x33
+ 2008 0ac5 6E000000 		.4byte	.LVL39
+ 2009 0ac9 3E0D0000 		.4byte	0xd3e
+ 2010 0acd D80A0000 		.4byte	0xad8
+ 2011 0ad1 2C       		.uleb128 0x2c
+ 2012 0ad2 01       		.uleb128 0x1
+ 2013 0ad3 50       		.byte	0x50
+ 2014 0ad4 02       		.uleb128 0x2
+ 2015 0ad5 78       		.byte	0x78
+ 2016 0ad6 00       		.sleb128 0
+ 2017 0ad7 00       		.byte	0
+ 2018 0ad8 2B       		.uleb128 0x2b
+ 2019 0ad9 76000000 		.4byte	.LVL41
+ 2020 0add 3E0D0000 		.4byte	0xd3e
+ 2021 0ae1 2C       		.uleb128 0x2c
+ 2022 0ae2 01       		.uleb128 0x1
+ 2023 0ae3 50       		.byte	0x50
+ 2024 0ae4 02       		.uleb128 0x2
+ 2025 0ae5 77       		.byte	0x77
+ 2026 0ae6 00       		.sleb128 0
+ 2027 0ae7 00       		.byte	0
+ 2028 0ae8 00       		.byte	0
+ 2029 0ae9 0B       		.uleb128 0xb
+ 2030 0aea 04       		.byte	0x4
+ 2031 0aeb C4080000 		.4byte	0x8c4
+ 2032 0aef 2D       		.uleb128 0x2d
+ 2033 0af0 24000000 		.4byte	.LASF128
+ 2034 0af4 01       		.byte	0x1
+ 2035 0af5 4C01     		.2byte	0x14c
+ 2036 0af7 23080000 		.4byte	0x823
+ 2037 0afb 00000000 		.4byte	.LFB258
+ 2038 0aff EC000000 		.4byte	.LFE258-.LFB258
+ 2039 0b03 01       		.uleb128 0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 37
+
+
+ 2040 0b04 9C       		.byte	0x9c
+ 2041 0b05 510C0000 		.4byte	0xc51
+ 2042 0b09 2E       		.uleb128 0x2e
+ 2043 0b0a 7000     		.ascii	"p\000"
+ 2044 0b0c 01       		.byte	0x1
+ 2045 0b0d 4C01     		.2byte	0x14c
+ 2046 0b0f A5080000 		.4byte	0x8a5
+ 2047 0b13 10040000 		.4byte	.LLST16
+ 2048 0b17 2E       		.uleb128 0x2e
+ 2049 0b18 73726300 		.ascii	"src\000"
+ 2050 0b1c 01       		.byte	0x1
+ 2051 0b1d 4D01     		.2byte	0x14d
+ 2052 0b1f E90A0000 		.4byte	0xae9
+ 2053 0b23 3C040000 		.4byte	.LLST17
+ 2054 0b27 2F       		.uleb128 0x2f
+ 2055 0b28 18030000 		.4byte	.LASF123
+ 2056 0b2c 01       		.byte	0x1
+ 2057 0b2d 4D01     		.2byte	0x14d
+ 2058 0b2f E90A0000 		.4byte	0xae9
+ 2059 0b33 65040000 		.4byte	.LLST18
+ 2060 0b37 2F       		.uleb128 0x2f
+ 2061 0b38 02050000 		.4byte	.LASF124
+ 2062 0b3c 01       		.byte	0x1
+ 2063 0b3d 4E01     		.2byte	0x14e
+ 2064 0b3f 18080000 		.4byte	0x818
+ 2065 0b43 8E040000 		.4byte	.LLST19
+ 2066 0b47 2F       		.uleb128 0x2f
+ 2067 0b48 AD060000 		.4byte	.LASF125
+ 2068 0b4c 01       		.byte	0x1
+ 2069 0b4d 4E01     		.2byte	0x14e
+ 2070 0b4f 23080000 		.4byte	0x823
+ 2071 0b53 AF040000 		.4byte	.LLST20
+ 2072 0b57 2F       		.uleb128 0x2f
+ 2073 0b58 CD060000 		.4byte	.LASF129
+ 2074 0b5c 01       		.byte	0x1
+ 2075 0b5d 4E01     		.2byte	0x14e
+ 2076 0b5f 23080000 		.4byte	0x823
+ 2077 0b63 CF040000 		.4byte	.LLST21
+ 2078 0b67 30       		.uleb128 0x30
+ 2079 0b68 61636300 		.ascii	"acc\000"
+ 2080 0b6c 01       		.byte	0x1
+ 2081 0b6d 5001     		.2byte	0x150
+ 2082 0b6f 2E080000 		.4byte	0x82e
+ 2083 0b73 F9040000 		.4byte	.LLST22
+ 2084 0b77 31       		.uleb128 0x31
+ 2085 0b78 24010000 		.4byte	.LASF118
+ 2086 0b7c 01       		.byte	0x1
+ 2087 0b7d 5101     		.2byte	0x151
+ 2088 0b7f 2E080000 		.4byte	0x82e
+ 2089 0b83 D6050000 		.4byte	.LLST23
+ 2090 0b87 30       		.uleb128 0x30
+ 2091 0b88 7100     		.ascii	"q\000"
+ 2092 0b8a 01       		.byte	0x1
+ 2093 0b8b 5201     		.2byte	0x152
+ 2094 0b8d A5080000 		.4byte	0x8a5
+ 2095 0b91 F4050000 		.4byte	.LLST24
+ 2096 0b95 31       		.uleb128 0x31
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 38
+
+
+ 2097 0b96 EB040000 		.4byte	.LASF126
+ 2098 0b9a 01       		.byte	0x1
+ 2099 0b9b 5301     		.2byte	0x153
+ 2100 0b9d 18080000 		.4byte	0x818
+ 2101 0ba1 1D060000 		.4byte	.LLST25
+ 2102 0ba5 31       		.uleb128 0x31
+ 2103 0ba6 44050000 		.4byte	.LASF130
+ 2104 0baa 01       		.byte	0x1
+ 2105 0bab 5401     		.2byte	0x154
+ 2106 0bad 23080000 		.4byte	0x823
+ 2107 0bb1 53060000 		.4byte	.LLST26
+ 2108 0bb5 34       		.uleb128 0x34
+ 2109 0bb6 CF080000 		.4byte	0x8cf
+ 2110 0bba 82000000 		.4byte	.LBB4
+ 2111 0bbe 08000000 		.4byte	.LBE4-.LBB4
+ 2112 0bc2 01       		.byte	0x1
+ 2113 0bc3 6201     		.2byte	0x162
+ 2114 0bc5 E60B0000 		.4byte	0xbe6
+ 2115 0bc9 27       		.uleb128 0x27
+ 2116 0bca DC080000 		.4byte	0x8dc
+ 2117 0bce 93060000 		.4byte	.LLST27
+ 2118 0bd2 2B       		.uleb128 0x2b
+ 2119 0bd3 88000000 		.4byte	.LVL66
+ 2120 0bd7 530D0000 		.4byte	0xd53
+ 2121 0bdb 2C       		.uleb128 0x2c
+ 2122 0bdc 01       		.uleb128 0x1
+ 2123 0bdd 50       		.byte	0x50
+ 2124 0bde 05       		.uleb128 0x5
+ 2125 0bdf 03       		.byte	0x3
+ 2126 0be0 28000000 		.4byte	.LC1
+ 2127 0be4 00       		.byte	0
+ 2128 0be5 00       		.byte	0
+ 2129 0be6 33       		.uleb128 0x33
+ 2130 0be7 5E000000 		.4byte	.LVL62
+ 2131 0beb 2C090000 		.4byte	0x92c
+ 2132 0bef FA0B0000 		.4byte	0xbfa
+ 2133 0bf3 2C       		.uleb128 0x2c
+ 2134 0bf4 01       		.uleb128 0x1
+ 2135 0bf5 51       		.byte	0x51
+ 2136 0bf6 02       		.uleb128 0x2
+ 2137 0bf7 79       		.byte	0x79
+ 2138 0bf8 00       		.sleb128 0
+ 2139 0bf9 00       		.byte	0
+ 2140 0bfa 33       		.uleb128 0x33
+ 2141 0bfb 82000000 		.4byte	.LVL65
+ 2142 0bff B6090000 		.4byte	0x9b6
+ 2143 0c03 280C0000 		.4byte	0xc28
+ 2144 0c07 2C       		.uleb128 0x2c
+ 2145 0c08 01       		.uleb128 0x1
+ 2146 0c09 53       		.byte	0x53
+ 2147 0c0a 03       		.uleb128 0x3
+ 2148 0c0b 0A       		.byte	0xa
+ 2149 0c0c 6201     		.2byte	0x162
+ 2150 0c0e 2C       		.uleb128 0x2c
+ 2151 0c0f 01       		.uleb128 0x1
+ 2152 0c10 52       		.byte	0x52
+ 2153 0c11 05       		.uleb128 0x5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 39
+
+
+ 2154 0c12 03       		.byte	0x3
+ 2155 0c13 28000000 		.4byte	.LC1
+ 2156 0c17 2C       		.uleb128 0x2c
+ 2157 0c18 01       		.uleb128 0x1
+ 2158 0c19 51       		.byte	0x51
+ 2159 0c1a 05       		.uleb128 0x5
+ 2160 0c1b 03       		.byte	0x3
+ 2161 0c1c 00000000 		.4byte	.LC0
+ 2162 0c20 2C       		.uleb128 0x2c
+ 2163 0c21 02       		.uleb128 0x2
+ 2164 0c22 7D       		.byte	0x7d
+ 2165 0c23 00       		.sleb128 0
+ 2166 0c24 02       		.uleb128 0x2
+ 2167 0c25 78       		.byte	0x78
+ 2168 0c26 00       		.sleb128 0
+ 2169 0c27 00       		.byte	0
+ 2170 0c28 33       		.uleb128 0x33
+ 2171 0c29 B4000000 		.4byte	.LVL74
+ 2172 0c2d 3E0D0000 		.4byte	0xd3e
+ 2173 0c31 3E0C0000 		.4byte	0xc3e
+ 2174 0c35 2C       		.uleb128 0x2c
+ 2175 0c36 01       		.uleb128 0x1
+ 2176 0c37 50       		.byte	0x50
+ 2177 0c38 04       		.uleb128 0x4
+ 2178 0c39 91       		.byte	0x91
+ 2179 0c3a 50       		.sleb128 -48
+ 2180 0c3b 94       		.byte	0x94
+ 2181 0c3c 02       		.byte	0x2
+ 2182 0c3d 00       		.byte	0
+ 2183 0c3e 2B       		.uleb128 0x2b
+ 2184 0c3f BC000000 		.4byte	.LVL76
+ 2185 0c43 3E0D0000 		.4byte	0xd3e
+ 2186 0c47 2C       		.uleb128 0x2c
+ 2187 0c48 01       		.uleb128 0x1
+ 2188 0c49 50       		.byte	0x50
+ 2189 0c4a 04       		.uleb128 0x4
+ 2190 0c4b 91       		.byte	0x91
+ 2191 0c4c 54       		.sleb128 -44
+ 2192 0c4d 94       		.byte	0x94
+ 2193 0c4e 02       		.byte	0x2
+ 2194 0c4f 00       		.byte	0
+ 2195 0c50 00       		.byte	0
+ 2196 0c51 2D       		.uleb128 0x2d
+ 2197 0c52 7B000000 		.4byte	.LASF131
+ 2198 0c56 01       		.byte	0x1
+ 2199 0c57 8C01     		.2byte	0x18c
+ 2200 0c59 23080000 		.4byte	0x823
+ 2201 0c5d 00000000 		.4byte	.LFB259
+ 2202 0c61 0C000000 		.4byte	.LFE259-.LFB259
+ 2203 0c65 01       		.uleb128 0x1
+ 2204 0c66 9C       		.byte	0x9c
+ 2205 0c67 9D0C0000 		.4byte	0xc9d
+ 2206 0c6b 2F       		.uleb128 0x2f
+ 2207 0c6c 71050000 		.4byte	.LASF122
+ 2208 0c70 01       		.byte	0x1
+ 2209 0c71 8C01     		.2byte	0x18c
+ 2210 0c73 10030000 		.4byte	0x310
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 40
+
+
+ 2211 0c77 AB060000 		.4byte	.LLST28
+ 2212 0c7b 2E       		.uleb128 0x2e
+ 2213 0c7c 6C656E00 		.ascii	"len\000"
+ 2214 0c80 01       		.byte	0x1
+ 2215 0c81 8C01     		.2byte	0x18c
+ 2216 0c83 23080000 		.4byte	0x823
+ 2217 0c87 CC060000 		.4byte	.LLST29
+ 2218 0c8b 2B       		.uleb128 0x2b
+ 2219 0c8c 06000000 		.4byte	.LVL85
+ 2220 0c90 2C090000 		.4byte	0x92c
+ 2221 0c94 2C       		.uleb128 0x2c
+ 2222 0c95 01       		.uleb128 0x1
+ 2223 0c96 50       		.byte	0x50
+ 2224 0c97 03       		.uleb128 0x3
+ 2225 0c98 F3       		.byte	0xf3
+ 2226 0c99 01       		.uleb128 0x1
+ 2227 0c9a 50       		.byte	0x50
+ 2228 0c9b 00       		.byte	0
+ 2229 0c9c 00       		.byte	0
+ 2230 0c9d 2D       		.uleb128 0x2d
+ 2231 0c9e 2F030000 		.4byte	.LASF132
+ 2232 0ca2 01       		.byte	0x1
+ 2233 0ca3 9901     		.2byte	0x199
+ 2234 0ca5 23080000 		.4byte	0x823
+ 2235 0ca9 00000000 		.4byte	.LFB260
+ 2236 0cad 4E000000 		.4byte	.LFE260-.LFB260
+ 2237 0cb1 01       		.uleb128 0x1
+ 2238 0cb2 9C       		.byte	0x9c
+ 2239 0cb3 FD0C0000 		.4byte	0xcfd
+ 2240 0cb7 2E       		.uleb128 0x2e
+ 2241 0cb8 7000     		.ascii	"p\000"
+ 2242 0cba 01       		.byte	0x1
+ 2243 0cbb 9901     		.2byte	0x199
+ 2244 0cbd A5080000 		.4byte	0x8a5
+ 2245 0cc1 ED060000 		.4byte	.LLST30
+ 2246 0cc5 30       		.uleb128 0x30
+ 2247 0cc6 61636300 		.ascii	"acc\000"
+ 2248 0cca 01       		.byte	0x1
+ 2249 0ccb 9B01     		.2byte	0x19b
+ 2250 0ccd 2E080000 		.4byte	0x82e
+ 2251 0cd1 24070000 		.4byte	.LLST31
+ 2252 0cd5 30       		.uleb128 0x30
+ 2253 0cd6 7100     		.ascii	"q\000"
+ 2254 0cd8 01       		.byte	0x1
+ 2255 0cd9 9C01     		.2byte	0x19c
+ 2256 0cdb A5080000 		.4byte	0x8a5
+ 2257 0cdf AF070000 		.4byte	.LLST32
+ 2258 0ce3 31       		.uleb128 0x31
+ 2259 0ce4 EB040000 		.4byte	.LASF126
+ 2260 0ce8 01       		.byte	0x1
+ 2261 0ce9 9D01     		.2byte	0x19d
+ 2262 0ceb 18080000 		.4byte	0x818
+ 2263 0cef E3070000 		.4byte	.LLST33
+ 2264 0cf3 32       		.uleb128 0x32
+ 2265 0cf4 12000000 		.4byte	.LVL88
+ 2266 0cf8 2C090000 		.4byte	0x92c
+ 2267 0cfc 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 41
+
+
+ 2268 0cfd 35       		.uleb128 0x35
+ 2269 0cfe D8000000 		.4byte	.LASF133
+ 2270 0d02 15       		.byte	0x15
+ 2271 0d03 A706     		.2byte	0x6a7
+ 2272 0d05 E4000000 		.4byte	0xe4
+ 2273 0d09 36       		.uleb128 0x36
+ 2274 0d0a 636800   		.ascii	"ch\000"
+ 2275 0d0d 09       		.byte	0x9
+ 2276 0d0e EB01     		.2byte	0x1eb
+ 2277 0d10 DF030000 		.4byte	0x3df
+ 2278 0d14 37       		.uleb128 0x37
+ 2279 0d15 5C060000 		.4byte	.LASF134
+ 2280 0d19 12       		.byte	0x12
+ 2281 0d1a 3B       		.byte	0x3b
+ 2282 0d1b 02080000 		.4byte	0x802
+ 2283 0d1f 38       		.uleb128 0x38
+ 2284 0d20 91060000 		.4byte	.LASF135
+ 2285 0d24 02       		.byte	0x2
+ 2286 0d25 28       		.byte	0x28
+ 2287 0d26 25000000 		.4byte	0x25
+ 2288 0d2a 3E0D0000 		.4byte	0xd3e
+ 2289 0d2e 0D       		.uleb128 0xd
+ 2290 0d2f 26090000 		.4byte	0x926
+ 2291 0d33 0D       		.uleb128 0xd
+ 2292 0d34 EC050000 		.4byte	0x5ec
+ 2293 0d38 0D       		.uleb128 0xd
+ 2294 0d39 0D080000 		.4byte	0x80d
+ 2295 0d3d 00       		.byte	0
+ 2296 0d3e 38       		.uleb128 0x38
+ 2297 0d3f 61020000 		.4byte	.LASF136
+ 2298 0d43 16       		.byte	0x16
+ 2299 0d44 63       		.byte	0x63
+ 2300 0d45 23080000 		.4byte	0x823
+ 2301 0d49 530D0000 		.4byte	0xd53
+ 2302 0d4d 0D       		.uleb128 0xd
+ 2303 0d4e 23080000 		.4byte	0x823
+ 2304 0d52 00       		.byte	0
+ 2305 0d53 39       		.uleb128 0x39
+ 2306 0d54 71000000 		.4byte	.LASF143
+ 2307 0d58 17       		.byte	0x17
+ 2308 0d59 E6       		.byte	0xe6
+ 2309 0d5a 0D       		.uleb128 0xd
+ 2310 0d5b EC050000 		.4byte	0x5ec
+ 2311 0d5f 00       		.byte	0
+ 2312 0d60 00       		.byte	0
+ 2313              		.section	.debug_abbrev,"",%progbits
+ 2314              	.Ldebug_abbrev0:
+ 2315 0000 01       		.uleb128 0x1
+ 2316 0001 11       		.uleb128 0x11
+ 2317 0002 01       		.byte	0x1
+ 2318 0003 25       		.uleb128 0x25
+ 2319 0004 0E       		.uleb128 0xe
+ 2320 0005 13       		.uleb128 0x13
+ 2321 0006 0B       		.uleb128 0xb
+ 2322 0007 03       		.uleb128 0x3
+ 2323 0008 0E       		.uleb128 0xe
+ 2324 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 42
+
+
+ 2325 000a 0E       		.uleb128 0xe
+ 2326 000b 55       		.uleb128 0x55
+ 2327 000c 17       		.uleb128 0x17
+ 2328 000d 11       		.uleb128 0x11
+ 2329 000e 01       		.uleb128 0x1
+ 2330 000f 10       		.uleb128 0x10
+ 2331 0010 17       		.uleb128 0x17
+ 2332 0011 00       		.byte	0
+ 2333 0012 00       		.byte	0
+ 2334 0013 02       		.uleb128 0x2
+ 2335 0014 24       		.uleb128 0x24
+ 2336 0015 00       		.byte	0
+ 2337 0016 0B       		.uleb128 0xb
+ 2338 0017 0B       		.uleb128 0xb
+ 2339 0018 3E       		.uleb128 0x3e
+ 2340 0019 0B       		.uleb128 0xb
+ 2341 001a 03       		.uleb128 0x3
+ 2342 001b 08       		.uleb128 0x8
+ 2343 001c 00       		.byte	0
+ 2344 001d 00       		.byte	0
+ 2345 001e 03       		.uleb128 0x3
+ 2346 001f 16       		.uleb128 0x16
+ 2347 0020 00       		.byte	0
+ 2348 0021 03       		.uleb128 0x3
+ 2349 0022 0E       		.uleb128 0xe
+ 2350 0023 3A       		.uleb128 0x3a
+ 2351 0024 0B       		.uleb128 0xb
+ 2352 0025 3B       		.uleb128 0x3b
+ 2353 0026 0B       		.uleb128 0xb
+ 2354 0027 49       		.uleb128 0x49
+ 2355 0028 13       		.uleb128 0x13
+ 2356 0029 00       		.byte	0
+ 2357 002a 00       		.byte	0
+ 2358 002b 04       		.uleb128 0x4
+ 2359 002c 24       		.uleb128 0x24
+ 2360 002d 00       		.byte	0
+ 2361 002e 0B       		.uleb128 0xb
+ 2362 002f 0B       		.uleb128 0xb
+ 2363 0030 3E       		.uleb128 0x3e
+ 2364 0031 0B       		.uleb128 0xb
+ 2365 0032 03       		.uleb128 0x3
+ 2366 0033 0E       		.uleb128 0xe
+ 2367 0034 00       		.byte	0
+ 2368 0035 00       		.byte	0
+ 2369 0036 05       		.uleb128 0x5
+ 2370 0037 35       		.uleb128 0x35
+ 2371 0038 00       		.byte	0
+ 2372 0039 49       		.uleb128 0x49
+ 2373 003a 13       		.uleb128 0x13
+ 2374 003b 00       		.byte	0
+ 2375 003c 00       		.byte	0
+ 2376 003d 06       		.uleb128 0x6
+ 2377 003e 13       		.uleb128 0x13
+ 2378 003f 01       		.byte	0x1
+ 2379 0040 03       		.uleb128 0x3
+ 2380 0041 0E       		.uleb128 0xe
+ 2381 0042 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 43
+
+
+ 2382 0043 0B       		.uleb128 0xb
+ 2383 0044 3A       		.uleb128 0x3a
+ 2384 0045 0B       		.uleb128 0xb
+ 2385 0046 3B       		.uleb128 0x3b
+ 2386 0047 0B       		.uleb128 0xb
+ 2387 0048 01       		.uleb128 0x1
+ 2388 0049 13       		.uleb128 0x13
+ 2389 004a 00       		.byte	0
+ 2390 004b 00       		.byte	0
+ 2391 004c 07       		.uleb128 0x7
+ 2392 004d 0D       		.uleb128 0xd
+ 2393 004e 00       		.byte	0
+ 2394 004f 03       		.uleb128 0x3
+ 2395 0050 0E       		.uleb128 0xe
+ 2396 0051 3A       		.uleb128 0x3a
+ 2397 0052 0B       		.uleb128 0xb
+ 2398 0053 3B       		.uleb128 0x3b
+ 2399 0054 0B       		.uleb128 0xb
+ 2400 0055 49       		.uleb128 0x49
+ 2401 0056 13       		.uleb128 0x13
+ 2402 0057 38       		.uleb128 0x38
+ 2403 0058 0B       		.uleb128 0xb
+ 2404 0059 00       		.byte	0
+ 2405 005a 00       		.byte	0
+ 2406 005b 08       		.uleb128 0x8
+ 2407 005c 0D       		.uleb128 0xd
+ 2408 005d 00       		.byte	0
+ 2409 005e 03       		.uleb128 0x3
+ 2410 005f 08       		.uleb128 0x8
+ 2411 0060 3A       		.uleb128 0x3a
+ 2412 0061 0B       		.uleb128 0xb
+ 2413 0062 3B       		.uleb128 0x3b
+ 2414 0063 05       		.uleb128 0x5
+ 2415 0064 49       		.uleb128 0x49
+ 2416 0065 13       		.uleb128 0x13
+ 2417 0066 38       		.uleb128 0x38
+ 2418 0067 0B       		.uleb128 0xb
+ 2419 0068 00       		.byte	0
+ 2420 0069 00       		.byte	0
+ 2421 006a 09       		.uleb128 0x9
+ 2422 006b 0D       		.uleb128 0xd
+ 2423 006c 00       		.byte	0
+ 2424 006d 03       		.uleb128 0x3
+ 2425 006e 0E       		.uleb128 0xe
+ 2426 006f 3A       		.uleb128 0x3a
+ 2427 0070 0B       		.uleb128 0xb
+ 2428 0071 3B       		.uleb128 0x3b
+ 2429 0072 05       		.uleb128 0x5
+ 2430 0073 49       		.uleb128 0x49
+ 2431 0074 13       		.uleb128 0x13
+ 2432 0075 38       		.uleb128 0x38
+ 2433 0076 0B       		.uleb128 0xb
+ 2434 0077 00       		.byte	0
+ 2435 0078 00       		.byte	0
+ 2436 0079 0A       		.uleb128 0xa
+ 2437 007a 13       		.uleb128 0x13
+ 2438 007b 01       		.byte	0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 44
+
+
+ 2439 007c 03       		.uleb128 0x3
+ 2440 007d 0E       		.uleb128 0xe
+ 2441 007e 0B       		.uleb128 0xb
+ 2442 007f 0B       		.uleb128 0xb
+ 2443 0080 3A       		.uleb128 0x3a
+ 2444 0081 0B       		.uleb128 0xb
+ 2445 0082 3B       		.uleb128 0x3b
+ 2446 0083 05       		.uleb128 0x5
+ 2447 0084 01       		.uleb128 0x1
+ 2448 0085 13       		.uleb128 0x13
+ 2449 0086 00       		.byte	0
+ 2450 0087 00       		.byte	0
+ 2451 0088 0B       		.uleb128 0xb
+ 2452 0089 0F       		.uleb128 0xf
+ 2453 008a 00       		.byte	0
+ 2454 008b 0B       		.uleb128 0xb
+ 2455 008c 0B       		.uleb128 0xb
+ 2456 008d 49       		.uleb128 0x49
+ 2457 008e 13       		.uleb128 0x13
+ 2458 008f 00       		.byte	0
+ 2459 0090 00       		.byte	0
+ 2460 0091 0C       		.uleb128 0xc
+ 2461 0092 15       		.uleb128 0x15
+ 2462 0093 01       		.byte	0x1
+ 2463 0094 27       		.uleb128 0x27
+ 2464 0095 19       		.uleb128 0x19
+ 2465 0096 01       		.uleb128 0x1
+ 2466 0097 13       		.uleb128 0x13
+ 2467 0098 00       		.byte	0
+ 2468 0099 00       		.byte	0
+ 2469 009a 0D       		.uleb128 0xd
+ 2470 009b 05       		.uleb128 0x5
+ 2471 009c 00       		.byte	0
+ 2472 009d 49       		.uleb128 0x49
+ 2473 009e 13       		.uleb128 0x13
+ 2474 009f 00       		.byte	0
+ 2475 00a0 00       		.byte	0
+ 2476 00a1 0E       		.uleb128 0xe
+ 2477 00a2 0F       		.uleb128 0xf
+ 2478 00a3 00       		.byte	0
+ 2479 00a4 0B       		.uleb128 0xb
+ 2480 00a5 0B       		.uleb128 0xb
+ 2481 00a6 00       		.byte	0
+ 2482 00a7 00       		.byte	0
+ 2483 00a8 0F       		.uleb128 0xf
+ 2484 00a9 13       		.uleb128 0x13
+ 2485 00aa 01       		.byte	0x1
+ 2486 00ab 03       		.uleb128 0x3
+ 2487 00ac 0E       		.uleb128 0xe
+ 2488 00ad 0B       		.uleb128 0xb
+ 2489 00ae 05       		.uleb128 0x5
+ 2490 00af 3A       		.uleb128 0x3a
+ 2491 00b0 0B       		.uleb128 0xb
+ 2492 00b1 3B       		.uleb128 0x3b
+ 2493 00b2 05       		.uleb128 0x5
+ 2494 00b3 01       		.uleb128 0x1
+ 2495 00b4 13       		.uleb128 0x13
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 45
+
+
+ 2496 00b5 00       		.byte	0
+ 2497 00b6 00       		.byte	0
+ 2498 00b7 10       		.uleb128 0x10
+ 2499 00b8 0D       		.uleb128 0xd
+ 2500 00b9 00       		.byte	0
+ 2501 00ba 03       		.uleb128 0x3
+ 2502 00bb 08       		.uleb128 0x8
+ 2503 00bc 3A       		.uleb128 0x3a
+ 2504 00bd 0B       		.uleb128 0xb
+ 2505 00be 3B       		.uleb128 0x3b
+ 2506 00bf 0B       		.uleb128 0xb
+ 2507 00c0 49       		.uleb128 0x49
+ 2508 00c1 13       		.uleb128 0x13
+ 2509 00c2 38       		.uleb128 0x38
+ 2510 00c3 0B       		.uleb128 0xb
+ 2511 00c4 00       		.byte	0
+ 2512 00c5 00       		.byte	0
+ 2513 00c6 11       		.uleb128 0x11
+ 2514 00c7 0D       		.uleb128 0xd
+ 2515 00c8 00       		.byte	0
+ 2516 00c9 03       		.uleb128 0x3
+ 2517 00ca 0E       		.uleb128 0xe
+ 2518 00cb 49       		.uleb128 0x49
+ 2519 00cc 13       		.uleb128 0x13
+ 2520 00cd 38       		.uleb128 0x38
+ 2521 00ce 0B       		.uleb128 0xb
+ 2522 00cf 34       		.uleb128 0x34
+ 2523 00d0 19       		.uleb128 0x19
+ 2524 00d1 00       		.byte	0
+ 2525 00d2 00       		.byte	0
+ 2526 00d3 12       		.uleb128 0x12
+ 2527 00d4 26       		.uleb128 0x26
+ 2528 00d5 00       		.byte	0
+ 2529 00d6 49       		.uleb128 0x49
+ 2530 00d7 13       		.uleb128 0x13
+ 2531 00d8 00       		.byte	0
+ 2532 00d9 00       		.byte	0
+ 2533 00da 13       		.uleb128 0x13
+ 2534 00db 13       		.uleb128 0x13
+ 2535 00dc 01       		.byte	0x1
+ 2536 00dd 0B       		.uleb128 0xb
+ 2537 00de 0B       		.uleb128 0xb
+ 2538 00df 3A       		.uleb128 0x3a
+ 2539 00e0 0B       		.uleb128 0xb
+ 2540 00e1 3B       		.uleb128 0x3b
+ 2541 00e2 0B       		.uleb128 0xb
+ 2542 00e3 01       		.uleb128 0x1
+ 2543 00e4 13       		.uleb128 0x13
+ 2544 00e5 00       		.byte	0
+ 2545 00e6 00       		.byte	0
+ 2546 00e7 14       		.uleb128 0x14
+ 2547 00e8 17       		.uleb128 0x17
+ 2548 00e9 01       		.byte	0x1
+ 2549 00ea 0B       		.uleb128 0xb
+ 2550 00eb 0B       		.uleb128 0xb
+ 2551 00ec 3A       		.uleb128 0x3a
+ 2552 00ed 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 46
+
+
+ 2553 00ee 3B       		.uleb128 0x3b
+ 2554 00ef 0B       		.uleb128 0xb
+ 2555 00f0 01       		.uleb128 0x1
+ 2556 00f1 13       		.uleb128 0x13
+ 2557 00f2 00       		.byte	0
+ 2558 00f3 00       		.byte	0
+ 2559 00f4 15       		.uleb128 0x15
+ 2560 00f5 0D       		.uleb128 0xd
+ 2561 00f6 00       		.byte	0
+ 2562 00f7 03       		.uleb128 0x3
+ 2563 00f8 0E       		.uleb128 0xe
+ 2564 00f9 3A       		.uleb128 0x3a
+ 2565 00fa 0B       		.uleb128 0xb
+ 2566 00fb 3B       		.uleb128 0x3b
+ 2567 00fc 0B       		.uleb128 0xb
+ 2568 00fd 49       		.uleb128 0x49
+ 2569 00fe 13       		.uleb128 0x13
+ 2570 00ff 00       		.byte	0
+ 2571 0100 00       		.byte	0
+ 2572 0101 16       		.uleb128 0x16
+ 2573 0102 0D       		.uleb128 0xd
+ 2574 0103 00       		.byte	0
+ 2575 0104 03       		.uleb128 0x3
+ 2576 0105 0E       		.uleb128 0xe
+ 2577 0106 3A       		.uleb128 0x3a
+ 2578 0107 0B       		.uleb128 0xb
+ 2579 0108 3B       		.uleb128 0x3b
+ 2580 0109 05       		.uleb128 0x5
+ 2581 010a 49       		.uleb128 0x49
+ 2582 010b 13       		.uleb128 0x13
+ 2583 010c 00       		.byte	0
+ 2584 010d 00       		.byte	0
+ 2585 010e 17       		.uleb128 0x17
+ 2586 010f 01       		.uleb128 0x1
+ 2587 0110 01       		.byte	0x1
+ 2588 0111 49       		.uleb128 0x49
+ 2589 0112 13       		.uleb128 0x13
+ 2590 0113 01       		.uleb128 0x1
+ 2591 0114 13       		.uleb128 0x13
+ 2592 0115 00       		.byte	0
+ 2593 0116 00       		.byte	0
+ 2594 0117 18       		.uleb128 0x18
+ 2595 0118 21       		.uleb128 0x21
+ 2596 0119 00       		.byte	0
+ 2597 011a 49       		.uleb128 0x49
+ 2598 011b 13       		.uleb128 0x13
+ 2599 011c 2F       		.uleb128 0x2f
+ 2600 011d 0B       		.uleb128 0xb
+ 2601 011e 00       		.byte	0
+ 2602 011f 00       		.byte	0
+ 2603 0120 19       		.uleb128 0x19
+ 2604 0121 15       		.uleb128 0x15
+ 2605 0122 01       		.byte	0x1
+ 2606 0123 27       		.uleb128 0x27
+ 2607 0124 19       		.uleb128 0x19
+ 2608 0125 49       		.uleb128 0x49
+ 2609 0126 13       		.uleb128 0x13
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 47
+
+
+ 2610 0127 01       		.uleb128 0x1
+ 2611 0128 13       		.uleb128 0x13
+ 2612 0129 00       		.byte	0
+ 2613 012a 00       		.byte	0
+ 2614 012b 1A       		.uleb128 0x1a
+ 2615 012c 2E       		.uleb128 0x2e
+ 2616 012d 01       		.byte	0x1
+ 2617 012e 03       		.uleb128 0x3
+ 2618 012f 0E       		.uleb128 0xe
+ 2619 0130 3A       		.uleb128 0x3a
+ 2620 0131 0B       		.uleb128 0xb
+ 2621 0132 3B       		.uleb128 0x3b
+ 2622 0133 05       		.uleb128 0x5
+ 2623 0134 27       		.uleb128 0x27
+ 2624 0135 19       		.uleb128 0x19
+ 2625 0136 20       		.uleb128 0x20
+ 2626 0137 0B       		.uleb128 0xb
+ 2627 0138 01       		.uleb128 0x1
+ 2628 0139 13       		.uleb128 0x13
+ 2629 013a 00       		.byte	0
+ 2630 013b 00       		.byte	0
+ 2631 013c 1B       		.uleb128 0x1b
+ 2632 013d 05       		.uleb128 0x5
+ 2633 013e 00       		.byte	0
+ 2634 013f 03       		.uleb128 0x3
+ 2635 0140 0E       		.uleb128 0xe
+ 2636 0141 3A       		.uleb128 0x3a
+ 2637 0142 0B       		.uleb128 0xb
+ 2638 0143 3B       		.uleb128 0x3b
+ 2639 0144 05       		.uleb128 0x5
+ 2640 0145 49       		.uleb128 0x49
+ 2641 0146 13       		.uleb128 0x13
+ 2642 0147 00       		.byte	0
+ 2643 0148 00       		.byte	0
+ 2644 0149 1C       		.uleb128 0x1c
+ 2645 014a 2E       		.uleb128 0x2e
+ 2646 014b 01       		.byte	0x1
+ 2647 014c 03       		.uleb128 0x3
+ 2648 014d 0E       		.uleb128 0xe
+ 2649 014e 3A       		.uleb128 0x3a
+ 2650 014f 0B       		.uleb128 0xb
+ 2651 0150 3B       		.uleb128 0x3b
+ 2652 0151 0B       		.uleb128 0xb
+ 2653 0152 27       		.uleb128 0x27
+ 2654 0153 19       		.uleb128 0x19
+ 2655 0154 49       		.uleb128 0x49
+ 2656 0155 13       		.uleb128 0x13
+ 2657 0156 20       		.uleb128 0x20
+ 2658 0157 0B       		.uleb128 0xb
+ 2659 0158 01       		.uleb128 0x1
+ 2660 0159 13       		.uleb128 0x13
+ 2661 015a 00       		.byte	0
+ 2662 015b 00       		.byte	0
+ 2663 015c 1D       		.uleb128 0x1d
+ 2664 015d 05       		.uleb128 0x5
+ 2665 015e 00       		.byte	0
+ 2666 015f 03       		.uleb128 0x3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 48
+
+
+ 2667 0160 08       		.uleb128 0x8
+ 2668 0161 3A       		.uleb128 0x3a
+ 2669 0162 0B       		.uleb128 0xb
+ 2670 0163 3B       		.uleb128 0x3b
+ 2671 0164 0B       		.uleb128 0xb
+ 2672 0165 49       		.uleb128 0x49
+ 2673 0166 13       		.uleb128 0x13
+ 2674 0167 00       		.byte	0
+ 2675 0168 00       		.byte	0
+ 2676 0169 1E       		.uleb128 0x1e
+ 2677 016a 18       		.uleb128 0x18
+ 2678 016b 00       		.byte	0
+ 2679 016c 00       		.byte	0
+ 2680 016d 00       		.byte	0
+ 2681 016e 1F       		.uleb128 0x1f
+ 2682 016f 34       		.uleb128 0x34
+ 2683 0170 00       		.byte	0
+ 2684 0171 03       		.uleb128 0x3
+ 2685 0172 08       		.uleb128 0x8
+ 2686 0173 3A       		.uleb128 0x3a
+ 2687 0174 0B       		.uleb128 0xb
+ 2688 0175 3B       		.uleb128 0x3b
+ 2689 0176 0B       		.uleb128 0xb
+ 2690 0177 49       		.uleb128 0x49
+ 2691 0178 13       		.uleb128 0x13
+ 2692 0179 00       		.byte	0
+ 2693 017a 00       		.byte	0
+ 2694 017b 20       		.uleb128 0x20
+ 2695 017c 34       		.uleb128 0x34
+ 2696 017d 00       		.byte	0
+ 2697 017e 03       		.uleb128 0x3
+ 2698 017f 0E       		.uleb128 0xe
+ 2699 0180 3A       		.uleb128 0x3a
+ 2700 0181 0B       		.uleb128 0xb
+ 2701 0182 3B       		.uleb128 0x3b
+ 2702 0183 0B       		.uleb128 0xb
+ 2703 0184 49       		.uleb128 0x49
+ 2704 0185 13       		.uleb128 0x13
+ 2705 0186 00       		.byte	0
+ 2706 0187 00       		.byte	0
+ 2707 0188 21       		.uleb128 0x21
+ 2708 0189 2E       		.uleb128 0x2e
+ 2709 018a 01       		.byte	0x1
+ 2710 018b 03       		.uleb128 0x3
+ 2711 018c 0E       		.uleb128 0xe
+ 2712 018d 3A       		.uleb128 0x3a
+ 2713 018e 0B       		.uleb128 0xb
+ 2714 018f 3B       		.uleb128 0x3b
+ 2715 0190 0B       		.uleb128 0xb
+ 2716 0191 27       		.uleb128 0x27
+ 2717 0192 19       		.uleb128 0x19
+ 2718 0193 49       		.uleb128 0x49
+ 2719 0194 13       		.uleb128 0x13
+ 2720 0195 11       		.uleb128 0x11
+ 2721 0196 01       		.uleb128 0x1
+ 2722 0197 12       		.uleb128 0x12
+ 2723 0198 06       		.uleb128 0x6
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 49
+
+
+ 2724 0199 40       		.uleb128 0x40
+ 2725 019a 18       		.uleb128 0x18
+ 2726 019b 9742     		.uleb128 0x2117
+ 2727 019d 19       		.uleb128 0x19
+ 2728 019e 01       		.uleb128 0x1
+ 2729 019f 13       		.uleb128 0x13
+ 2730 01a0 00       		.byte	0
+ 2731 01a1 00       		.byte	0
+ 2732 01a2 22       		.uleb128 0x22
+ 2733 01a3 05       		.uleb128 0x5
+ 2734 01a4 00       		.byte	0
+ 2735 01a5 03       		.uleb128 0x3
+ 2736 01a6 0E       		.uleb128 0xe
+ 2737 01a7 3A       		.uleb128 0x3a
+ 2738 01a8 0B       		.uleb128 0xb
+ 2739 01a9 3B       		.uleb128 0x3b
+ 2740 01aa 0B       		.uleb128 0xb
+ 2741 01ab 49       		.uleb128 0x49
+ 2742 01ac 13       		.uleb128 0x13
+ 2743 01ad 02       		.uleb128 0x2
+ 2744 01ae 17       		.uleb128 0x17
+ 2745 01af 00       		.byte	0
+ 2746 01b0 00       		.byte	0
+ 2747 01b1 23       		.uleb128 0x23
+ 2748 01b2 05       		.uleb128 0x5
+ 2749 01b3 00       		.byte	0
+ 2750 01b4 03       		.uleb128 0x3
+ 2751 01b5 08       		.uleb128 0x8
+ 2752 01b6 3A       		.uleb128 0x3a
+ 2753 01b7 0B       		.uleb128 0xb
+ 2754 01b8 3B       		.uleb128 0x3b
+ 2755 01b9 0B       		.uleb128 0xb
+ 2756 01ba 49       		.uleb128 0x49
+ 2757 01bb 13       		.uleb128 0x13
+ 2758 01bc 02       		.uleb128 0x2
+ 2759 01bd 17       		.uleb128 0x17
+ 2760 01be 00       		.byte	0
+ 2761 01bf 00       		.byte	0
+ 2762 01c0 24       		.uleb128 0x24
+ 2763 01c1 34       		.uleb128 0x34
+ 2764 01c2 00       		.byte	0
+ 2765 01c3 03       		.uleb128 0x3
+ 2766 01c4 08       		.uleb128 0x8
+ 2767 01c5 3A       		.uleb128 0x3a
+ 2768 01c6 0B       		.uleb128 0xb
+ 2769 01c7 3B       		.uleb128 0x3b
+ 2770 01c8 0B       		.uleb128 0xb
+ 2771 01c9 49       		.uleb128 0x49
+ 2772 01ca 13       		.uleb128 0x13
+ 2773 01cb 02       		.uleb128 0x2
+ 2774 01cc 17       		.uleb128 0x17
+ 2775 01cd 00       		.byte	0
+ 2776 01ce 00       		.byte	0
+ 2777 01cf 25       		.uleb128 0x25
+ 2778 01d0 34       		.uleb128 0x34
+ 2779 01d1 00       		.byte	0
+ 2780 01d2 03       		.uleb128 0x3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 50
+
+
+ 2781 01d3 08       		.uleb128 0x8
+ 2782 01d4 3A       		.uleb128 0x3a
+ 2783 01d5 0B       		.uleb128 0xb
+ 2784 01d6 3B       		.uleb128 0x3b
+ 2785 01d7 0B       		.uleb128 0xb
+ 2786 01d8 49       		.uleb128 0x49
+ 2787 01d9 13       		.uleb128 0x13
+ 2788 01da 02       		.uleb128 0x2
+ 2789 01db 18       		.uleb128 0x18
+ 2790 01dc 00       		.byte	0
+ 2791 01dd 00       		.byte	0
+ 2792 01de 26       		.uleb128 0x26
+ 2793 01df 2E       		.uleb128 0x2e
+ 2794 01e0 01       		.byte	0x1
+ 2795 01e1 31       		.uleb128 0x31
+ 2796 01e2 13       		.uleb128 0x13
+ 2797 01e3 11       		.uleb128 0x11
+ 2798 01e4 01       		.uleb128 0x1
+ 2799 01e5 12       		.uleb128 0x12
+ 2800 01e6 06       		.uleb128 0x6
+ 2801 01e7 40       		.uleb128 0x40
+ 2802 01e8 18       		.uleb128 0x18
+ 2803 01e9 9742     		.uleb128 0x2117
+ 2804 01eb 19       		.uleb128 0x19
+ 2805 01ec 01       		.uleb128 0x1
+ 2806 01ed 13       		.uleb128 0x13
+ 2807 01ee 00       		.byte	0
+ 2808 01ef 00       		.byte	0
+ 2809 01f0 27       		.uleb128 0x27
+ 2810 01f1 05       		.uleb128 0x5
+ 2811 01f2 00       		.byte	0
+ 2812 01f3 31       		.uleb128 0x31
+ 2813 01f4 13       		.uleb128 0x13
+ 2814 01f5 02       		.uleb128 0x2
+ 2815 01f6 17       		.uleb128 0x17
+ 2816 01f7 00       		.byte	0
+ 2817 01f8 00       		.byte	0
+ 2818 01f9 28       		.uleb128 0x28
+ 2819 01fa 05       		.uleb128 0x5
+ 2820 01fb 00       		.byte	0
+ 2821 01fc 31       		.uleb128 0x31
+ 2822 01fd 13       		.uleb128 0x13
+ 2823 01fe 02       		.uleb128 0x2
+ 2824 01ff 18       		.uleb128 0x18
+ 2825 0200 00       		.byte	0
+ 2826 0201 00       		.byte	0
+ 2827 0202 29       		.uleb128 0x29
+ 2828 0203 34       		.uleb128 0x34
+ 2829 0204 00       		.byte	0
+ 2830 0205 31       		.uleb128 0x31
+ 2831 0206 13       		.uleb128 0x13
+ 2832 0207 02       		.uleb128 0x2
+ 2833 0208 18       		.uleb128 0x18
+ 2834 0209 00       		.byte	0
+ 2835 020a 00       		.byte	0
+ 2836 020b 2A       		.uleb128 0x2a
+ 2837 020c 05       		.uleb128 0x5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 51
+
+
+ 2838 020d 00       		.byte	0
+ 2839 020e 31       		.uleb128 0x31
+ 2840 020f 13       		.uleb128 0x13
+ 2841 0210 00       		.byte	0
+ 2842 0211 00       		.byte	0
+ 2843 0212 2B       		.uleb128 0x2b
+ 2844 0213 898201   		.uleb128 0x4109
+ 2845 0216 01       		.byte	0x1
+ 2846 0217 11       		.uleb128 0x11
+ 2847 0218 01       		.uleb128 0x1
+ 2848 0219 31       		.uleb128 0x31
+ 2849 021a 13       		.uleb128 0x13
+ 2850 021b 00       		.byte	0
+ 2851 021c 00       		.byte	0
+ 2852 021d 2C       		.uleb128 0x2c
+ 2853 021e 8A8201   		.uleb128 0x410a
+ 2854 0221 00       		.byte	0
+ 2855 0222 02       		.uleb128 0x2
+ 2856 0223 18       		.uleb128 0x18
+ 2857 0224 9142     		.uleb128 0x2111
+ 2858 0226 18       		.uleb128 0x18
+ 2859 0227 00       		.byte	0
+ 2860 0228 00       		.byte	0
+ 2861 0229 2D       		.uleb128 0x2d
+ 2862 022a 2E       		.uleb128 0x2e
+ 2863 022b 01       		.byte	0x1
+ 2864 022c 3F       		.uleb128 0x3f
+ 2865 022d 19       		.uleb128 0x19
+ 2866 022e 03       		.uleb128 0x3
+ 2867 022f 0E       		.uleb128 0xe
+ 2868 0230 3A       		.uleb128 0x3a
+ 2869 0231 0B       		.uleb128 0xb
+ 2870 0232 3B       		.uleb128 0x3b
+ 2871 0233 05       		.uleb128 0x5
+ 2872 0234 27       		.uleb128 0x27
+ 2873 0235 19       		.uleb128 0x19
+ 2874 0236 49       		.uleb128 0x49
+ 2875 0237 13       		.uleb128 0x13
+ 2876 0238 11       		.uleb128 0x11
+ 2877 0239 01       		.uleb128 0x1
+ 2878 023a 12       		.uleb128 0x12
+ 2879 023b 06       		.uleb128 0x6
+ 2880 023c 40       		.uleb128 0x40
+ 2881 023d 18       		.uleb128 0x18
+ 2882 023e 9742     		.uleb128 0x2117
+ 2883 0240 19       		.uleb128 0x19
+ 2884 0241 01       		.uleb128 0x1
+ 2885 0242 13       		.uleb128 0x13
+ 2886 0243 00       		.byte	0
+ 2887 0244 00       		.byte	0
+ 2888 0245 2E       		.uleb128 0x2e
+ 2889 0246 05       		.uleb128 0x5
+ 2890 0247 00       		.byte	0
+ 2891 0248 03       		.uleb128 0x3
+ 2892 0249 08       		.uleb128 0x8
+ 2893 024a 3A       		.uleb128 0x3a
+ 2894 024b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 52
+
+
+ 2895 024c 3B       		.uleb128 0x3b
+ 2896 024d 05       		.uleb128 0x5
+ 2897 024e 49       		.uleb128 0x49
+ 2898 024f 13       		.uleb128 0x13
+ 2899 0250 02       		.uleb128 0x2
+ 2900 0251 17       		.uleb128 0x17
+ 2901 0252 00       		.byte	0
+ 2902 0253 00       		.byte	0
+ 2903 0254 2F       		.uleb128 0x2f
+ 2904 0255 05       		.uleb128 0x5
+ 2905 0256 00       		.byte	0
+ 2906 0257 03       		.uleb128 0x3
+ 2907 0258 0E       		.uleb128 0xe
+ 2908 0259 3A       		.uleb128 0x3a
+ 2909 025a 0B       		.uleb128 0xb
+ 2910 025b 3B       		.uleb128 0x3b
+ 2911 025c 05       		.uleb128 0x5
+ 2912 025d 49       		.uleb128 0x49
+ 2913 025e 13       		.uleb128 0x13
+ 2914 025f 02       		.uleb128 0x2
+ 2915 0260 17       		.uleb128 0x17
+ 2916 0261 00       		.byte	0
+ 2917 0262 00       		.byte	0
+ 2918 0263 30       		.uleb128 0x30
+ 2919 0264 34       		.uleb128 0x34
+ 2920 0265 00       		.byte	0
+ 2921 0266 03       		.uleb128 0x3
+ 2922 0267 08       		.uleb128 0x8
+ 2923 0268 3A       		.uleb128 0x3a
+ 2924 0269 0B       		.uleb128 0xb
+ 2925 026a 3B       		.uleb128 0x3b
+ 2926 026b 05       		.uleb128 0x5
+ 2927 026c 49       		.uleb128 0x49
+ 2928 026d 13       		.uleb128 0x13
+ 2929 026e 02       		.uleb128 0x2
+ 2930 026f 17       		.uleb128 0x17
+ 2931 0270 00       		.byte	0
+ 2932 0271 00       		.byte	0
+ 2933 0272 31       		.uleb128 0x31
+ 2934 0273 34       		.uleb128 0x34
+ 2935 0274 00       		.byte	0
+ 2936 0275 03       		.uleb128 0x3
+ 2937 0276 0E       		.uleb128 0xe
+ 2938 0277 3A       		.uleb128 0x3a
+ 2939 0278 0B       		.uleb128 0xb
+ 2940 0279 3B       		.uleb128 0x3b
+ 2941 027a 05       		.uleb128 0x5
+ 2942 027b 49       		.uleb128 0x49
+ 2943 027c 13       		.uleb128 0x13
+ 2944 027d 02       		.uleb128 0x2
+ 2945 027e 17       		.uleb128 0x17
+ 2946 027f 00       		.byte	0
+ 2947 0280 00       		.byte	0
+ 2948 0281 32       		.uleb128 0x32
+ 2949 0282 898201   		.uleb128 0x4109
+ 2950 0285 00       		.byte	0
+ 2951 0286 11       		.uleb128 0x11
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 53
+
+
+ 2952 0287 01       		.uleb128 0x1
+ 2953 0288 31       		.uleb128 0x31
+ 2954 0289 13       		.uleb128 0x13
+ 2955 028a 00       		.byte	0
+ 2956 028b 00       		.byte	0
+ 2957 028c 33       		.uleb128 0x33
+ 2958 028d 898201   		.uleb128 0x4109
+ 2959 0290 01       		.byte	0x1
+ 2960 0291 11       		.uleb128 0x11
+ 2961 0292 01       		.uleb128 0x1
+ 2962 0293 31       		.uleb128 0x31
+ 2963 0294 13       		.uleb128 0x13
+ 2964 0295 01       		.uleb128 0x1
+ 2965 0296 13       		.uleb128 0x13
+ 2966 0297 00       		.byte	0
+ 2967 0298 00       		.byte	0
+ 2968 0299 34       		.uleb128 0x34
+ 2969 029a 1D       		.uleb128 0x1d
+ 2970 029b 01       		.byte	0x1
+ 2971 029c 31       		.uleb128 0x31
+ 2972 029d 13       		.uleb128 0x13
+ 2973 029e 11       		.uleb128 0x11
+ 2974 029f 01       		.uleb128 0x1
+ 2975 02a0 12       		.uleb128 0x12
+ 2976 02a1 06       		.uleb128 0x6
+ 2977 02a2 58       		.uleb128 0x58
+ 2978 02a3 0B       		.uleb128 0xb
+ 2979 02a4 59       		.uleb128 0x59
+ 2980 02a5 05       		.uleb128 0x5
+ 2981 02a6 01       		.uleb128 0x1
+ 2982 02a7 13       		.uleb128 0x13
+ 2983 02a8 00       		.byte	0
+ 2984 02a9 00       		.byte	0
+ 2985 02aa 35       		.uleb128 0x35
+ 2986 02ab 34       		.uleb128 0x34
+ 2987 02ac 00       		.byte	0
+ 2988 02ad 03       		.uleb128 0x3
+ 2989 02ae 0E       		.uleb128 0xe
+ 2990 02af 3A       		.uleb128 0x3a
+ 2991 02b0 0B       		.uleb128 0xb
+ 2992 02b1 3B       		.uleb128 0x3b
+ 2993 02b2 05       		.uleb128 0x5
+ 2994 02b3 49       		.uleb128 0x49
+ 2995 02b4 13       		.uleb128 0x13
+ 2996 02b5 3F       		.uleb128 0x3f
+ 2997 02b6 19       		.uleb128 0x19
+ 2998 02b7 3C       		.uleb128 0x3c
+ 2999 02b8 19       		.uleb128 0x19
+ 3000 02b9 00       		.byte	0
+ 3001 02ba 00       		.byte	0
+ 3002 02bb 36       		.uleb128 0x36
+ 3003 02bc 34       		.uleb128 0x34
+ 3004 02bd 00       		.byte	0
+ 3005 02be 03       		.uleb128 0x3
+ 3006 02bf 08       		.uleb128 0x8
+ 3007 02c0 3A       		.uleb128 0x3a
+ 3008 02c1 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 54
+
+
+ 3009 02c2 3B       		.uleb128 0x3b
+ 3010 02c3 05       		.uleb128 0x5
+ 3011 02c4 49       		.uleb128 0x49
+ 3012 02c5 13       		.uleb128 0x13
+ 3013 02c6 3F       		.uleb128 0x3f
+ 3014 02c7 19       		.uleb128 0x19
+ 3015 02c8 3C       		.uleb128 0x3c
+ 3016 02c9 19       		.uleb128 0x19
+ 3017 02ca 00       		.byte	0
+ 3018 02cb 00       		.byte	0
+ 3019 02cc 37       		.uleb128 0x37
+ 3020 02cd 34       		.uleb128 0x34
+ 3021 02ce 00       		.byte	0
+ 3022 02cf 03       		.uleb128 0x3
+ 3023 02d0 0E       		.uleb128 0xe
+ 3024 02d1 3A       		.uleb128 0x3a
+ 3025 02d2 0B       		.uleb128 0xb
+ 3026 02d3 3B       		.uleb128 0x3b
+ 3027 02d4 0B       		.uleb128 0xb
+ 3028 02d5 49       		.uleb128 0x49
+ 3029 02d6 13       		.uleb128 0x13
+ 3030 02d7 3F       		.uleb128 0x3f
+ 3031 02d8 19       		.uleb128 0x19
+ 3032 02d9 3C       		.uleb128 0x3c
+ 3033 02da 19       		.uleb128 0x19
+ 3034 02db 00       		.byte	0
+ 3035 02dc 00       		.byte	0
+ 3036 02dd 38       		.uleb128 0x38
+ 3037 02de 2E       		.uleb128 0x2e
+ 3038 02df 01       		.byte	0x1
+ 3039 02e0 3F       		.uleb128 0x3f
+ 3040 02e1 19       		.uleb128 0x19
+ 3041 02e2 03       		.uleb128 0x3
+ 3042 02e3 0E       		.uleb128 0xe
+ 3043 02e4 3A       		.uleb128 0x3a
+ 3044 02e5 0B       		.uleb128 0xb
+ 3045 02e6 3B       		.uleb128 0x3b
+ 3046 02e7 0B       		.uleb128 0xb
+ 3047 02e8 27       		.uleb128 0x27
+ 3048 02e9 19       		.uleb128 0x19
+ 3049 02ea 49       		.uleb128 0x49
+ 3050 02eb 13       		.uleb128 0x13
+ 3051 02ec 3C       		.uleb128 0x3c
+ 3052 02ed 19       		.uleb128 0x19
+ 3053 02ee 01       		.uleb128 0x1
+ 3054 02ef 13       		.uleb128 0x13
+ 3055 02f0 00       		.byte	0
+ 3056 02f1 00       		.byte	0
+ 3057 02f2 39       		.uleb128 0x39
+ 3058 02f3 2E       		.uleb128 0x2e
+ 3059 02f4 01       		.byte	0x1
+ 3060 02f5 3F       		.uleb128 0x3f
+ 3061 02f6 19       		.uleb128 0x19
+ 3062 02f7 03       		.uleb128 0x3
+ 3063 02f8 0E       		.uleb128 0xe
+ 3064 02f9 3A       		.uleb128 0x3a
+ 3065 02fa 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 55
+
+
+ 3066 02fb 3B       		.uleb128 0x3b
+ 3067 02fc 0B       		.uleb128 0xb
+ 3068 02fd 27       		.uleb128 0x27
+ 3069 02fe 19       		.uleb128 0x19
+ 3070 02ff 3C       		.uleb128 0x3c
+ 3071 0300 19       		.uleb128 0x19
+ 3072 0301 00       		.byte	0
+ 3073 0302 00       		.byte	0
+ 3074 0303 00       		.byte	0
+ 3075              		.section	.debug_loc,"",%progbits
+ 3076              	.Ldebug_loc0:
+ 3077              	.LLST0:
+ 3078 0000 00000000 		.4byte	.LVL0
+ 3079 0004 1E000000 		.4byte	.LVL4
+ 3080 0008 0100     		.2byte	0x1
+ 3081 000a 50       		.byte	0x50
+ 3082 000b 1E000000 		.4byte	.LVL4
+ 3083 000f 76000000 		.4byte	.LFE256
+ 3084 0013 0400     		.2byte	0x4
+ 3085 0015 F3       		.byte	0xf3
+ 3086 0016 01       		.uleb128 0x1
+ 3087 0017 50       		.byte	0x50
+ 3088 0018 9F       		.byte	0x9f
+ 3089 0019 00000000 		.4byte	0
+ 3090 001d 00000000 		.4byte	0
+ 3091              	.LLST1:
+ 3092 0021 00000000 		.4byte	.LVL0
+ 3093 0025 1C000000 		.4byte	.LVL3
+ 3094 0029 0100     		.2byte	0x1
+ 3095 002b 51       		.byte	0x51
+ 3096 002c 1C000000 		.4byte	.LVL3
+ 3097 0030 28000000 		.4byte	.LVL5
+ 3098 0034 0100     		.2byte	0x1
+ 3099 0036 51       		.byte	0x51
+ 3100 0037 28000000 		.4byte	.LVL5
+ 3101 003b 2E000000 		.4byte	.LVL7
+ 3102 003f 0100     		.2byte	0x1
+ 3103 0041 53       		.byte	0x53
+ 3104 0042 2E000000 		.4byte	.LVL7
+ 3105 0046 32000000 		.4byte	.LVL8
+ 3106 004a 0300     		.2byte	0x3
+ 3107 004c 73       		.byte	0x73
+ 3108 004d 02       		.sleb128 2
+ 3109 004e 9F       		.byte	0x9f
+ 3110 004f 32000000 		.4byte	.LVL8
+ 3111 0053 38000000 		.4byte	.LVL9
+ 3112 0057 0100     		.2byte	0x1
+ 3113 0059 53       		.byte	0x53
+ 3114 005a 72000000 		.4byte	.LVL19
+ 3115 005e 76000000 		.4byte	.LFE256
+ 3116 0062 0100     		.2byte	0x1
+ 3117 0064 51       		.byte	0x51
+ 3118 0065 00000000 		.4byte	0
+ 3119 0069 00000000 		.4byte	0
+ 3120              	.LLST2:
+ 3121 006d 00000000 		.4byte	.LVL0
+ 3122 0071 14000000 		.4byte	.LVL2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 56
+
+
+ 3123 0075 0100     		.2byte	0x1
+ 3124 0077 50       		.byte	0x50
+ 3125 0078 14000000 		.4byte	.LVL2
+ 3126 007c 1E000000 		.4byte	.LVL4
+ 3127 0080 0300     		.2byte	0x3
+ 3128 0082 70       		.byte	0x70
+ 3129 0083 01       		.sleb128 1
+ 3130 0084 9F       		.byte	0x9f
+ 3131 0085 1E000000 		.4byte	.LVL4
+ 3132 0089 42000000 		.4byte	.LVL11
+ 3133 008d 0100     		.2byte	0x1
+ 3134 008f 50       		.byte	0x50
+ 3135 0090 72000000 		.4byte	.LVL19
+ 3136 0094 76000000 		.4byte	.LFE256
+ 3137 0098 0100     		.2byte	0x1
+ 3138 009a 50       		.byte	0x50
+ 3139 009b 00000000 		.4byte	0
+ 3140 009f 00000000 		.4byte	0
+ 3141              	.LLST3:
+ 3142 00a3 1E000000 		.4byte	.LVL4
+ 3143 00a7 28000000 		.4byte	.LVL5
+ 3144 00ab 0100     		.2byte	0x1
+ 3145 00ad 50       		.byte	0x50
+ 3146 00ae 28000000 		.4byte	.LVL5
+ 3147 00b2 2C000000 		.4byte	.LVL6
+ 3148 00b6 0100     		.2byte	0x1
+ 3149 00b8 54       		.byte	0x54
+ 3150 00b9 2C000000 		.4byte	.LVL6
+ 3151 00bd 32000000 		.4byte	.LVL8
+ 3152 00c1 0300     		.2byte	0x3
+ 3153 00c3 74       		.byte	0x74
+ 3154 00c4 7E       		.sleb128 -2
+ 3155 00c5 9F       		.byte	0x9f
+ 3156 00c6 32000000 		.4byte	.LVL8
+ 3157 00ca 3A000000 		.4byte	.LVL10
+ 3158 00ce 0100     		.2byte	0x1
+ 3159 00d0 54       		.byte	0x54
+ 3160 00d1 72000000 		.4byte	.LVL19
+ 3161 00d5 76000000 		.4byte	.LFE256
+ 3162 00d9 0100     		.2byte	0x1
+ 3163 00db 50       		.byte	0x50
+ 3164 00dc 00000000 		.4byte	0
+ 3165 00e0 00000000 		.4byte	0
+ 3166              	.LLST4:
+ 3167 00e4 0E000000 		.4byte	.LVL1
+ 3168 00e8 28000000 		.4byte	.LVL5
+ 3169 00ec 0200     		.2byte	0x2
+ 3170 00ee 30       		.byte	0x30
+ 3171 00ef 9F       		.byte	0x9f
+ 3172 00f0 28000000 		.4byte	.LVL5
+ 3173 00f4 42000000 		.4byte	.LVL11
+ 3174 00f8 0100     		.2byte	0x1
+ 3175 00fa 52       		.byte	0x52
+ 3176 00fb 52000000 		.4byte	.LVL12
+ 3177 00ff 68000000 		.4byte	.LVL15
+ 3178 0103 0100     		.2byte	0x1
+ 3179 0105 50       		.byte	0x50
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 57
+
+
+ 3180 0106 68000000 		.4byte	.LVL15
+ 3181 010a 6A000000 		.4byte	.LVL16
+ 3182 010e 4200     		.2byte	0x42
+ 3183 0110 91       		.byte	0x91
+ 3184 0111 6E       		.sleb128 -18
+ 3185 0112 94       		.byte	0x94
+ 3186 0113 02       		.byte	0x2
+ 3187 0114 0A       		.byte	0xa
+ 3188 0115 FFFF     		.2byte	0xffff
+ 3189 0117 1A       		.byte	0x1a
+ 3190 0118 72       		.byte	0x72
+ 3191 0119 00       		.sleb128 0
+ 3192 011a 22       		.byte	0x22
+ 3193 011b 40       		.byte	0x40
+ 3194 011c 25       		.byte	0x25
+ 3195 011d 91       		.byte	0x91
+ 3196 011e 6E       		.sleb128 -18
+ 3197 011f 94       		.byte	0x94
+ 3198 0120 02       		.byte	0x2
+ 3199 0121 0A       		.byte	0xa
+ 3200 0122 FFFF     		.2byte	0xffff
+ 3201 0124 1A       		.byte	0x1a
+ 3202 0125 72       		.byte	0x72
+ 3203 0126 00       		.sleb128 0
+ 3204 0127 22       		.byte	0x22
+ 3205 0128 0A       		.byte	0xa
+ 3206 0129 FFFF     		.2byte	0xffff
+ 3207 012b 1A       		.byte	0x1a
+ 3208 012c 22       		.byte	0x22
+ 3209 012d 40       		.byte	0x40
+ 3210 012e 25       		.byte	0x25
+ 3211 012f 91       		.byte	0x91
+ 3212 0130 6E       		.sleb128 -18
+ 3213 0131 94       		.byte	0x94
+ 3214 0132 02       		.byte	0x2
+ 3215 0133 0A       		.byte	0xa
+ 3216 0134 FFFF     		.2byte	0xffff
+ 3217 0136 1A       		.byte	0x1a
+ 3218 0137 72       		.byte	0x72
+ 3219 0138 00       		.sleb128 0
+ 3220 0139 22       		.byte	0x22
+ 3221 013a 40       		.byte	0x40
+ 3222 013b 25       		.byte	0x25
+ 3223 013c 91       		.byte	0x91
+ 3224 013d 6E       		.sleb128 -18
+ 3225 013e 94       		.byte	0x94
+ 3226 013f 02       		.byte	0x2
+ 3227 0140 0A       		.byte	0xa
+ 3228 0141 FFFF     		.2byte	0xffff
+ 3229 0143 1A       		.byte	0x1a
+ 3230 0144 72       		.byte	0x72
+ 3231 0145 00       		.sleb128 0
+ 3232 0146 22       		.byte	0x22
+ 3233 0147 0A       		.byte	0xa
+ 3234 0148 FFFF     		.2byte	0xffff
+ 3235 014a 1A       		.byte	0x1a
+ 3236 014b 22       		.byte	0x22
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 58
+
+
+ 3237 014c 0A       		.byte	0xa
+ 3238 014d FFFF     		.2byte	0xffff
+ 3239 014f 1A       		.byte	0x1a
+ 3240 0150 22       		.byte	0x22
+ 3241 0151 9F       		.byte	0x9f
+ 3242 0152 6A000000 		.4byte	.LVL16
+ 3243 0156 6C000000 		.4byte	.LVL17
+ 3244 015a 0100     		.2byte	0x1
+ 3245 015c 50       		.byte	0x50
+ 3246 015d 72000000 		.4byte	.LVL19
+ 3247 0161 76000000 		.4byte	.LFE256
+ 3248 0165 0200     		.2byte	0x2
+ 3249 0167 30       		.byte	0x30
+ 3250 0168 9F       		.byte	0x9f
+ 3251 0169 00000000 		.4byte	0
+ 3252 016d 00000000 		.4byte	0
+ 3253              	.LLST5:
+ 3254 0171 0E000000 		.4byte	.LVL1
+ 3255 0175 70000000 		.4byte	.LVL18
+ 3256 0179 0100     		.2byte	0x1
+ 3257 017b 56       		.byte	0x56
+ 3258 017c 70000000 		.4byte	.LVL18
+ 3259 0180 72000000 		.4byte	.LVL19
+ 3260 0184 0600     		.2byte	0x6
+ 3261 0186 F3       		.byte	0xf3
+ 3262 0187 01       		.uleb128 0x1
+ 3263 0188 50       		.byte	0x50
+ 3264 0189 31       		.byte	0x31
+ 3265 018a 1A       		.byte	0x1a
+ 3266 018b 9F       		.byte	0x9f
+ 3267 018c 72000000 		.4byte	.LVL19
+ 3268 0190 76000000 		.4byte	.LFE256
+ 3269 0194 0100     		.2byte	0x1
+ 3270 0196 56       		.byte	0x56
+ 3271 0197 00000000 		.4byte	0
+ 3272 019b 00000000 		.4byte	0
+ 3273              	.LLST6:
+ 3274 019f 00000000 		.4byte	.LVL20
+ 3275 01a3 0E000000 		.4byte	.LVL21
+ 3276 01a7 0100     		.2byte	0x1
+ 3277 01a9 50       		.byte	0x50
+ 3278 01aa 0E000000 		.4byte	.LVL21
+ 3279 01ae 28000000 		.4byte	.LFE261
+ 3280 01b2 0400     		.2byte	0x4
+ 3281 01b4 F3       		.byte	0xf3
+ 3282 01b5 01       		.uleb128 0x1
+ 3283 01b6 50       		.byte	0x50
+ 3284 01b7 9F       		.byte	0x9f
+ 3285 01b8 00000000 		.4byte	0
+ 3286 01bc 00000000 		.4byte	0
+ 3287              	.LLST7:
+ 3288 01c0 00000000 		.4byte	.LVL23
+ 3289 01c4 18000000 		.4byte	.LVL24
+ 3290 01c8 0100     		.2byte	0x1
+ 3291 01ca 50       		.byte	0x50
+ 3292 01cb 18000000 		.4byte	.LVL24
+ 3293 01cf 8C000000 		.4byte	.LVL48
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 59
+
+
+ 3294 01d3 0400     		.2byte	0x4
+ 3295 01d5 F3       		.byte	0xf3
+ 3296 01d6 01       		.uleb128 0x1
+ 3297 01d7 50       		.byte	0x50
+ 3298 01d8 9F       		.byte	0x9f
+ 3299 01d9 8C000000 		.4byte	.LVL48
+ 3300 01dd 90000000 		.4byte	.LFE257
+ 3301 01e1 0100     		.2byte	0x1
+ 3302 01e3 50       		.byte	0x50
+ 3303 01e4 00000000 		.4byte	0
+ 3304 01e8 00000000 		.4byte	0
+ 3305              	.LLST8:
+ 3306 01ec 00000000 		.4byte	.LVL23
+ 3307 01f0 18000000 		.4byte	.LVL24
+ 3308 01f4 0100     		.2byte	0x1
+ 3309 01f6 51       		.byte	0x51
+ 3310 01f7 18000000 		.4byte	.LVL24
+ 3311 01fb 8C000000 		.4byte	.LVL48
+ 3312 01ff 0100     		.2byte	0x1
+ 3313 0201 5A       		.byte	0x5a
+ 3314 0202 8C000000 		.4byte	.LVL48
+ 3315 0206 90000000 		.4byte	.LFE257
+ 3316 020a 0100     		.2byte	0x1
+ 3317 020c 51       		.byte	0x51
+ 3318 020d 00000000 		.4byte	0
+ 3319 0211 00000000 		.4byte	0
+ 3320              	.LLST9:
+ 3321 0215 00000000 		.4byte	.LVL23
+ 3322 0219 18000000 		.4byte	.LVL24
+ 3323 021d 0100     		.2byte	0x1
+ 3324 021f 52       		.byte	0x52
+ 3325 0220 18000000 		.4byte	.LVL24
+ 3326 0224 8C000000 		.4byte	.LVL48
+ 3327 0228 0100     		.2byte	0x1
+ 3328 022a 59       		.byte	0x59
+ 3329 022b 8C000000 		.4byte	.LVL48
+ 3330 022f 90000000 		.4byte	.LFE257
+ 3331 0233 0100     		.2byte	0x1
+ 3332 0235 52       		.byte	0x52
+ 3333 0236 00000000 		.4byte	0
+ 3334 023a 00000000 		.4byte	0
+ 3335              	.LLST10:
+ 3336 023e 00000000 		.4byte	.LVL23
+ 3337 0242 18000000 		.4byte	.LVL24
+ 3338 0246 0100     		.2byte	0x1
+ 3339 0248 53       		.byte	0x53
+ 3340 0249 18000000 		.4byte	.LVL24
+ 3341 024d 8C000000 		.4byte	.LVL48
+ 3342 0251 0400     		.2byte	0x4
+ 3343 0253 F3       		.byte	0xf3
+ 3344 0254 01       		.uleb128 0x1
+ 3345 0255 53       		.byte	0x53
+ 3346 0256 9F       		.byte	0x9f
+ 3347 0257 8C000000 		.4byte	.LVL48
+ 3348 025b 90000000 		.4byte	.LFE257
+ 3349 025f 0100     		.2byte	0x1
+ 3350 0261 53       		.byte	0x53
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 60
+
+
+ 3351 0262 00000000 		.4byte	0
+ 3352 0266 00000000 		.4byte	0
+ 3353              	.LLST11:
+ 3354 026a 00000000 		.4byte	.LVL23
+ 3355 026e 8C000000 		.4byte	.LVL48
+ 3356 0272 0200     		.2byte	0x2
+ 3357 0274 91       		.byte	0x91
+ 3358 0275 00       		.sleb128 0
+ 3359 0276 8C000000 		.4byte	.LVL48
+ 3360 027a 90000000 		.4byte	.LFE257
+ 3361 027e 0200     		.2byte	0x2
+ 3362 0280 91       		.byte	0x91
+ 3363 0281 00       		.sleb128 0
+ 3364 0282 00000000 		.4byte	0
+ 3365 0286 00000000 		.4byte	0
+ 3366              	.LLST12:
+ 3367 028a 00000000 		.4byte	.LVL23
+ 3368 028e 18000000 		.4byte	.LVL24
+ 3369 0292 0200     		.2byte	0x2
+ 3370 0294 30       		.byte	0x30
+ 3371 0295 9F       		.byte	0x9f
+ 3372 0296 18000000 		.4byte	.LVL24
+ 3373 029a 24000000 		.4byte	.LVL26
+ 3374 029e 0100     		.2byte	0x1
+ 3375 02a0 54       		.byte	0x54
+ 3376 02a1 24000000 		.4byte	.LVL26
+ 3377 02a5 2C000000 		.4byte	.LVL27
+ 3378 02a9 0100     		.2byte	0x1
+ 3379 02ab 50       		.byte	0x50
+ 3380 02ac 2C000000 		.4byte	.LVL27
+ 3381 02b0 3A000000 		.4byte	.LVL29
+ 3382 02b4 0100     		.2byte	0x1
+ 3383 02b6 54       		.byte	0x54
+ 3384 02b7 3A000000 		.4byte	.LVL29
+ 3385 02bb 3E000000 		.4byte	.LVL31
+ 3386 02bf 0C00     		.2byte	0xc
+ 3387 02c1 70       		.byte	0x70
+ 3388 02c2 00       		.sleb128 0
+ 3389 02c3 40       		.byte	0x40
+ 3390 02c4 25       		.byte	0x25
+ 3391 02c5 70       		.byte	0x70
+ 3392 02c6 00       		.sleb128 0
+ 3393 02c7 0A       		.byte	0xa
+ 3394 02c8 FFFF     		.2byte	0xffff
+ 3395 02ca 1A       		.byte	0x1a
+ 3396 02cb 22       		.byte	0x22
+ 3397 02cc 9F       		.byte	0x9f
+ 3398 02cd 3E000000 		.4byte	.LVL31
+ 3399 02d1 4E000000 		.4byte	.LVL33
+ 3400 02d5 0100     		.2byte	0x1
+ 3401 02d7 54       		.byte	0x54
+ 3402 02d8 50000000 		.4byte	.LVL34
+ 3403 02dc 54000000 		.4byte	.LVL35
+ 3404 02e0 0100     		.2byte	0x1
+ 3405 02e2 54       		.byte	0x54
+ 3406 02e3 54000000 		.4byte	.LVL35
+ 3407 02e7 58000000 		.4byte	.LVL36
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 61
+
+
+ 3408 02eb 0F00     		.2byte	0xf
+ 3409 02ed 73       		.byte	0x73
+ 3410 02ee 00       		.sleb128 0
+ 3411 02ef 0A       		.byte	0xa
+ 3412 02f0 FFFF     		.2byte	0xffff
+ 3413 02f2 1A       		.byte	0x1a
+ 3414 02f3 74       		.byte	0x74
+ 3415 02f4 00       		.sleb128 0
+ 3416 02f5 22       		.byte	0x22
+ 3417 02f6 73       		.byte	0x73
+ 3418 02f7 00       		.sleb128 0
+ 3419 02f8 40       		.byte	0x40
+ 3420 02f9 25       		.byte	0x25
+ 3421 02fa 22       		.byte	0x22
+ 3422 02fb 9F       		.byte	0x9f
+ 3423 02fc 58000000 		.4byte	.LVL36
+ 3424 0300 5E000000 		.4byte	.LVL37
+ 3425 0304 1600     		.2byte	0x16
+ 3426 0306 73       		.byte	0x73
+ 3427 0307 00       		.sleb128 0
+ 3428 0308 0A       		.byte	0xa
+ 3429 0309 FFFF     		.2byte	0xffff
+ 3430 030b 1A       		.byte	0x1a
+ 3431 030c 74       		.byte	0x74
+ 3432 030d 00       		.sleb128 0
+ 3433 030e 22       		.byte	0x22
+ 3434 030f 73       		.byte	0x73
+ 3435 0310 00       		.sleb128 0
+ 3436 0311 40       		.byte	0x40
+ 3437 0312 25       		.byte	0x25
+ 3438 0313 22       		.byte	0x22
+ 3439 0314 71       		.byte	0x71
+ 3440 0315 00       		.sleb128 0
+ 3441 0316 0A       		.byte	0xa
+ 3442 0317 FFFF     		.2byte	0xffff
+ 3443 0319 1A       		.byte	0x1a
+ 3444 031a 22       		.byte	0x22
+ 3445 031b 9F       		.byte	0x9f
+ 3446 031c 5E000000 		.4byte	.LVL37
+ 3447 0320 6A000000 		.4byte	.LVL38
+ 3448 0324 1800     		.2byte	0x18
+ 3449 0326 7A       		.byte	0x7a
+ 3450 0327 00       		.sleb128 0
+ 3451 0328 06       		.byte	0x6
+ 3452 0329 0A       		.byte	0xa
+ 3453 032a FFFF     		.2byte	0xffff
+ 3454 032c 1A       		.byte	0x1a
+ 3455 032d 74       		.byte	0x74
+ 3456 032e 00       		.sleb128 0
+ 3457 032f 22       		.byte	0x22
+ 3458 0330 7A       		.byte	0x7a
+ 3459 0331 00       		.sleb128 0
+ 3460 0332 06       		.byte	0x6
+ 3461 0333 40       		.byte	0x40
+ 3462 0334 25       		.byte	0x25
+ 3463 0335 22       		.byte	0x22
+ 3464 0336 71       		.byte	0x71
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 62
+
+
+ 3465 0337 00       		.sleb128 0
+ 3466 0338 0A       		.byte	0xa
+ 3467 0339 FFFF     		.2byte	0xffff
+ 3468 033b 1A       		.byte	0x1a
+ 3469 033c 22       		.byte	0x22
+ 3470 033d 9F       		.byte	0x9f
+ 3471 033e 6A000000 		.4byte	.LVL38
+ 3472 0342 78000000 		.4byte	.LVL42
+ 3473 0346 0100     		.2byte	0x1
+ 3474 0348 54       		.byte	0x54
+ 3475 0349 78000000 		.4byte	.LVL42
+ 3476 034d 80000000 		.4byte	.LVL44
+ 3477 0351 0100     		.2byte	0x1
+ 3478 0353 50       		.byte	0x50
+ 3479 0354 80000000 		.4byte	.LVL44
+ 3480 0358 84000000 		.4byte	.LVL45
+ 3481 035c 0800     		.2byte	0x8
+ 3482 035e 70       		.byte	0x70
+ 3483 035f 00       		.sleb128 0
+ 3484 0360 40       		.byte	0x40
+ 3485 0361 25       		.byte	0x25
+ 3486 0362 73       		.byte	0x73
+ 3487 0363 00       		.sleb128 0
+ 3488 0364 22       		.byte	0x22
+ 3489 0365 9F       		.byte	0x9f
+ 3490 0366 84000000 		.4byte	.LVL45
+ 3491 036a 86000000 		.4byte	.LVL46
+ 3492 036e 0100     		.2byte	0x1
+ 3493 0370 50       		.byte	0x50
+ 3494 0371 86000000 		.4byte	.LVL46
+ 3495 0375 88000000 		.4byte	.LVL47
+ 3496 0379 0400     		.2byte	0x4
+ 3497 037b 70       		.byte	0x70
+ 3498 037c 00       		.sleb128 0
+ 3499 037d 20       		.byte	0x20
+ 3500 037e 9F       		.byte	0x9f
+ 3501 037f 8C000000 		.4byte	.LVL48
+ 3502 0383 90000000 		.4byte	.LFE257
+ 3503 0387 0200     		.2byte	0x2
+ 3504 0389 30       		.byte	0x30
+ 3505 038a 9F       		.byte	0x9f
+ 3506 038b 00000000 		.4byte	0
+ 3507 038f 00000000 		.4byte	0
+ 3508              	.LLST13:
+ 3509 0393 54000000 		.4byte	.LVL35
+ 3510 0397 58000000 		.4byte	.LVL36
+ 3511 039b 0100     		.2byte	0x1
+ 3512 039d 53       		.byte	0x53
+ 3513 039e 58000000 		.4byte	.LVL36
+ 3514 03a2 6D000000 		.4byte	.LVL39-1
+ 3515 03a6 0100     		.2byte	0x1
+ 3516 03a8 51       		.byte	0x51
+ 3517 03a9 00000000 		.4byte	0
+ 3518 03ad 00000000 		.4byte	0
+ 3519              	.LLST14:
+ 3520 03b1 00000000 		.4byte	.LVL23
+ 3521 03b5 18000000 		.4byte	.LVL24
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 63
+
+
+ 3522 03b9 0100     		.2byte	0x1
+ 3523 03bb 50       		.byte	0x50
+ 3524 03bc 18000000 		.4byte	.LVL24
+ 3525 03c0 8C000000 		.4byte	.LVL48
+ 3526 03c4 0100     		.2byte	0x1
+ 3527 03c6 55       		.byte	0x55
+ 3528 03c7 8C000000 		.4byte	.LVL48
+ 3529 03cb 90000000 		.4byte	.LFE257
+ 3530 03cf 0100     		.2byte	0x1
+ 3531 03d1 50       		.byte	0x50
+ 3532 03d2 00000000 		.4byte	0
+ 3533 03d6 00000000 		.4byte	0
+ 3534              	.LLST15:
+ 3535 03da 00000000 		.4byte	.LVL23
+ 3536 03de 18000000 		.4byte	.LVL24
+ 3537 03e2 0200     		.2byte	0x2
+ 3538 03e4 30       		.byte	0x30
+ 3539 03e5 9F       		.byte	0x9f
+ 3540 03e6 18000000 		.4byte	.LVL24
+ 3541 03ea 34000000 		.4byte	.LVL28
+ 3542 03ee 0100     		.2byte	0x1
+ 3543 03f0 56       		.byte	0x56
+ 3544 03f1 3C000000 		.4byte	.LVL30
+ 3545 03f5 50000000 		.4byte	.LVL34
+ 3546 03f9 0100     		.2byte	0x1
+ 3547 03fb 56       		.byte	0x56
+ 3548 03fc 8C000000 		.4byte	.LVL48
+ 3549 0400 90000000 		.4byte	.LFE257
+ 3550 0404 0200     		.2byte	0x2
+ 3551 0406 30       		.byte	0x30
+ 3552 0407 9F       		.byte	0x9f
+ 3553 0408 00000000 		.4byte	0
+ 3554 040c 00000000 		.4byte	0
+ 3555              	.LLST16:
+ 3556 0410 00000000 		.4byte	.LVL49
+ 3557 0414 2A000000 		.4byte	.LVL52
+ 3558 0418 0100     		.2byte	0x1
+ 3559 041a 50       		.byte	0x50
+ 3560 041b 2A000000 		.4byte	.LVL52
+ 3561 041f D4000000 		.4byte	.LVL83
+ 3562 0423 0400     		.2byte	0x4
+ 3563 0425 F3       		.byte	0xf3
+ 3564 0426 01       		.uleb128 0x1
+ 3565 0427 50       		.byte	0x50
+ 3566 0428 9F       		.byte	0x9f
+ 3567 0429 D4000000 		.4byte	.LVL83
+ 3568 042d EC000000 		.4byte	.LFE258
+ 3569 0431 0100     		.2byte	0x1
+ 3570 0433 50       		.byte	0x50
+ 3571 0434 00000000 		.4byte	0
+ 3572 0438 00000000 		.4byte	0
+ 3573              	.LLST17:
+ 3574 043c 00000000 		.4byte	.LVL49
+ 3575 0440 2A000000 		.4byte	.LVL52
+ 3576 0444 0100     		.2byte	0x1
+ 3577 0446 51       		.byte	0x51
+ 3578 0447 2A000000 		.4byte	.LVL52
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 64
+
+
+ 3579 044b D4000000 		.4byte	.LVL83
+ 3580 044f 0100     		.2byte	0x1
+ 3581 0451 5B       		.byte	0x5b
+ 3582 0452 D4000000 		.4byte	.LVL83
+ 3583 0456 EC000000 		.4byte	.LFE258
+ 3584 045a 0100     		.2byte	0x1
+ 3585 045c 51       		.byte	0x51
+ 3586 045d 00000000 		.4byte	0
+ 3587 0461 00000000 		.4byte	0
+ 3588              	.LLST18:
+ 3589 0465 00000000 		.4byte	.LVL49
+ 3590 0469 2A000000 		.4byte	.LVL52
+ 3591 046d 0100     		.2byte	0x1
+ 3592 046f 52       		.byte	0x52
+ 3593 0470 2A000000 		.4byte	.LVL52
+ 3594 0474 D4000000 		.4byte	.LVL83
+ 3595 0478 0100     		.2byte	0x1
+ 3596 047a 5A       		.byte	0x5a
+ 3597 047b D4000000 		.4byte	.LVL83
+ 3598 047f EC000000 		.4byte	.LFE258
+ 3599 0483 0100     		.2byte	0x1
+ 3600 0485 52       		.byte	0x52
+ 3601 0486 00000000 		.4byte	0
+ 3602 048a 00000000 		.4byte	0
+ 3603              	.LLST19:
+ 3604 048e 00000000 		.4byte	.LVL49
+ 3605 0492 0E000000 		.4byte	.LVL50
+ 3606 0496 0100     		.2byte	0x1
+ 3607 0498 53       		.byte	0x53
+ 3608 0499 0E000000 		.4byte	.LVL50
+ 3609 049d EC000000 		.4byte	.LFE258
+ 3610 04a1 0400     		.2byte	0x4
+ 3611 04a3 F3       		.byte	0xf3
+ 3612 04a4 01       		.uleb128 0x1
+ 3613 04a5 53       		.byte	0x53
+ 3614 04a6 9F       		.byte	0x9f
+ 3615 04a7 00000000 		.4byte	0
+ 3616 04ab 00000000 		.4byte	0
+ 3617              	.LLST20:
+ 3618 04af 00000000 		.4byte	.LVL49
+ 3619 04b3 D4000000 		.4byte	.LVL83
+ 3620 04b7 0200     		.2byte	0x2
+ 3621 04b9 91       		.byte	0x91
+ 3622 04ba 00       		.sleb128 0
+ 3623 04bb D4000000 		.4byte	.LVL83
+ 3624 04bf EC000000 		.4byte	.LFE258
+ 3625 04c3 0200     		.2byte	0x2
+ 3626 04c5 91       		.byte	0x91
+ 3627 04c6 00       		.sleb128 0
+ 3628 04c7 00000000 		.4byte	0
+ 3629 04cb 00000000 		.4byte	0
+ 3630              	.LLST21:
+ 3631 04cf 00000000 		.4byte	.LVL49
+ 3632 04d3 16000000 		.4byte	.LVL51
+ 3633 04d7 0200     		.2byte	0x2
+ 3634 04d9 91       		.byte	0x91
+ 3635 04da 04       		.sleb128 4
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 65
+
+
+ 3636 04db 16000000 		.4byte	.LVL51
+ 3637 04df 66000000 		.4byte	.LVL63
+ 3638 04e3 0100     		.2byte	0x1
+ 3639 04e5 57       		.byte	0x57
+ 3640 04e6 6E000000 		.4byte	.LVL64
+ 3641 04ea EC000000 		.4byte	.LFE258
+ 3642 04ee 0100     		.2byte	0x1
+ 3643 04f0 57       		.byte	0x57
+ 3644 04f1 00000000 		.4byte	0
+ 3645 04f5 00000000 		.4byte	0
+ 3646              	.LLST22:
+ 3647 04f9 00000000 		.4byte	.LVL49
+ 3648 04fd 2A000000 		.4byte	.LVL52
+ 3649 0501 0200     		.2byte	0x2
+ 3650 0503 30       		.byte	0x30
+ 3651 0504 9F       		.byte	0x9f
+ 3652 0505 2A000000 		.4byte	.LVL52
+ 3653 0509 3E000000 		.4byte	.LVL54
+ 3654 050d 0100     		.2byte	0x1
+ 3655 050f 54       		.byte	0x54
+ 3656 0510 46000000 		.4byte	.LVL56
+ 3657 0514 94000000 		.4byte	.LVL68
+ 3658 0518 0100     		.2byte	0x1
+ 3659 051a 54       		.byte	0x54
+ 3660 051b 96000000 		.4byte	.LVL69
+ 3661 051f 9A000000 		.4byte	.LVL70
+ 3662 0523 0100     		.2byte	0x1
+ 3663 0525 54       		.byte	0x54
+ 3664 0526 9A000000 		.4byte	.LVL70
+ 3665 052a 9E000000 		.4byte	.LVL71
+ 3666 052e 0F00     		.2byte	0xf
+ 3667 0530 73       		.byte	0x73
+ 3668 0531 00       		.sleb128 0
+ 3669 0532 0A       		.byte	0xa
+ 3670 0533 FFFF     		.2byte	0xffff
+ 3671 0535 1A       		.byte	0x1a
+ 3672 0536 74       		.byte	0x74
+ 3673 0537 00       		.sleb128 0
+ 3674 0538 22       		.byte	0x22
+ 3675 0539 73       		.byte	0x73
+ 3676 053a 00       		.sleb128 0
+ 3677 053b 40       		.byte	0x40
+ 3678 053c 25       		.byte	0x25
+ 3679 053d 22       		.byte	0x22
+ 3680 053e 9F       		.byte	0x9f
+ 3681 053f 9E000000 		.4byte	.LVL71
+ 3682 0543 A6000000 		.4byte	.LVL72
+ 3683 0547 1600     		.2byte	0x16
+ 3684 0549 73       		.byte	0x73
+ 3685 054a 00       		.sleb128 0
+ 3686 054b 0A       		.byte	0xa
+ 3687 054c FFFF     		.2byte	0xffff
+ 3688 054e 1A       		.byte	0x1a
+ 3689 054f 74       		.byte	0x74
+ 3690 0550 00       		.sleb128 0
+ 3691 0551 22       		.byte	0x22
+ 3692 0552 73       		.byte	0x73
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 66
+
+
+ 3693 0553 00       		.sleb128 0
+ 3694 0554 40       		.byte	0x40
+ 3695 0555 25       		.byte	0x25
+ 3696 0556 22       		.byte	0x22
+ 3697 0557 71       		.byte	0x71
+ 3698 0558 00       		.sleb128 0
+ 3699 0559 0A       		.byte	0xa
+ 3700 055a FFFF     		.2byte	0xffff
+ 3701 055c 1A       		.byte	0x1a
+ 3702 055d 22       		.byte	0x22
+ 3703 055e 9F       		.byte	0x9f
+ 3704 055f A6000000 		.4byte	.LVL72
+ 3705 0563 B0000000 		.4byte	.LVL73
+ 3706 0567 1800     		.2byte	0x18
+ 3707 0569 7B       		.byte	0x7b
+ 3708 056a 00       		.sleb128 0
+ 3709 056b 06       		.byte	0x6
+ 3710 056c 0A       		.byte	0xa
+ 3711 056d FFFF     		.2byte	0xffff
+ 3712 056f 1A       		.byte	0x1a
+ 3713 0570 74       		.byte	0x74
+ 3714 0571 00       		.sleb128 0
+ 3715 0572 22       		.byte	0x22
+ 3716 0573 7B       		.byte	0x7b
+ 3717 0574 00       		.sleb128 0
+ 3718 0575 06       		.byte	0x6
+ 3719 0576 40       		.byte	0x40
+ 3720 0577 25       		.byte	0x25
+ 3721 0578 22       		.byte	0x22
+ 3722 0579 71       		.byte	0x71
+ 3723 057a 00       		.sleb128 0
+ 3724 057b 0A       		.byte	0xa
+ 3725 057c FFFF     		.2byte	0xffff
+ 3726 057e 1A       		.byte	0x1a
+ 3727 057f 22       		.byte	0x22
+ 3728 0580 9F       		.byte	0x9f
+ 3729 0581 B0000000 		.4byte	.LVL73
+ 3730 0585 BE000000 		.4byte	.LVL77
+ 3731 0589 0100     		.2byte	0x1
+ 3732 058b 54       		.byte	0x54
+ 3733 058c BE000000 		.4byte	.LVL77
+ 3734 0590 C6000000 		.4byte	.LVL79
+ 3735 0594 0100     		.2byte	0x1
+ 3736 0596 50       		.byte	0x50
+ 3737 0597 C6000000 		.4byte	.LVL79
+ 3738 059b CA000000 		.4byte	.LVL80
+ 3739 059f 0800     		.2byte	0x8
+ 3740 05a1 70       		.byte	0x70
+ 3741 05a2 00       		.sleb128 0
+ 3742 05a3 40       		.byte	0x40
+ 3743 05a4 25       		.byte	0x25
+ 3744 05a5 73       		.byte	0x73
+ 3745 05a6 00       		.sleb128 0
+ 3746 05a7 22       		.byte	0x22
+ 3747 05a8 9F       		.byte	0x9f
+ 3748 05a9 CA000000 		.4byte	.LVL80
+ 3749 05ad CC000000 		.4byte	.LVL81
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 67
+
+
+ 3750 05b1 0100     		.2byte	0x1
+ 3751 05b3 50       		.byte	0x50
+ 3752 05b4 CC000000 		.4byte	.LVL81
+ 3753 05b8 CE000000 		.4byte	.LVL82
+ 3754 05bc 0400     		.2byte	0x4
+ 3755 05be 70       		.byte	0x70
+ 3756 05bf 00       		.sleb128 0
+ 3757 05c0 20       		.byte	0x20
+ 3758 05c1 9F       		.byte	0x9f
+ 3759 05c2 D4000000 		.4byte	.LVL83
+ 3760 05c6 EC000000 		.4byte	.LFE258
+ 3761 05ca 0200     		.2byte	0x2
+ 3762 05cc 30       		.byte	0x30
+ 3763 05cd 9F       		.byte	0x9f
+ 3764 05ce 00000000 		.4byte	0
+ 3765 05d2 00000000 		.4byte	0
+ 3766              	.LLST23:
+ 3767 05d6 9A000000 		.4byte	.LVL70
+ 3768 05da 9E000000 		.4byte	.LVL71
+ 3769 05de 0100     		.2byte	0x1
+ 3770 05e0 53       		.byte	0x53
+ 3771 05e1 9E000000 		.4byte	.LVL71
+ 3772 05e5 B3000000 		.4byte	.LVL74-1
+ 3773 05e9 0100     		.2byte	0x1
+ 3774 05eb 51       		.byte	0x51
+ 3775 05ec 00000000 		.4byte	0
+ 3776 05f0 00000000 		.4byte	0
+ 3777              	.LLST24:
+ 3778 05f4 00000000 		.4byte	.LVL49
+ 3779 05f8 2A000000 		.4byte	.LVL52
+ 3780 05fc 0100     		.2byte	0x1
+ 3781 05fe 50       		.byte	0x50
+ 3782 05ff 2A000000 		.4byte	.LVL52
+ 3783 0603 D4000000 		.4byte	.LVL83
+ 3784 0607 0100     		.2byte	0x1
+ 3785 0609 55       		.byte	0x55
+ 3786 060a D4000000 		.4byte	.LVL83
+ 3787 060e EC000000 		.4byte	.LFE258
+ 3788 0612 0100     		.2byte	0x1
+ 3789 0614 50       		.byte	0x50
+ 3790 0615 00000000 		.4byte	0
+ 3791 0619 00000000 		.4byte	0
+ 3792              	.LLST25:
+ 3793 061d 00000000 		.4byte	.LVL49
+ 3794 0621 2A000000 		.4byte	.LVL52
+ 3795 0625 0200     		.2byte	0x2
+ 3796 0627 30       		.byte	0x30
+ 3797 0628 9F       		.byte	0x9f
+ 3798 0629 2A000000 		.4byte	.LVL52
+ 3799 062d 42000000 		.4byte	.LVL55
+ 3800 0631 0100     		.2byte	0x1
+ 3801 0633 56       		.byte	0x56
+ 3802 0634 46000000 		.4byte	.LVL56
+ 3803 0638 96000000 		.4byte	.LVL69
+ 3804 063c 0100     		.2byte	0x1
+ 3805 063e 56       		.byte	0x56
+ 3806 063f D4000000 		.4byte	.LVL83
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 68
+
+
+ 3807 0643 EC000000 		.4byte	.LFE258
+ 3808 0647 0200     		.2byte	0x2
+ 3809 0649 30       		.byte	0x30
+ 3810 064a 9F       		.byte	0x9f
+ 3811 064b 00000000 		.4byte	0
+ 3812 064f 00000000 		.4byte	0
+ 3813              	.LLST26:
+ 3814 0653 2A000000 		.4byte	.LVL52
+ 3815 0657 4C000000 		.4byte	.LVL58
+ 3816 065b 0100     		.2byte	0x1
+ 3817 065d 59       		.byte	0x59
+ 3818 065e 4E000000 		.4byte	.LVL59
+ 3819 0662 56000000 		.4byte	.LVL60
+ 3820 0666 0100     		.2byte	0x1
+ 3821 0668 53       		.byte	0x53
+ 3822 0669 56000000 		.4byte	.LVL60
+ 3823 066d 58000000 		.4byte	.LVL61
+ 3824 0671 0200     		.2byte	0x2
+ 3825 0673 75       		.byte	0x75
+ 3826 0674 0A       		.sleb128 10
+ 3827 0675 58000000 		.4byte	.LVL61
+ 3828 0679 5D000000 		.4byte	.LVL62-1
+ 3829 067d 0100     		.2byte	0x1
+ 3830 067f 53       		.byte	0x53
+ 3831 0680 5D000000 		.4byte	.LVL62-1
+ 3832 0684 96000000 		.4byte	.LVL69
+ 3833 0688 0100     		.2byte	0x1
+ 3834 068a 59       		.byte	0x59
+ 3835 068b 00000000 		.4byte	0
+ 3836 068f 00000000 		.4byte	0
+ 3837              	.LLST27:
+ 3838 0693 82000000 		.4byte	.LVL65
+ 3839 0697 8A000000 		.4byte	.LVL67
+ 3840 069b 0600     		.2byte	0x6
+ 3841 069d 03       		.byte	0x3
+ 3842 069e 28000000 		.4byte	.LC1
+ 3843 06a2 9F       		.byte	0x9f
+ 3844 06a3 00000000 		.4byte	0
+ 3845 06a7 00000000 		.4byte	0
+ 3846              	.LLST28:
+ 3847 06ab 00000000 		.4byte	.LVL84
+ 3848 06af 05000000 		.4byte	.LVL85-1
+ 3849 06b3 0100     		.2byte	0x1
+ 3850 06b5 50       		.byte	0x50
+ 3851 06b6 05000000 		.4byte	.LVL85-1
+ 3852 06ba 0C000000 		.4byte	.LFE259
+ 3853 06be 0400     		.2byte	0x4
+ 3854 06c0 F3       		.byte	0xf3
+ 3855 06c1 01       		.uleb128 0x1
+ 3856 06c2 50       		.byte	0x50
+ 3857 06c3 9F       		.byte	0x9f
+ 3858 06c4 00000000 		.4byte	0
+ 3859 06c8 00000000 		.4byte	0
+ 3860              	.LLST29:
+ 3861 06cc 00000000 		.4byte	.LVL84
+ 3862 06d0 05000000 		.4byte	.LVL85-1
+ 3863 06d4 0100     		.2byte	0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 69
+
+
+ 3864 06d6 51       		.byte	0x51
+ 3865 06d7 05000000 		.4byte	.LVL85-1
+ 3866 06db 0C000000 		.4byte	.LFE259
+ 3867 06df 0400     		.2byte	0x4
+ 3868 06e1 F3       		.byte	0xf3
+ 3869 06e2 01       		.uleb128 0x1
+ 3870 06e3 51       		.byte	0x51
+ 3871 06e4 9F       		.byte	0x9f
+ 3872 06e5 00000000 		.4byte	0
+ 3873 06e9 00000000 		.4byte	0
+ 3874              	.LLST30:
+ 3875 06ed 00000000 		.4byte	.LVL86
+ 3876 06f1 0A000000 		.4byte	.LVL87
+ 3877 06f5 0100     		.2byte	0x1
+ 3878 06f7 50       		.byte	0x50
+ 3879 06f8 0A000000 		.4byte	.LVL87
+ 3880 06fc 48000000 		.4byte	.LVL99
+ 3881 0700 0400     		.2byte	0x4
+ 3882 0702 F3       		.byte	0xf3
+ 3883 0703 01       		.uleb128 0x1
+ 3884 0704 50       		.byte	0x50
+ 3885 0705 9F       		.byte	0x9f
+ 3886 0706 48000000 		.4byte	.LVL99
+ 3887 070a 4C000000 		.4byte	.LVL100
+ 3888 070e 0100     		.2byte	0x1
+ 3889 0710 50       		.byte	0x50
+ 3890 0711 4C000000 		.4byte	.LVL100
+ 3891 0715 4E000000 		.4byte	.LFE260
+ 3892 0719 0100     		.2byte	0x1
+ 3893 071b 55       		.byte	0x55
+ 3894 071c 00000000 		.4byte	0
+ 3895 0720 00000000 		.4byte	0
+ 3896              	.LLST31:
+ 3897 0724 00000000 		.4byte	.LVL86
+ 3898 0728 0A000000 		.4byte	.LVL87
+ 3899 072c 0200     		.2byte	0x2
+ 3900 072e 30       		.byte	0x30
+ 3901 072f 9F       		.byte	0x9f
+ 3902 0730 0A000000 		.4byte	.LVL87
+ 3903 0734 16000000 		.4byte	.LVL89
+ 3904 0738 0100     		.2byte	0x1
+ 3905 073a 54       		.byte	0x54
+ 3906 073b 16000000 		.4byte	.LVL89
+ 3907 073f 1E000000 		.4byte	.LVL90
+ 3908 0743 0100     		.2byte	0x1
+ 3909 0745 50       		.byte	0x50
+ 3910 0746 1E000000 		.4byte	.LVL90
+ 3911 074a 2C000000 		.4byte	.LVL92
+ 3912 074e 0100     		.2byte	0x1
+ 3913 0750 54       		.byte	0x54
+ 3914 0751 2C000000 		.4byte	.LVL92
+ 3915 0755 30000000 		.4byte	.LVL94
+ 3916 0759 0C00     		.2byte	0xc
+ 3917 075b 70       		.byte	0x70
+ 3918 075c 00       		.sleb128 0
+ 3919 075d 40       		.byte	0x40
+ 3920 075e 25       		.byte	0x25
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 70
+
+
+ 3921 075f 70       		.byte	0x70
+ 3922 0760 00       		.sleb128 0
+ 3923 0761 0A       		.byte	0xa
+ 3924 0762 FFFF     		.2byte	0xffff
+ 3925 0764 1A       		.byte	0x1a
+ 3926 0765 22       		.byte	0x22
+ 3927 0766 9F       		.byte	0x9f
+ 3928 0767 30000000 		.4byte	.LVL94
+ 3929 076b 40000000 		.4byte	.LVL96
+ 3930 076f 0100     		.2byte	0x1
+ 3931 0771 54       		.byte	0x54
+ 3932 0772 40000000 		.4byte	.LVL96
+ 3933 0776 42000000 		.4byte	.LVL97
+ 3934 077a 0600     		.2byte	0x6
+ 3935 077c 74       		.byte	0x74
+ 3936 077d 00       		.sleb128 0
+ 3937 077e 70       		.byte	0x70
+ 3938 077f 00       		.sleb128 0
+ 3939 0780 21       		.byte	0x21
+ 3940 0781 9F       		.byte	0x9f
+ 3941 0782 42000000 		.4byte	.LVL97
+ 3942 0786 44000000 		.4byte	.LVL98
+ 3943 078a 0100     		.2byte	0x1
+ 3944 078c 54       		.byte	0x54
+ 3945 078d 44000000 		.4byte	.LVL98
+ 3946 0791 48000000 		.4byte	.LVL99
+ 3947 0795 0400     		.2byte	0x4
+ 3948 0797 74       		.byte	0x74
+ 3949 0798 00       		.sleb128 0
+ 3950 0799 20       		.byte	0x20
+ 3951 079a 9F       		.byte	0x9f
+ 3952 079b 48000000 		.4byte	.LVL99
+ 3953 079f 4C000000 		.4byte	.LVL100
+ 3954 07a3 0200     		.2byte	0x2
+ 3955 07a5 30       		.byte	0x30
+ 3956 07a6 9F       		.byte	0x9f
+ 3957 07a7 00000000 		.4byte	0
+ 3958 07ab 00000000 		.4byte	0
+ 3959              	.LLST32:
+ 3960 07af 00000000 		.4byte	.LVL86
+ 3961 07b3 0A000000 		.4byte	.LVL87
+ 3962 07b7 0100     		.2byte	0x1
+ 3963 07b9 50       		.byte	0x50
+ 3964 07ba 0A000000 		.4byte	.LVL87
+ 3965 07be 48000000 		.4byte	.LVL99
+ 3966 07c2 0100     		.2byte	0x1
+ 3967 07c4 55       		.byte	0x55
+ 3968 07c5 48000000 		.4byte	.LVL99
+ 3969 07c9 4C000000 		.4byte	.LVL100
+ 3970 07cd 0100     		.2byte	0x1
+ 3971 07cf 50       		.byte	0x50
+ 3972 07d0 4C000000 		.4byte	.LVL100
+ 3973 07d4 4E000000 		.4byte	.LFE260
+ 3974 07d8 0100     		.2byte	0x1
+ 3975 07da 55       		.byte	0x55
+ 3976 07db 00000000 		.4byte	0
+ 3977 07df 00000000 		.4byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 71
+
+
+ 3978              	.LLST33:
+ 3979 07e3 00000000 		.4byte	.LVL86
+ 3980 07e7 0A000000 		.4byte	.LVL87
+ 3981 07eb 0200     		.2byte	0x2
+ 3982 07ed 30       		.byte	0x30
+ 3983 07ee 9F       		.byte	0x9f
+ 3984 07ef 0A000000 		.4byte	.LVL87
+ 3985 07f3 26000000 		.4byte	.LVL91
+ 3986 07f7 0100     		.2byte	0x1
+ 3987 07f9 56       		.byte	0x56
+ 3988 07fa 2E000000 		.4byte	.LVL93
+ 3989 07fe 48000000 		.4byte	.LVL99
+ 3990 0802 0100     		.2byte	0x1
+ 3991 0804 56       		.byte	0x56
+ 3992 0805 48000000 		.4byte	.LVL99
+ 3993 0809 4E000000 		.4byte	.LFE260
+ 3994 080d 0200     		.2byte	0x2
+ 3995 080f 30       		.byte	0x30
+ 3996 0810 9F       		.byte	0x9f
+ 3997 0811 00000000 		.4byte	0
+ 3998 0815 00000000 		.4byte	0
+ 3999              		.section	.debug_aranges,"",%progbits
+ 4000 0000 44000000 		.4byte	0x44
+ 4001 0004 0200     		.2byte	0x2
+ 4002 0006 00000000 		.4byte	.Ldebug_info0
+ 4003 000a 04       		.byte	0x4
+ 4004 000b 00       		.byte	0
+ 4005 000c 0000     		.2byte	0
+ 4006 000e 0000     		.2byte	0
+ 4007 0010 00000000 		.4byte	.LFB256
+ 4008 0014 76000000 		.4byte	.LFE256-.LFB256
+ 4009 0018 00000000 		.4byte	.LFB261
+ 4010 001c 28000000 		.4byte	.LFE261-.LFB261
+ 4011 0020 00000000 		.4byte	.LFB257
+ 4012 0024 90000000 		.4byte	.LFE257-.LFB257
+ 4013 0028 00000000 		.4byte	.LFB258
+ 4014 002c EC000000 		.4byte	.LFE258-.LFB258
+ 4015 0030 00000000 		.4byte	.LFB259
+ 4016 0034 0C000000 		.4byte	.LFE259-.LFB259
+ 4017 0038 00000000 		.4byte	.LFB260
+ 4018 003c 4E000000 		.4byte	.LFE260-.LFB260
+ 4019 0040 00000000 		.4byte	0
+ 4020 0044 00000000 		.4byte	0
+ 4021              		.section	.debug_ranges,"",%progbits
+ 4022              	.Ldebug_ranges0:
+ 4023 0000 00000000 		.4byte	.LFB256
+ 4024 0004 76000000 		.4byte	.LFE256
+ 4025 0008 00000000 		.4byte	.LFB261
+ 4026 000c 28000000 		.4byte	.LFE261
+ 4027 0010 00000000 		.4byte	.LFB257
+ 4028 0014 90000000 		.4byte	.LFE257
+ 4029 0018 00000000 		.4byte	.LFB258
+ 4030 001c EC000000 		.4byte	.LFE258
+ 4031 0020 00000000 		.4byte	.LFB259
+ 4032 0024 0C000000 		.4byte	.LFE259
+ 4033 0028 00000000 		.4byte	.LFB260
+ 4034 002c 4E000000 		.4byte	.LFE260
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 72
+
+
+ 4035 0030 00000000 		.4byte	0
+ 4036 0034 00000000 		.4byte	0
+ 4037              		.section	.debug_line,"",%progbits
+ 4038              	.Ldebug_line0:
+ 4039 0000 AB040000 		.section	.debug_str,"MS",%progbits,1
+ 4039      02008A03 
+ 4039      00000201 
+ 4039      FB0E0D00 
+ 4039      01010101 
+ 4040              	.LASF23:
+ 4041 0000 74726566 		.ascii	"trefs_t\000"
+ 4041      735F7400 
+ 4042              	.LASF111:
+ 4043 0008 70627566 		.ascii	"pbuf\000"
+ 4043      00
+ 4044              	.LASF2:
+ 4045 000d 73697A65 		.ascii	"size_t\000"
+ 4045      5F7400
+ 4046              	.LASF90:
+ 4047 0014 7264796D 		.ascii	"rdymsg\000"
+ 4047      736700
+ 4048              	.LASF19:
+ 4049 001b 75696E74 		.ascii	"uint64_t\000"
+ 4049      36345F74 
+ 4049      00
+ 4050              	.LASF128:
+ 4051 0024 696E6574 		.ascii	"inet_chksum_pseudo_partial\000"
+ 4051      5F63686B 
+ 4051      73756D5F 
+ 4051      70736575 
+ 4051      646F5F70 
+ 4052              	.LASF3:
+ 4053 003f 5F5F7569 		.ascii	"__uint8_t\000"
+ 4053      6E74385F 
+ 4053      7400
+ 4054              	.LASF83:
+ 4055 0049 706F7274 		.ascii	"port_intctx\000"
+ 4055      5F696E74 
+ 4055      63747800 
+ 4056              	.LASF106:
+ 4057 0055 76615F6C 		.ascii	"va_list\000"
+ 4057      69737400 
+ 4058              	.LASF70:
+ 4059 005d 73797374 		.ascii	"system_debug_t\000"
+ 4059      656D5F64 
+ 4059      65627567 
+ 4059      5F7400
+ 4060              	.LASF115:
+ 4061 006c 74797065 		.ascii	"type\000"
+ 4061      00
+ 4062              	.LASF143:
+ 4063 0071 63685379 		.ascii	"chSysHalt\000"
+ 4063      7348616C 
+ 4063      7400
+ 4064              	.LASF131:
+ 4065 007b 696E6574 		.ascii	"inet_chksum\000"
+ 4065      5F63686B 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 73
+
+
+ 4065      73756D00 
+ 4066              	.LASF14:
+ 4067 0087 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4067      206C6F6E 
+ 4067      6720756E 
+ 4067      7369676E 
+ 4067      65642069 
+ 4068              	.LASF121:
+ 4069 009e 666F726D 		.ascii	"formatted_bytes\000"
+ 4069      61747465 
+ 4069      645F6279 
+ 4069      74657300 
+ 4070              	.LASF91:
+ 4071 00ae 65786974 		.ascii	"exitcode\000"
+ 4071      636F6465 
+ 4071      00
+ 4072              	.LASF77:
+ 4073 00b7 6D61696E 		.ascii	"mainthread\000"
+ 4073      74687265 
+ 4073      616400
+ 4074              	.LASF67:
+ 4075 00c2 76697274 		.ascii	"virtual_timers_list_t\000"
+ 4075      75616C5F 
+ 4075      74696D65 
+ 4075      72735F6C 
+ 4075      6973745F 
+ 4076              	.LASF133:
+ 4077 00d8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 4077      52784275 
+ 4077      66666572 
+ 4077      00
+ 4078              	.LASF112:
+ 4079 00e5 6E657874 		.ascii	"next\000"
+ 4079      00
+ 4080              	.LASF50:
+ 4081 00ea 63685F74 		.ascii	"ch_threads_queue\000"
+ 4081      68726561 
+ 4081      64735F71 
+ 4081      75657565 
+ 4081      00
+ 4082              	.LASF31:
+ 4083 00fb 705F7072 		.ascii	"p_prio\000"
+ 4083      696F00
+ 4084              	.LASF12:
+ 4085 0102 6C6F6E67 		.ascii	"long long int\000"
+ 4085      206C6F6E 
+ 4085      6720696E 
+ 4085      7400
+ 4086              	.LASF1:
+ 4087 0110 7369676E 		.ascii	"signed char\000"
+ 4087      65642063 
+ 4087      68617200 
+ 4088              	.LASF45:
+ 4089 011c 705F6D70 		.ascii	"p_mpool\000"
+ 4089      6F6F6C00 
+ 4090              	.LASF118:
+ 4091 0124 61646472 		.ascii	"addr\000"
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 74
+
+
+ 4091      00
+ 4092              	.LASF76:
+ 4093 0129 76746C69 		.ascii	"vtlist\000"
+ 4093      737400
+ 4094              	.LASF114:
+ 4095 0130 746F745F 		.ascii	"tot_len\000"
+ 4095      6C656E00 
+ 4096              	.LASF74:
+ 4097 0138 63685F73 		.ascii	"ch_system\000"
+ 4097      79737465 
+ 4097      6D00
+ 4098              	.LASF9:
+ 4099 0142 6C6F6E67 		.ascii	"long int\000"
+ 4099      20696E74 
+ 4099      00
+ 4100              	.LASF127:
+ 4101 014b 696E6574 		.ascii	"inet_chksum_pseudo\000"
+ 4101      5F63686B 
+ 4101      73756D5F 
+ 4101      70736575 
+ 4101      646F00
+ 4102              	.LASF22:
+ 4103 015e 74737461 		.ascii	"tstate_t\000"
+ 4103      74655F74 
+ 4103      00
+ 4104              	.LASF85:
+ 4105 0167 5F5F7661 		.ascii	"__va_list\000"
+ 4105      5F6C6973 
+ 4105      7400
+ 4106              	.LASF33:
+ 4107 0171 705F6E65 		.ascii	"p_newer\000"
+ 4107      77657200 
+ 4108              	.LASF56:
+ 4109 0179 725F6E65 		.ascii	"r_newer\000"
+ 4109      77657200 
+ 4110              	.LASF80:
+ 4111 0181 72656761 		.ascii	"regarm_t\000"
+ 4111      726D5F74 
+ 4111      00
+ 4112              	.LASF63:
+ 4113 018a 76745F70 		.ascii	"vt_prev\000"
+ 4113      72657600 
+ 4114              	.LASF98:
+ 4115 0192 6D757465 		.ascii	"mutex_t\000"
+ 4115      785F7400 
+ 4116              	.LASF102:
+ 4117 019a 42617365 		.ascii	"BaseSequentialStream\000"
+ 4117      53657175 
+ 4117      656E7469 
+ 4117      616C5374 
+ 4117      7265616D 
+ 4118              	.LASF78:
+ 4119 01af 69646C65 		.ascii	"idle_thread_wa\000"
+ 4119      5F746872 
+ 4119      6561645F 
+ 4119      776100
+ 4120              	.LASF0:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 75
+
+
+ 4121 01be 756E7369 		.ascii	"unsigned int\000"
+ 4121      676E6564 
+ 4121      20696E74 
+ 4121      00
+ 4122              	.LASF62:
+ 4123 01cb 76745F6E 		.ascii	"vt_next\000"
+ 4123      65787400 
+ 4124              	.LASF16:
+ 4125 01d3 75696E74 		.ascii	"uint16_t\000"
+ 4125      31365F74 
+ 4125      00
+ 4126              	.LASF64:
+ 4127 01dc 76745F64 		.ascii	"vt_delta\000"
+ 4127      656C7461 
+ 4127      00
+ 4128              	.LASF40:
+ 4129 01e5 705F6D73 		.ascii	"p_msgqueue\000"
+ 4129      67717565 
+ 4129      756500
+ 4130              	.LASF109:
+ 4131 01f0 7533325F 		.ascii	"u32_t\000"
+ 4131      7400
+ 4132              	.LASF7:
+ 4133 01f6 73686F72 		.ascii	"short unsigned int\000"
+ 4133      7420756E 
+ 4133      7369676E 
+ 4133      65642069 
+ 4133      6E7400
+ 4134              	.LASF47:
+ 4135 0209 63685F74 		.ascii	"ch_thread\000"
+ 4135      68726561 
+ 4135      6400
+ 4136              	.LASF25:
+ 4137 0213 6D73675F 		.ascii	"msg_t\000"
+ 4137      7400
+ 4138              	.LASF48:
+ 4139 0219 63685F74 		.ascii	"ch_threads_list\000"
+ 4139      68726561 
+ 4139      64735F6C 
+ 4139      69737400 
+ 4140              	.LASF73:
+ 4141 0229 63685F73 		.ascii	"ch_system_t\000"
+ 4141      79737465 
+ 4141      6D5F7400 
+ 4142              	.LASF21:
+ 4143 0235 746D6F64 		.ascii	"tmode_t\000"
+ 4143      655F7400 
+ 4144              	.LASF52:
+ 4145 023d 63685F72 		.ascii	"ch_ready_list\000"
+ 4145      65616479 
+ 4145      5F6C6973 
+ 4145      7400
+ 4146              	.LASF26:
+ 4147 024b 6576656E 		.ascii	"eventmask_t\000"
+ 4147      746D6173 
+ 4147      6B5F7400 
+ 4148              	.LASF8:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 76
+
+
+ 4149 0257 5F5F696E 		.ascii	"__int32_t\000"
+ 4149      7433325F 
+ 4149      7400
+ 4150              	.LASF136:
+ 4151 0261 6C776970 		.ascii	"lwip_htons\000"
+ 4151      5F68746F 
+ 4151      6E7300
+ 4152              	.LASF81:
+ 4153 026c 73746B61 		.ascii	"stkalign_t\000"
+ 4153      6C69676E 
+ 4153      5F7400
+ 4154              	.LASF140:
+ 4155 0277 6F73616C 		.ascii	"osalSysHalt\000"
+ 4155      53797348 
+ 4155      616C7400 
+ 4156              	.LASF13:
+ 4157 0283 5F5F7569 		.ascii	"__uint64_t\000"
+ 4157      6E743634 
+ 4157      5F7400
+ 4158              	.LASF100:
+ 4159 028e 77726974 		.ascii	"write\000"
+ 4159      6500
+ 4160              	.LASF119:
+ 4161 0294 69705F61 		.ascii	"ip_addr_t\000"
+ 4161      6464725F 
+ 4161      7400
+ 4162              	.LASF39:
+ 4163 029e 705F7761 		.ascii	"p_waiting\000"
+ 4163      6974696E 
+ 4163      6700
+ 4164              	.LASF142:
+ 4165 02a8 6C776970 		.ascii	"lwip_standard_chksum\000"
+ 4165      5F737461 
+ 4165      6E646172 
+ 4165      645F6368 
+ 4165      6B73756D 
+ 4166              	.LASF107:
+ 4167 02bd 75385F74 		.ascii	"u8_t\000"
+ 4167      00
+ 4168              	.LASF79:
+ 4169 02c2 73697A65 		.ascii	"sizetype\000"
+ 4169      74797065 
+ 4169      00
+ 4170              	.LASF68:
+ 4171 02cb 63685F76 		.ascii	"ch_virtual_timers_list\000"
+ 4171      69727475 
+ 4171      616C5F74 
+ 4171      696D6572 
+ 4171      735F6C69 
+ 4172              	.LASF84:
+ 4173 02e2 5F5F676E 		.ascii	"__gnuc_va_list\000"
+ 4173      75635F76 
+ 4173      615F6C69 
+ 4173      737400
+ 4174              	.LASF113:
+ 4175 02f1 7061796C 		.ascii	"payload\000"
+ 4175      6F616400 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 77
+
+
+ 4176              	.LASF117:
+ 4177 02f9 69705F61 		.ascii	"ip_addr\000"
+ 4177      64647200 
+ 4178              	.LASF55:
+ 4179 0301 725F6374 		.ascii	"r_ctx\000"
+ 4179      7800
+ 4180              	.LASF88:
+ 4181 0307 746D5F63 		.ascii	"tm_calibration_t\000"
+ 4181      616C6962 
+ 4181      72617469 
+ 4181      6F6E5F74 
+ 4181      00
+ 4182              	.LASF123:
+ 4183 0318 64657374 		.ascii	"dest\000"
+ 4183      00
+ 4184              	.LASF57:
+ 4185 031d 725F6F6C 		.ascii	"r_older\000"
+ 4185      64657200 
+ 4186              	.LASF105:
+ 4187 0325 49544D53 		.ascii	"ITMStream\000"
+ 4187      74726561 
+ 4187      6D00
+ 4188              	.LASF132:
+ 4189 032f 696E6574 		.ascii	"inet_chksum_pbuf\000"
+ 4189      5F63686B 
+ 4189      73756D5F 
+ 4189      70627566 
+ 4189      00
+ 4190              	.LASF60:
+ 4191 0340 76697274 		.ascii	"virtual_timer_t\000"
+ 4191      75616C5F 
+ 4191      74696D65 
+ 4191      725F7400 
+ 4192              	.LASF30:
+ 4193 0350 705F7072 		.ascii	"p_prev\000"
+ 4193      657600
+ 4194              	.LASF24:
+ 4195 0357 74707269 		.ascii	"tprio_t\000"
+ 4195      6F5F7400 
+ 4196              	.LASF94:
+ 4197 035f 6D757465 		.ascii	"mutex\000"
+ 4197      7800
+ 4198              	.LASF71:
+ 4199 0365 63685F73 		.ascii	"ch_system_debug\000"
+ 4199      79737465 
+ 4199      6D5F6465 
+ 4199      62756700 
+ 4200              	.LASF103:
+ 4201 0375 5F426F6F 		.ascii	"_Bool\000"
+ 4201      6C00
+ 4202              	.LASF17:
+ 4203 037b 696E7433 		.ascii	"int32_t\000"
+ 4203      325F7400 
+ 4204              	.LASF4:
+ 4205 0383 756E7369 		.ascii	"unsigned char\000"
+ 4205      676E6564 
+ 4205      20636861 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 78
+
+
+ 4205      7200
+ 4206              	.LASF95:
+ 4207 0391 6D5F7175 		.ascii	"m_queue\000"
+ 4207      65756500 
+ 4208              	.LASF43:
+ 4209 0399 705F6D74 		.ascii	"p_mtxlist\000"
+ 4209      786C6973 
+ 4209      7400
+ 4210              	.LASF5:
+ 4211 03a3 73686F72 		.ascii	"short int\000"
+ 4211      7420696E 
+ 4211      7400
+ 4212              	.LASF36:
+ 4213 03ad 705F7374 		.ascii	"p_state\000"
+ 4213      61746500 
+ 4214              	.LASF34:
+ 4215 03b5 705F6F6C 		.ascii	"p_older\000"
+ 4215      64657200 
+ 4216              	.LASF54:
+ 4217 03bd 725F7072 		.ascii	"r_prio\000"
+ 4217      696F00
+ 4218              	.LASF93:
+ 4219 03c4 65776D61 		.ascii	"ewmask\000"
+ 4219      736B00
+ 4220              	.LASF29:
+ 4221 03cb 705F6E65 		.ascii	"p_next\000"
+ 4221      787400
+ 4222              	.LASF137:
+ 4223 03d2 474E5520 		.ascii	"GNU C 4.9.3 20141119 (release) [ARM/embedded-4_9-br"
+ 4223      4320342E 
+ 4223      392E3320 
+ 4223      32303134 
+ 4223      31313139 
+ 4224 0405 616E6368 		.ascii	"anch revision 218278] -mcpu=cortex-m4 -mfloat-abi=h"
+ 4224      20726576 
+ 4224      6973696F 
+ 4224      6E203231 
+ 4224      38323738 
+ 4225 0438 61726420 		.ascii	"ard -mfpu=fpv4-sp-d16 -mno-thumb-interwork -mthumb "
+ 4225      2D6D6670 
+ 4225      753D6670 
+ 4225      76342D73 
+ 4225      702D6431 
+ 4226 046b 2D676764 		.ascii	"-ggdb -O2 -fomit-frame-pointer -falign-functions=16"
+ 4226      62202D4F 
+ 4226      32202D66 
+ 4226      6F6D6974 
+ 4226      2D667261 
+ 4227 049e 202D6666 		.ascii	" -ffunction-sections -fdata-sections -fno-common -f"
+ 4227      756E6374 
+ 4227      696F6E2D 
+ 4227      73656374 
+ 4227      696F6E73 
+ 4228 04d1 73696E67 		.ascii	"single-precision-constant\000"
+ 4228      6C652D70 
+ 4228      72656369 
+ 4228      73696F6E 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 79
+
+
+ 4228      2D636F6E 
+ 4229              	.LASF126:
+ 4230 04eb 73776170 		.ascii	"swapped\000"
+ 4230      70656400 
+ 4231              	.LASF37:
+ 4232 04f3 705F666C 		.ascii	"p_flags\000"
+ 4232      61677300 
+ 4233              	.LASF120:
+ 4234 04fb 72656173 		.ascii	"reason\000"
+ 4234      6F6E00
+ 4235              	.LASF124:
+ 4236 0502 70726F74 		.ascii	"proto\000"
+ 4236      6F00
+ 4237              	.LASF61:
+ 4238 0508 63685F76 		.ascii	"ch_virtual_timer\000"
+ 4238      69727475 
+ 4238      616C5F74 
+ 4238      696D6572 
+ 4238      00
+ 4239              	.LASF42:
+ 4240 0519 705F6570 		.ascii	"p_epending\000"
+ 4240      656E6469 
+ 4240      6E6700
+ 4241              	.LASF99:
+ 4242 0524 42617365 		.ascii	"BaseSequentialStreamVMT\000"
+ 4242      53657175 
+ 4242      656E7469 
+ 4242      616C5374 
+ 4242      7265616D 
+ 4243              	.LASF53:
+ 4244 053c 725F7175 		.ascii	"r_queue\000"
+ 4244      65756500 
+ 4245              	.LASF130:
+ 4246 0544 63686B6C 		.ascii	"chklen\000"
+ 4246      656E00
+ 4247              	.LASF11:
+ 4248 054b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4248      20756E73 
+ 4248      69676E65 
+ 4248      6420696E 
+ 4248      7400
+ 4249              	.LASF58:
+ 4250 055d 725F6375 		.ascii	"r_current\000"
+ 4250      7272656E 
+ 4250      7400
+ 4251              	.LASF101:
+ 4252 0567 72656164 		.ascii	"read\000"
+ 4252      00
+ 4253              	.LASF86:
+ 4254 056c 63686172 		.ascii	"char\000"
+ 4254      00
+ 4255              	.LASF122:
+ 4256 0571 64617461 		.ascii	"dataptr\000"
+ 4256      70747200 
+ 4257              	.LASF139:
+ 4258 0579 433A5C55 		.ascii	"C:\\Users\\jo\\Documents\\GitHub\\ChibiOS\\demos\\S"
+ 4258      73657273 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 80
+
+
+ 4258      5C6A6F5C 
+ 4258      446F6375 
+ 4258      6D656E74 
+ 4259 05a5 544D3332 		.ascii	"TM32\\RT-STM32F407-DISCOVERY\000"
+ 4259      5C52542D 
+ 4259      53544D33 
+ 4259      32463430 
+ 4259      372D4449 
+ 4260              	.LASF6:
+ 4261 05c1 5F5F7569 		.ascii	"__uint16_t\000"
+ 4261      6E743136 
+ 4261      5F7400
+ 4262              	.LASF104:
+ 4263 05cc 49544D53 		.ascii	"ITMStreamVMT\000"
+ 4263      74726561 
+ 4263      6D564D54 
+ 4263      00
+ 4264              	.LASF28:
+ 4265 05d9 74687265 		.ascii	"thread_t\000"
+ 4265      61645F74 
+ 4265      00
+ 4266              	.LASF97:
+ 4267 05e2 6D5F6E65 		.ascii	"m_next\000"
+ 4267      787400
+ 4268              	.LASF27:
+ 4269 05e9 73797374 		.ascii	"systime_t\000"
+ 4269      696D655F 
+ 4269      7400
+ 4270              	.LASF44:
+ 4271 05f3 705F7265 		.ascii	"p_realprio\000"
+ 4271      616C7072 
+ 4271      696F00
+ 4272              	.LASF59:
+ 4273 05fe 76746675 		.ascii	"vtfunc_t\000"
+ 4273      6E635F74 
+ 4273      00
+ 4274              	.LASF10:
+ 4275 0607 5F5F7569 		.ascii	"__uint32_t\000"
+ 4275      6E743332 
+ 4275      5F7400
+ 4276              	.LASF72:
+ 4277 0612 70616E69 		.ascii	"panic_msg\000"
+ 4277      635F6D73 
+ 4277      6700
+ 4278              	.LASF87:
+ 4279 061c 6F666673 		.ascii	"offset\000"
+ 4279      657400
+ 4280              	.LASF89:
+ 4281 0623 5F5F6170 		.ascii	"__ap\000"
+ 4281      00
+ 4282              	.LASF82:
+ 4283 0628 636F6E74 		.ascii	"context\000"
+ 4283      65787400 
+ 4284              	.LASF20:
+ 4285 0630 7274636E 		.ascii	"rtcnt_t\000"
+ 4285      745F7400 
+ 4286              	.LASF66:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 81
+
+
+ 4287 0638 76745F70 		.ascii	"vt_par\000"
+ 4287      617200
+ 4288              	.LASF108:
+ 4289 063f 7531365F 		.ascii	"u16_t\000"
+ 4289      7400
+ 4290              	.LASF110:
+ 4291 0645 6D656D5F 		.ascii	"mem_ptr_t\000"
+ 4291      7074725F 
+ 4291      7400
+ 4292              	.LASF51:
+ 4293 064f 72656164 		.ascii	"ready_list_t\000"
+ 4293      795F6C69 
+ 4293      73745F74 
+ 4293      00
+ 4294              	.LASF134:
+ 4295 065c 69746D5F 		.ascii	"itm_port\000"
+ 4295      706F7274 
+ 4295      00
+ 4296              	.LASF49:
+ 4297 0665 74687265 		.ascii	"threads_queue_t\000"
+ 4297      6164735F 
+ 4297      71756575 
+ 4297      655F7400 
+ 4298              	.LASF35:
+ 4299 0675 705F6E61 		.ascii	"p_name\000"
+ 4299      6D6500
+ 4300              	.LASF38:
+ 4301 067c 705F7265 		.ascii	"p_refs\000"
+ 4301      667300
+ 4302              	.LASF75:
+ 4303 0683 726C6973 		.ascii	"rlist\000"
+ 4303      7400
+ 4304              	.LASF15:
+ 4305 0689 75696E74 		.ascii	"uint8_t\000"
+ 4305      385F7400 
+ 4306              	.LASF135:
+ 4307 0691 63687670 		.ascii	"chvprintf\000"
+ 4307      72696E74 
+ 4307      6600
+ 4308              	.LASF116:
+ 4309 069b 666C6167 		.ascii	"flags\000"
+ 4309      7300
+ 4310              	.LASF69:
+ 4311 06a1 76745F6C 		.ascii	"vt_lasttime\000"
+ 4311      61737474 
+ 4311      696D6500 
+ 4312              	.LASF125:
+ 4313 06ad 70726F74 		.ascii	"proto_len\000"
+ 4313      6F5F6C65 
+ 4313      6E00
+ 4314              	.LASF92:
+ 4315 06b7 77746F62 		.ascii	"wtobjp\000"
+ 4315      6A7000
+ 4316              	.LASF46:
+ 4317 06be 74687265 		.ascii	"threads_list_t\000"
+ 4317      6164735F 
+ 4317      6C697374 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 82
+
+
+ 4317      5F7400
+ 4318              	.LASF129:
+ 4319 06cd 63686B73 		.ascii	"chksum_len\000"
+ 4319      756D5F6C 
+ 4319      656E00
+ 4320              	.LASF41:
+ 4321 06d8 705F6D73 		.ascii	"p_msg\000"
+ 4321      6700
+ 4322              	.LASF138:
+ 4323 06de 2E2E2F2E 		.ascii	"../../../os/ext/lwip-1.4.1/src/core/ipv4/inet_chksu"
+ 4323      2E2F2E2E 
+ 4323      2F6F732F 
+ 4323      6578742F 
+ 4323      6C776970 
+ 4324 0711 6D2E6300 		.ascii	"m.c\000"
+ 4325              	.LASF96:
+ 4326 0715 6D5F6F77 		.ascii	"m_owner\000"
+ 4326      6E657200 
+ 4327              	.LASF18:
+ 4328 071d 75696E74 		.ascii	"uint32_t\000"
+ 4328      33325F74 
+ 4328      00
+ 4329              	.LASF32:
+ 4330 0726 705F6374 		.ascii	"p_ctx\000"
+ 4330      7800
+ 4331              	.LASF65:
+ 4332 072c 76745F66 		.ascii	"vt_func\000"
+ 4332      756E6300 
+ 4333              	.LASF141:
+ 4334 0734 63687072 		.ascii	"chprintf\000"
+ 4334      696E7466 
+ 4334      00
+ 4335              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s 			page 83
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 inet_chksum.c
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:21     .text.lwip_standard_chksum:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:26     .text.lwip_standard_chksum:00000000 lwip_standard_chksum
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:148    .text.chprintf.constprop.0:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:153    .text.chprintf.constprop.0:00000000 chprintf.constprop.0
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:199    .text.chprintf.constprop.0:00000020 $d
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:205    .text.inet_chksum_pseudo:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:211    .text.inet_chksum_pseudo:00000000 inet_chksum_pseudo
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:344    .text.inet_chksum_pseudo_partial:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:350    .text.inet_chksum_pseudo_partial:00000000 inet_chksum_pseudo_partial
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:542    .text.inet_chksum_pseudo_partial:000000dc $d
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:550    .text.inet_chksum:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:556    .text.inet_chksum:00000000 inet_chksum
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:578    .text.inet_chksum_pbuf:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:584    .text.inet_chksum_pbuf:00000000 inet_chksum_pbuf
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:669    .rodata.str1.4:00000000 $d
+                     .debug_frame:00000010 $d
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:204    .text.chprintf.constprop.0:00000028 $t
+C:\Users\jo\AppData\Local\Temp\cc7MuPCb.s:549    .text.inet_chksum_pseudo_partial:000000ec $t
+
+UNDEFINED SYMBOLS
+chvprintf
+itm_port
+lwip_htons
+chSysHalt

@@ -14,6 +14,8 @@
     limitations under the License.
 */
 
+#warning "USARTv2"
+
 /**
  * @file    STM32/USARTv2/uart_lld.h
  * @brief   STM32 low level UART driver header.

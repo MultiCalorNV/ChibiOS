@@ -101,6 +101,12 @@ CSRC = $(PORTSRC) \
        $(OSALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
+	   $(CHIBIOS)/os/various/syscalls.c \
+	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+	   stubs.c \
+	   ITM_trace.c \
+	   ArrayCopy.c \
+	   ArrayList.c \
        main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
@@ -132,7 +138,7 @@ ASMSRC = $(PORTASM)
 
 INCDIR = $(PORTINC) $(KERNINC) $(TESTINC) \
          $(HALINC) $(OSALINC) $(PLATFORMINC) $(BOARDINC) \
-         $(CHIBIOS)/os/various
+         $(CHIBIOS)/os/various $(CHIBIOS)/os/hal/lib/streams
 
 #
 # Project, sources and paths

@@ -19,6 +19,9 @@
 #include "ch.h"
 #include "hal.h"
 
+#include "ITM_trace.h"
+#include "chprintf.h"
+
 /*===========================================================================*/
 /* Configurable settings.                                                    */
 /*===========================================================================*/
@@ -46,6 +49,9 @@
 #define MSG_SEND_LEFT   0
 #define MSG_SEND_RIGHT  1
 
+/*	Static variables -------------------------------------------------*/
+static int Debug_ITMDebug = 0;
+ITMStream itm_port;
 static bool saturated;
 
 /*
@@ -53,6 +59,40 @@ static bool saturated;
  */
 static mailbox_t mb[NUM_THREADS];
 static msg_t b[NUM_THREADS][MAILBOX_SIZE];
+
+//****************************************************************************
+
+void Debug_ITMDebugEnable(void){
+	volatile unsigned int *ITM_TER      = (volatile unsigned int *)0xE0000E00;
+	volatile unsigned int *SCB_DHCSR 		= (volatile unsigned int *)0xE000EDF0;
+	volatile unsigned int *DBGMCU_CR 		= (volatile unsigned int *)0xE0042004;
+
+	*DBGMCU_CR |= 0x27; // DBGMCU_CR
+
+if ((*SCB_DHCSR & 1) && (*ITM_TER & 1)) // Enabled?
+    Debug_ITMDebug = 1;
+}
+
+//****************************************************************************
+
+void Debug_ITMDebugOutputChar(char ch){
+	static volatile unsigned int *ITM_STIM0 = (volatile unsigned int *)0xE0000000; // ITM Port 0
+	static volatile unsigned int *SCB_DEMCR = (volatile unsigned int *)0xE000EDFC;
+
+	if (Debug_ITMDebug && (*SCB_DEMCR & 0x01000000))
+	{
+		while(*ITM_STIM0 == 0);
+  	*((volatile char *)ITM_STIM0) = ch;
+	}
+}
+
+//****************************************************************************
+
+void Debug_ITMDebugOutputString(char *Buffer){
+	if (Debug_ITMDebug)
+		while(*Buffer)
+			Debug_ITMDebugOutputChar(*Buffer++);
+}
 
 /*
  * Test worker threads.
@@ -108,7 +148,7 @@ static msg_t WorkerThread(void *arg) {
       /* Provides a visual feedback about the system.*/
       if (++cnt >= 500) {
         cnt = 0;
-        palTogglePad(GPIOD, GPIOD_LED5);
+        palTogglePad(GPIOG, GPIOG_PIN6);
       }
     }
   }
@@ -119,6 +159,8 @@ static msg_t WorkerThread(void *arg) {
  */
 static void gpt4cb(GPTDriver *gptp) {
   msg_t msg;
+  
+  palTogglePad(GPIOI, GPIOI_PIN9);
 
   (void)gptp;
   chSysLockFromISR();
@@ -133,6 +175,8 @@ static void gpt4cb(GPTDriver *gptp) {
  */
 static void gpt3cb(GPTDriver *gptp) {
   msg_t msg;
+  
+  palTogglePad(GPIOD, GPIOD_PIN_15_BLUELED);
 
   (void)gptp;
   chSysLockFromISR();
@@ -170,29 +214,29 @@ static const GPTConfig gpt3cfg = {
 static void print(char *p) {
 
   while (*p) {
-    chSequentialStreamPut(&SD2, *p++);
+    chSequentialStreamPut(&SD6, *p++);
   }
 }
 
 static void println(char *p) {
 
   while (*p) {
-    chSequentialStreamPut(&SD2, *p++);
+    chSequentialStreamPut(&SD6, *p++);
   }
-  chSequentialStreamWrite(&SD2, (uint8_t *)"\r\n", 2);
+  chSequentialStreamWrite(&SD6, (uint8_t *)"\r\n", 2);
 }
 
 static void printn(uint32_t n) {
   char buf[16], *p;
 
   if (!n)
-    chSequentialStreamPut(&SD2, '0');
+    chSequentialStreamPut(&SD6, '0');
   else {
     p = buf;
     while (n)
       *p++ = (n % 10) + '0', n /= 10;
     while (p > buf)
-      chSequentialStreamPut(&SD2, *--p);
+      chSequentialStreamPut(&SD6, *--p);
   }
 }
 
@@ -200,6 +244,12 @@ static void printn(uint32_t n) {
  * Application entry point.
  */
 int main(void) {
+	/* Enable TRACE debug -----------------------------------------------*/
+  Debug_ITMDebugEnable();
+  Debug_ITMDebugOutputString("SWV Enabled\n");
+  
+  itmObjectInit(&itm_port);
+	
   unsigned i;
   gptcnt_t interval, threshold, worst;
 
@@ -213,12 +263,15 @@ int main(void) {
   halInit();
   chSysInit();
 
+  
+  chprintf((BaseSequentialStream *)&itm_port, "%s", "ChibiOS V3.0\n");
+
   /*
-   * Prepares the Serial driver 2 and GPT drivers 2 and 3.
+   * Prepares the Serial driver 6 and GPT drivers 2 and 3.
    */
-  sdStart(&SD2, NULL);          /* Default is 38400-8-N-1.*/
-  palSetPadMode(GPIOA, 2, PAL_MODE_ALTERNATE(7));
-  palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE(7));
+  sdStart(&SD6, NULL);          /* Default is 38400-8-N-1.*/
+  //palSetPadMode(GPIOA, 2, PAL_MODE_ALTERNATE(7));
+  //palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE(7));
   gptStart(&GPTD4, &gpt4cfg);
   gptStart(&GPTD3, &gpt3cfg);
 

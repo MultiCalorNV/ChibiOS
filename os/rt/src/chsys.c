@@ -158,6 +158,7 @@ void chSysHalt(const char *reason) {
 
 #if defined(CH_CFG_SYSTEM_HALT_HOOK) || defined(__DOXYGEN__)
   CH_CFG_SYSTEM_HALT_HOOK(reason);
+  printf("%s", "System ShutDown!\n");
 #endif
 
   /* Pointing to the passed message.*/

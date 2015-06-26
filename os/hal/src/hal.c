@@ -26,6 +26,8 @@
  */
 
 #include "hal.h"
+#include "ITM_trace.h"
+#include "chprintf.h"
 
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
@@ -34,6 +36,8 @@
 /*===========================================================================*/
 /* Driver exported variables.                                                */
 /*===========================================================================*/
+
+extern ITMStream itm_port;
 
 /*===========================================================================*/
 /* Driver local variables and types.                                         */
@@ -63,9 +67,12 @@ void halInit(void) {
 
   /* Platform low level initializations.*/
   hal_lld_init();
+  
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "hal_lld_init");
 
 #if HAL_USE_PAL || defined(__DOXYGEN__)
   palInit(&pal_default_config);
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "palInit");
 #endif
 #if HAL_USE_ADC || defined(__DOXYGEN__)
   adcInit();
@@ -90,6 +97,7 @@ void halInit(void) {
 #endif
 #if HAL_USE_MAC || defined(__DOXYGEN__)
   macInit();
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "mac Inited...");
 #endif
 #if HAL_USE_PWM || defined(__DOXYGEN__)
   pwmInit();

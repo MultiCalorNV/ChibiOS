@@ -43,12 +43,12 @@
 
 /** @brief IP Address. */
 #if !defined(LWIP_IPADDR) || defined(__DOXYGEN__)
-#define LWIP_IPADDR(p)                      IP4_ADDR(p, 192, 168, 1, 20)
+#define LWIP_IPADDR(p)                      IP4_ADDR(p, 192, 168, 2, 10)
 #endif
 
 /** @brief IP Gateway. */
 #if !defined(LWIP_GATEWAY) || defined(__DOXYGEN__)
-#define LWIP_GATEWAY(p)                     IP4_ADDR(p, 192, 168, 1, 1)
+#define LWIP_GATEWAY(p)                     IP4_ADDR(p, 192, 168, 2, 1)
 #endif
 
 /** @brief IP netmask. */

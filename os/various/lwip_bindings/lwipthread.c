@@ -57,6 +57,8 @@
 
 #include "hal.h"
 #include "evtimer.h"
+#include "ITM_trace.h"
+#include "chprintf.h"
 
 #include "lwipthread.h"
 
@@ -74,6 +76,8 @@
 
 #define PERIODIC_TIMER_ID       1
 #define FRAME_RECEIVED_ID       2
+
+extern ITMStream itm_port;
 
 /**
  * Stack area for the LWIP-MAC thread.
@@ -244,7 +248,9 @@ msg_t lwip_thread(void *p) {
     LWIP_GATEWAY(&gateway);
     LWIP_NETMASK(&netmask);
   }
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "tcpip_init");
   macStart(&ETHD1, &mac_config);
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "NIC started");
   netif_add(&thisif, &ip, &netmask, &gateway, NULL, ethernetif_init, tcpip_input);
 
   netif_set_default(&thisif);
@@ -264,6 +270,7 @@ msg_t lwip_thread(void *p) {
     eventmask_t mask = chEvtWaitAny(ALL_EVENTS);
     if (mask & PERIODIC_TIMER_ID) {
       bool current_link_status = macPollLinkStatus(&ETHD1);
+	  chprintf((BaseSequentialStream *)&itm_port, "cable is %s\n", current_link_status ? "linked" : "not linked");
       if (current_link_status != netif_is_link_up(&thisif)) {
         if (current_link_status)
           tcpip_callback_with_block((tcpip_callback_fn) netif_set_link_up,

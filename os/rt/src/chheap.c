@@ -34,6 +34,10 @@
  */
 
 #include "ch.h"
+#include "ITM_trace.h"
+#include "chprintf.h"
+
+extern ITMStream itm_port;
 
 #if CH_CFG_USE_HEAP || defined(__DOXYGEN__)
 
@@ -143,12 +147,15 @@ void *chHeapAlloc(memory_heap_t *heapp, size_t size) {
 
   if (heapp == NULL)
     heapp = &default_heap;
-
+  
   size = MEM_ALIGN_NEXT(size);
+  
   qp = &heapp->h_free;
-
+  
   H_LOCK(heapp);
+  
   while (qp->h.u.next != NULL) {
+    //chprintf((BaseSequentialStream *)&itm_port, "qp->h.u.next: %i\n", qp->h.u.next);
     hp = qp->h.u.next;
     if (hp->h.size >= size) {
       if (hp->h.size < size + sizeof(union heap_header)) {
@@ -172,7 +179,9 @@ void *chHeapAlloc(memory_heap_t *heapp, size_t size) {
     }
     qp = hp;
   }
+  
   H_UNLOCK(heapp);
+  
 
   /* More memory is required, tries to get it from the associated provider
      else fails.*/

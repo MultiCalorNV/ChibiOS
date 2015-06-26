@@ -53,22 +53,57 @@
 *  17.08.09  gdisirio   Modified the file for use under ChibiOS/RT
 *  15.11.09  gdisirio   Added read and write handling
 ****************************************************************************/
+#include "halconf.h"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <sys/unistd.h>
 
 #include "ch.h"
-#if defined(STDOUT_SD) || defined(STDIN_SD)
+#if HAL_USE_RTC || defined(STDOUT_SD) || defined(STDIN_SD)
 #include "hal.h"
 #endif
+#include "Verventa-master.h"
+
+#include "rtc.h"
+
+#include "ITM_trace.h"
+#include "chprintf.h"
+
+extern ITMStream itm_port;
+
+#define EOF	'\0'
 
 /***************************************************************************/
 
-int _read_r(struct _reent *r, int file, char * ptr, int len)
+int _open_r(void *reent, const char *file, int flags, int mode)
 {
+	//chprintf((BaseSequentialStream *)&itm_port, "file: %s\n", file);
+	
+	char	i;
+	int 	fd = -1;
+	
+	for(i = 0; i < NUMBER_OF_FILES; i++)
+	{
+		if(strcmp(lcfg_table[i].name, file) == 0) return fd = i;
+	}
+	
+	(void)reent; (void)flags; (void)mode;
+	return fd;
+}
+
+/***************************************************************************/
+
+int _read_r(struct _reent *r, int file, char *ptr, int len)
+{
+  char		i = 0;
+  uint8_t	buffersize = len;
+  //char	ascii;
+	
   (void)r;
 #if defined(STDIN_SD)
   if (!len || (file != 0)) {
@@ -78,9 +113,27 @@ int _read_r(struct _reent *r, int file, char * ptr, int len)
   len = sdRead(&STDIN_SD, (uint8_t *)ptr, (size_t)len);
   return len;
 #else
-  (void)file;
-  (void)ptr;
-  (void)len;
+  //chprintf((BaseSequentialStream *)&itm_port, "file descript: %i\n", file);
+  
+  if (!len || (file == -1)) {
+    __errno_r(r) = EBADF;
+    return -1;
+  }else {
+		do{
+			if(lcfg_table[file].data[i] != EOF){
+				*ptr = lcfg_table[file].data[i++];
+				//ascii = *ptr;
+				//chprintf((BaseSequentialStream *)&itm_port, "character: %c in file: %i with len: %i\n", ascii, file, len);
+			
+				ptr++;
+			}
+
+			len--;
+		}while((len > 0) && (lcfg_table[file].data[i] != EOF));
+		
+		return buffersize - len;
+	}
+
   __errno_r(r) = EINVAL;
   return -1;
 #endif
@@ -102,8 +155,9 @@ int _lseek_r(struct _reent *r, int file, int ptr, int dir)
 
 int _write_r(struct _reent *r, int file, char * ptr, int len)
 {
+  int n;
   (void)r;
-  (void)file;
+  //(void)file;
   (void)ptr;
 #if defined(STDOUT_SD)
   if (file != 1) {
@@ -112,6 +166,17 @@ int _write_r(struct _reent *r, int file, char * ptr, int len)
   }
   sdWrite(&STDOUT_SD, (uint8_t *)ptr, (size_t)len);
 #endif
+  switch (file) {
+      case 1: /*stdout*/
+      case 2: /* stderr */
+          for (n = 0; n < len; n++) {
+        	  chprintf((BaseSequentialStream *)&itm_port, "%c", *ptr++);
+          }
+          break;
+      default:
+          errno = EBADF;
+          return -1;
+  }
   return len;
 }
 
@@ -168,5 +233,19 @@ int _isatty_r(struct _reent *r, int fd)
 
   return 1;
 }
+
+/***************************************************************************/
+
+int _gettimeofday(struct timeval *tv)
+{
+	RTCDateTime timespec;
+
+	rtcGetTime(&RTCD1, &timespec);
+    uint64_t t = (uint64_t)timespec.millisecond * 1000000;/*__your_system_time_function_here__();*/  // get uptime in nanoseconds
+    tv->tv_sec = t / 1000000000;  // convert to seconds
+    tv->tv_usec = ( t % 1000000000 ) / 1000;  // get remaining microseconds
+    chprintf((BaseSequentialStream *)&itm_port, "timespec: time %d usec. %d sec. %d\n", t, tv->tv_usec, tv->tv_sec);
+    return 0;  // return non-zero for error
+} // end _gettimeofday()
 
 /*** EOF ***/

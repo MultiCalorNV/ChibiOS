@@ -88,6 +88,8 @@ include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_stm32f4xx.mk
 include $(CHIBIOS)/test/rt/test.mk
+include $(CHIBIOS)/os/various/lwip_bindings/lwip.mk
+include FreeModbus/FreeModbus.mk
 
 # Define linker script file here
 LDSCRIPT= $(PORTLD)/STM32F407xG.ld
@@ -101,6 +103,16 @@ CSRC = $(PORTSRC) \
        $(OSALSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
+	   $(LWSRC) \
+	   $(CHIBIOS)/os/various/evtimer.c \
+	   $(CHIBIOS)/os/various/syscalls.c \
+	   $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
+	   $(FREEMBSRC) \
+	   stubs.c ITM_trace.c \
+	   web/web.c web/src/fs.c \
+	   ArrayCopy.c \
+	   ArrayList.c \
+	   lcfg_static.c \
        main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
@@ -131,8 +143,9 @@ TCPPSRC =
 ASMSRC = $(PORTASM)
 
 INCDIR = $(PORTINC) $(KERNINC) $(TESTINC) \
-         $(HALINC) $(OSALINC) $(PLATFORMINC) $(BOARDINC) \
-         $(CHIBIOS)/os/various
+         $(HALINC) $(OSALINC) $(PLATFORMINC) $(BOARDINC) $(LWINC) \
+         $(CHIBIOS)/os/various $(CHIBIOS)/os/hal/lib/streams web web/inc \
+		 $(FREEMBINC)
 
 #
 # Project, sources and paths

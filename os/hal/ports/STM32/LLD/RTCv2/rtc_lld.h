@@ -91,7 +91,7 @@
  * @note    The default is calculated for a 32768Hz clock.
  */
 #if !defined(STM32_RTC_PRESA_VALUE) || defined(__DOXYGEN__)
-#define STM32_RTC_PRESA_VALUE               32
+#define STM32_RTC_PRESA_VALUE               128
 #endif
 
 /**
@@ -99,7 +99,7 @@
  * @note    The default is calculated for a 32768Hz clock.
  */
 #if !defined(STM32_RTC_PRESS_VALUE) || defined(__DOXYGEN__)
-#define STM32_RTC_PRESS_VALUE               1024
+#define STM32_RTC_PRESS_VALUE               256
 #endif
 /** @} */
 

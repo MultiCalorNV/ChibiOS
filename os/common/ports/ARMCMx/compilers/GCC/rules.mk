@@ -24,7 +24,7 @@ endif
 
 # Link time optimizations
 ifeq ($(USE_LTO),yes)
-  OPT += -flto
+  # OPT += -flto
 endif
 
 # FPU-related options
@@ -96,6 +96,10 @@ ASMOBJS   = $(addprefix $(OBJDIR)/, $(notdir $(ASMSRC:.s=.o)))
 ASMXOBJS  = $(addprefix $(OBJDIR)/, $(notdir $(ASMXSRC:.S=.o)))
 OBJS	  = $(ASMXOBJS) $(ASMOBJS) $(ACOBJS) $(TCOBJS) $(ACPPOBJS) $(TCPPOBJS)
 
+.DEP	  = $(OBJS:build/obj/%=%)
+.DEPT	  = $(addprefix .dep/, $(.DEP))
+.DEPS	  = $(addsuffix .d, $(.DEPT))
+
 # Paths
 IINCDIR   = $(patsubst %,-I%,$(INCDIR) $(DINCDIR) $(UINCDIR))
 LLIBDIR   = $(patsubst %,-L%,$(DLIBDIR) $(ULIBDIR))
@@ -154,7 +158,7 @@ VPATH     = $(SRCPATHS)
 # Makefile rules
 #
 
-all: $(OBJS) $(OUTFILES) MAKE_ALL_RULE_HOOK
+all: $(OBJS) $(OUTFILES) MAKE_ALL_RULE_HOOK sed
 
 MAKE_ALL_RULE_HOOK:
 
@@ -289,6 +293,9 @@ clean:
 	-rm -fR .dep $(BUILDDIR)
 	@echo
 	@echo Done
+
+sed:
+	sed -i 's#c:#/cygdrive/c#g' $(.DEPS)
 
 #
 # Include the dependency files, should be the last of the makefile

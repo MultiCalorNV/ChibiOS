@@ -17,6 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+//#include "ITM_trace.h"
+//#include "chprintf.h"
+
+//extern ITMStream itm_port;
+
 /**
  * @file    chdebug.h
  * @brief   Debug macros and structures.
@@ -28,6 +33,7 @@
 #ifndef _CHDEBUG_H_
 #define _CHDEBUG_H_
 
+#include <stdio.h>
 /*===========================================================================*/
 /* Module constants.                                                         */
 /*===========================================================================*/
@@ -188,6 +194,8 @@ typedef struct {
 #if !defined(chDbgAssert)
 #define chDbgAssert(c, r) do {                                              \
   if (CH_DBG_ENABLE_ASSERTS && !(c)) {                                      \
+	  printf("%s\n", r);													\
+	__asm volatile("BKPT #0\n");                                            \
     chSysHalt(__func__);                                                    \
   }                                                                         \
 } while (0)

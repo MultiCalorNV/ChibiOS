@@ -1,0 +1,161 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="stm3240g_chibios_lwip" target="8" version="2">
+  <project Name="stm3240g_chibios_lwip">
+    <configuration Name="Common" Placement="RAM" Target="STM32F407IG" arm_architecture="v7EM" arm_core_type="Cortex-M4" arm_fp_abi="Hard" arm_fpu_type="FPv4-SP-D16" arm_gcc_target="arm-unknown-eabi" arm_linker_allow_multiple_definition="Yes" arm_linker_heap_size="16" arm_linker_jtag_pad_pre_dr="1" arm_linker_jtag_pad_pre_ir="5" arm_linker_process_stack_size="512" arm_linker_stack_size="512" arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll" arm_simulator_memory_simulation_parameter="STM32F407IG;0x100000;0x20000" arm_target_debug_interface_type="ADIv5" arm_target_interface_type="Default" arm_target_loader_applicable_loaders="" arm_target_loader_default_loader="" build_intermediate_directory="$(Configuration)" build_output_directory="$(Configuration)" build_remove_unused_symbols="Yes" c_additional_options="-Wall;-Wextra" c_only_additional_options="-falign-functions=16" c_preprocessor_definitions="USE_PROCESS_STACK;INITIALIZE_STACK;RTOS_CHIBIOS;USE_STDPERIPH_DRIVER;USE_BOARD_MB786;HSE_VALUE=25000000" c_user_include_directories="..\\common\\cmsis\\core;..\\common\\cmsis\\device\\stm32f4xx;..\\common\\inc;..\\common\\chibios\\v263\\os\\kernel\\include;..\\common\\chibios\\v263\\os\\ports\\common\\ARMCMx;..\\common\\chibios\\v263\\os\\ports\\gcc\\ARMCMx;..\\common\\chibios\\v263\\os\\ports\\gcc\\ARMCMx\\STM32F4xx;..\\common\\st\\STM32F4xx_StdPeriph_Driver\\v110\\inc;..\\common\\st\\STM32F4x7_ETH_Driver\\v110\\inc;..\\common\\lwip\\v141\\src\\include;..\\common\\lwip\\v141\\src\\include\\ipv4;..\\common\\lwip_port\\stm32f2x7_4x7;..\\common\\lwip_port\\stm32f2x7_4x7\\chibios;..\\common\\uhttp\\inc;..\\inc" link_use_multi_threaded_libraries="No" linker_additional_files="" linker_memory_map_file="$(TargetsDir)/STM32/STM32F407IG_MemoryMap.xml" linker_section_placement_file="$(StudioDir)/targets/Cortex_M/ram_placement.xml" project_directory="" project_type="Executable" property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml" target_get_partname_script="GetPartName()" target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)" target_reset_script="Reset()"/>
+    <configuration Name="Flash" Placement="Flash" arm_target_flash_loader_file_path="$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf" arm_target_flash_loader_type="LIBMEM RPC Loader" arm_target_loader_applicable_loaders="Flash" arm_target_loader_can_erase_all="Yes" arm_target_loader_can_lock_all="No" arm_target_loader_can_lock_range="No" arm_target_loader_can_unlock_all="No" arm_target_loader_can_unlock_range="No" arm_target_loader_default_loader="Flash" linker_section_placement_file="$(ProjectDir)/flash_stm3240g_placement.xml" target_reset_script="FLASHReset()"/>
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc"/>
+      <folder Name="src">
+        <file file_name="../src/main.c"/>
+        <file file_name="../src/iperf.c"/>
+        <file file_name="../src/htdocs.c"/>
+        <file file_name="../src/io.c"/>
+      </folder>
+      <folder Name="common">
+        <folder Name="cmsis">
+          <file file_name="../common/cmsis/device/stm32f4xx/system_stm32f4xx.c"/>
+        </folder>
+        <folder Name="StdPeriph_Driver">
+          <file file_name="../common/st/STM32F4xx_StdPeriph_Driver/v110/src/stm32f4xx_gpio.c">
+            <configuration Name="THUMB RAM Debug" build_exclude_from_build="No"/>
+          </file>
+          <file file_name="../common/st/STM32F4xx_StdPeriph_Driver/v110/src/stm32f4xx_rcc.c"/>
+          <file file_name="../common/st/STM32F4xx_StdPeriph_Driver/v110/src/stm32f4xx_syscfg.c"/>
+          <file file_name="../common/st/STM32F4xx_StdPeriph_Driver/v110/src/stm32f4xx_exti.c"/>
+          <file file_name="../common/st/STM32F4xx_StdPeriph_Driver/v110/src/stm32f4xx_usart.c"/>
+        </folder>
+        <folder Name="lwip">
+          <folder Name="api">
+            <file file_name="../common/lwip/v141/src/api/tcpip.c"/>
+            <file file_name="../common/lwip/v141/src/api/api_lib.c"/>
+            <file file_name="../common/lwip/v141/src/api/api_msg.c"/>
+            <file file_name="../common/lwip/v141/src/api/err.c"/>
+            <file file_name="../common/lwip/v141/src/api/netbuf.c"/>
+            <file file_name="../common/lwip/v141/src/api/netdb.c"/>
+            <file file_name="../common/lwip/v141/src/api/netifapi.c"/>
+            <file file_name="../common/lwip/v141/src/api/sockets.c"/>
+          </folder>
+          <folder Name="core">
+            <file file_name="../common/lwip/v141/src/core/udp.c"/>
+            <file file_name="../common/lwip/v141/src/core/def.c"/>
+            <file file_name="../common/lwip/v141/src/core/dhcp.c"/>
+            <file file_name="../common/lwip/v141/src/core/dns.c"/>
+            <file file_name="../common/lwip/v141/src/core/init.c"/>
+            <file file_name="../common/lwip/v141/src/core/mem.c"/>
+            <file file_name="../common/lwip/v141/src/core/memp.c"/>
+            <file file_name="../common/lwip/v141/src/core/netif.c"/>
+            <file file_name="../common/lwip/v141/src/core/pbuf.c"/>
+            <file file_name="../common/lwip/v141/src/core/raw.c"/>
+            <file file_name="../common/lwip/v141/src/core/stats.c"/>
+            <file file_name="../common/lwip/v141/src/core/sys.c"/>
+            <file file_name="../common/lwip/v141/src/core/tcp.c"/>
+            <file file_name="../common/lwip/v141/src/core/tcp_in.c"/>
+            <file file_name="../common/lwip/v141/src/core/tcp_out.c"/>
+            <file file_name="../common/lwip/v141/src/core/timers.c"/>
+          </folder>
+          <folder Name="ipv4">
+            <file file_name="../common/lwip/v141/src/core/ipv4/ip_frag.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/autoip.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/icmp.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/igmp.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/inet.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/inet_chksum.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/ip.c"/>
+            <file file_name="../common/lwip/v141/src/core/ipv4/ip_addr.c"/>
+          </folder>
+          <folder Name="netif">
+            <file file_name="../common/lwip/v141/src/netif/etharp.c"/>
+          </folder>
+        </folder>
+        <folder Name="lwip_port">
+          <file file_name="../common/lwip_port/stm32f2x7_4x7/chibios/sys_arch.c"/>
+          <file file_name="../common/lwip_port/stm32f2x7_4x7/ethernetif.c"/>
+        </folder>
+        <folder Name="src">
+          <file file_name="../common/src/ipstack.c"/>
+          <file file_name="../common/src/eth_config.c"/>
+          <file file_name="../common/src/ip_phy_dp83848.c"/>
+          <file file_name="../common/src/ip_phy_ksz8721.c"/>
+          <file file_name="../common/src/chibios_malloc.c"/>
+        </folder>
+        <folder Name="ETH_Driver">
+          <file file_name="../common/st/STM32F4x7_ETH_Driver/v110/src/stm32f4x7_eth.c"/>
+        </folder>
+        <folder Name="uhttp">
+          <folder Name="modules">
+            <file file_name="../common/uhttp/src/modules/mod_cgi_func.c"/>
+            <file file_name="../common/uhttp/src/modules/mod_redir.c"/>
+          </folder>
+          <folder Name="os">
+            <file file_name="../common/uhttp/src/os/chibios/streamio.c"/>
+          </folder>
+          <file file_name="../common/uhttp/src/utils.c"/>
+          <file file_name="../common/uhttp/src/envinit.c"/>
+          <file file_name="../common/uhttp/src/envreg.c"/>
+          <file file_name="../common/uhttp/src/envvars.c"/>
+          <file file_name="../common/uhttp/src/mediatypes.c"/>
+          <file file_name="../common/uhttp/src/mtinit.c"/>
+          <file file_name="../common/uhttp/src/mtreg.c"/>
+          <file file_name="../common/uhttp/src/responses.c"/>
+          <file file_name="../common/uhttp/src/uhttpd.c"/>
+        </folder>
+        <folder Name="chibios">
+          <folder Name="kernel">
+            <file file_name="../common/chibios/v263/os/kernel/src/chvt.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chcond.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chdebug.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chdynamic.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chevents.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chheap.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chlists.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chmboxes.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chmemcore.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chmempools.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chmsg.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chmtx.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chqueues.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chregistry.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chschd.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chsem.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chsys.c"/>
+            <file file_name="../common/chibios/v263/os/kernel/src/chthreads.c"/>
+          </folder>
+          <folder Name="ports">
+            <file file_name="../common/chibios/v263/os/ports/gcc/ARMCMx/chcore_v7m.c"/>
+            <file file_name="../common/chibios/v263/os/ports/gcc/ARMCMx/chcore.c"/>
+            <file file_name="../common/chibios/v263/os/ports/common/ARMCMx/nvic.c"/>
+          </folder>
+        </folder>
+      </folder>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="thumb_crt0.s"/>
+      <file file_name="STM32_Startup.s"/>
+      <file file_name="STM3240G_Target.js">
+        <configuration Name="Common" file_type="Target Script"/>
+      </file>
+      <file file_name="ram_stm3240g_placement.xml">
+        <configuration Name="Common" file_type="Section Placement"/>
+        <configuration Name="Flash" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="flash_stm3240g_placement.xml">
+        <configuration Name="Common" file_type="Section Placement"/>
+        <configuration Name="RAM" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="STM3240G_MemoryMap.xml">
+        <configuration Name="Common" file_type="Memory Map"/>
+      </file>
+    </folder>
+    <configuration Name="RAM" Placement="RAM" arm_target_loader_applicable_loaders="" arm_target_loader_default_loader="RAM" c_preprocessor_definitions="_RUN_FROM_EXTRAM" linker_section_placement_file="$(ProjectDir)/ram_stm3240g_placement.xml" target_reset_script="SRAMReset()"/>
+    <configuration Name="Release" gcc_debugging_level="Level 1" gcc_optimization_level="Level 1"/>
+  </project>
+  <configuration Name="THUMB" Platform="ARM" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" hidden="Yes"/>
+  <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 2" gcc_optimization_level="None" hidden="Yes"/>
+  <configuration Name="Release" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="Level 1" gcc_optimization_level="Level 1" hidden="Yes"/>
+  <configuration Name="THUMB RAM Debug" inherited_configurations="Debug;RAM;THUMB"/>
+  <configuration Name="RAM" hidden="Yes"/>
+  <configuration Name="Flash" hidden="Yes"/>
+  <configuration Name="THUMB Flash Debug" inherited_configurations="Debug;Flash;THUMB"/>
+  <configuration Name="THUMB Flash Release" inherited_configurations="Flash;Release;THUMB"/>
+  <configuration Name="THUMB RAM Release" inherited_configurations="RAM;Release;THUMB"/>
+</solution>

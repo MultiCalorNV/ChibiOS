@@ -25,6 +25,8 @@
 #include <string.h>
 
 #include "hal.h"
+#include "ITM_trace.h"
+#include "chprintf.h"
 
 #if HAL_USE_MAC || defined(__DOXYGEN__)
 
@@ -54,6 +56,8 @@
 /*===========================================================================*/
 /* Driver exported variables.                                                */
 /*===========================================================================*/
+
+extern ITMStream itm_port;
 
 /**
  * @brief   Ethernet driver 1.
@@ -140,6 +144,7 @@ static void mii_find_phy(MACDriver *macp) {
     time = chSysGetRealtimeCounterX();
   }
 #endif
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "MAC failure");
   /* Wrong or defective board.*/
   osalSysHalt("MAC failure");
 }
@@ -217,6 +222,8 @@ void mac_lld_init(void) {
 
   macObjectInit(&ETHD1);
   ETHD1.link_up = false;
+  
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "NIC no link up");
 
   /* Descriptor tables are initialized in chained mode, note that the first
      word is not initialized here but in mac_lld_start().*/
@@ -259,6 +266,7 @@ void mac_lld_init(void) {
   ETHD1.phyaddr = BOARD_PHY_ADDRESS << 11;
 #else
   mii_find_phy(&ETHD1);
+  chprintf((BaseSequentialStream *)&itm_port, "ETHD1 %s\n", "mii_find_phy");
 #endif
 
 #if defined(BOARD_PHY_RESET)
@@ -268,7 +276,9 @@ void mac_lld_init(void) {
   /* PHY soft reset procedure.*/
   mii_write(&ETHD1, MII_BMCR, BMCR_RESET);
 #if defined(BOARD_PHY_RESET_DELAY)
+  chprintf((BaseSequentialStream *)&itm_port, "BOARD_PHY_RESET_DELAY %d\n", BOARD_PHY_RESET_DELAY);
   chSysPolledDelayX(BOARD_PHY_RESET_DELAY);
+  chprintf((BaseSequentialStream *)&itm_port, "BOARD_PHY_RESET_DELAY %d\n", BOARD_PHY_RESET_DELAY);
 #endif
   while (mii_read(&ETHD1, MII_BMCR) & BMCR_RESET)
     ;
@@ -309,6 +319,8 @@ void mac_lld_start(MACDriver *macp) {
     ;
 #endif
 
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "NIC clock");
+
   /* ISR vector enabled.*/
   nvicEnableVector(ETH_IRQn, STM32_MAC_ETH1_IRQ_PRIORITY);
 
@@ -348,11 +360,15 @@ void mac_lld_start(MACDriver *macp) {
 
   /* DMA general settings.*/
   ETH->DMABMR   = ETH_DMABMR_AAB | ETH_DMABMR_RDP_1Beat | ETH_DMABMR_PBL_1Beat;
+  
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "DMA Settings");
 
   /* Transmit FIFO flush.*/
   ETH->DMAOMR   = ETH_DMAOMR_FTF;
   while (ETH->DMAOMR & ETH_DMAOMR_FTF)
     ;
+
+  chprintf((BaseSequentialStream *)&itm_port, "%s\n", "FIFO FLush");
 
   /* DMA final configuration and start.*/
   ETH->DMAOMR   = ETH_DMAOMR_DTCEFD | ETH_DMAOMR_RSF | ETH_DMAOMR_TSF |
